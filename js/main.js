@@ -6,11 +6,13 @@ const exampleQuestionEle = document.querySelector('#exampleQuestion');
 const exampleAnswerEle = document.querySelector('#exampleAnswer');
 const exampleResponseEle = document.querySelector('#exampleResponse');
 const codeEle = document.querySelector('.code');
+const copyBtn = document.querySelector('#copyMe');
 const codeQuestionEle = document.querySelector('#question');
 const codeResponseEle = document.querySelector('#response');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
+copyBtn.addEventListener('click', copyCode);
 
 // https://www.convertcsv.com/csv-to-json.htm to create
 const questions = [
@@ -370,6 +372,8 @@ const numOfQuestions = questions.length;
 
 function inspire() {
   exampleEle.classList.remove('hidden');
+  // Help should be hidden at start
+  codeEle.classList.add('hidden');
 
   // Randomly pick a question number then set the text values
   const questionToPick = Math.ceil(Math.random() * numOfQuestions);
@@ -390,6 +394,10 @@ function inspire() {
 
 function showHelp() {
   codeEle.classList.toggle('hidden');
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(codeEle.innerText);
 }
 
 function generatePrintStatement(response, variableName) {

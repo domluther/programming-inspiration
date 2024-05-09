@@ -64,6 +64,16 @@ div {
   text-align: center;
   padding: 10px; /* Add padding to text */
 }
+
+.code {
+  position: relative;
+}
+
+#copyMe {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
@@ -104,6 +114,10 @@ h3 {
   padding: 1rem;
   display: inline-block;
   border-radius: 1rem;
+}
+
+.small-btn {
+  padding: 0.2rem;
 }
 
 .btn:hover {
