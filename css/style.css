@@ -67,6 +67,7 @@ div {
 
 .code {
   position: relative;
+  line-height: 1.75rem;
 }
 
 #copyMe {

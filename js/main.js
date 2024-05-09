@@ -297,8 +297,8 @@ const questions = [
     Response: 'You must be good at {answer}.',
   },
   {
-    Variable: 'food',
-    Topic: 'their favourite type of food',
+    Variable: 'pixar',
+    Topic: 'the best Pixar film',
     Question: 'What is the best Pixar film?',
     Answer: 'Coco',
     Response: '{answer} makes me cry.',
@@ -357,13 +357,13 @@ const questions = [
     Topic: 'their favourite type of flower',
     Question: 'What is your favourite type of flower?',
     Answer: 'daisy',
-    Response: '{answer} are so pretty.',
+    Response: '{answer} is such a pretty flower.',
   },
   {
     Variable: 'future',
     Topic: 'their plan for the future',
     Question: 'What is your plan for the future?',
-    Answer: 'to learn to fly',
+    Answer: 'learn to fly',
     Response: 'I hope you can {answer}.',
   },
 ];
@@ -385,7 +385,7 @@ function inspire() {
     '{answer}',
     question.Answer
   );
-  codeQuestionEle.innerText = `${question.Variable} = input("${question.Question}")`;
+  codeQuestionEle.innerText = `${question.Variable} = input("${question.Question} ")`;
   codeResponseEle.innerText = generatePrintStatement(
     question.Response,
     question.Variable
@@ -397,10 +397,11 @@ function showHelp() {
 }
 
 function copyCode() {
-  navigator.clipboard.writeText(codeEle.innerText);
+  let codeText = `${codeQuestionEle.innerText}\n${codeResponseEle.innerText}`;
+  navigator.clipboard.writeText(codeText);
 }
 
 function generatePrintStatement(response, variableName) {
   const splitResponse = response.split('{answer}');
-  return `print("${splitResponse[0]} " + ${variableName} ${splitResponse[1] ? `+ " ${splitResponse[1]}"` : ``})`;
+  return `print(${splitResponse[0] ? `"${splitResponse[0]} + "` : ``}${variableName} ${splitResponse[1] ? `+ " ${splitResponse[1]}"` : ``})`;
 }
