@@ -9,13 +9,22 @@ const codeEle = document.querySelector('.code');
 const copyBtn = document.querySelector('#copyMe');
 const codeQuestionEle = document.querySelector('#question');
 const codeResponseEle = document.querySelector('#response');
+const forceSpongeBtn = document.querySelector('#forceSpongebob');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
 copyBtn.addEventListener('click', copyCode);
+forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 
 // https://www.convertcsv.com/csv-to-json.htm to create
 const questions = [
+  {
+    Variable: 'spongebob',
+    Topic: 'their favourite Spongebob character',
+    Question: 'Who is the best Spongebob character?',
+    Answer: 'Sponge',
+    Response: 'Absolutely. No-one is better than {answer}.',
+  },
   {
     Variable: 'name',
     Topic: 'their name',
@@ -370,13 +379,14 @@ const questions = [
 
 const numOfQuestions = questions.length;
 
-function inspire() {
+function inspire(override) {
   exampleEle.classList.remove('hidden');
   // Help should be hidden at start
   codeEle.classList.add('hidden');
 
   // Randomly pick a question number then set the text values
-  const questionToPick = Math.ceil(Math.random() * numOfQuestions);
+  let questionToPick = Math.ceil(Math.random() * numOfQuestions);
+  if (override === 'bob') questionToPick = 1;
   const question = questions[questionToPick - 1];
   topicEle.innerText = `ask someone ${question.Topic}.`;
   exampleQuestionEle.innerText = question.Question;
