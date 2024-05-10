@@ -413,5 +413,5 @@ function copyCode() {
 
 function generatePrintStatement(response, variableName) {
   const splitResponse = response.split('{answer}');
-  return `print(${splitResponse[0] ? `"${splitResponse[0]} " +` : ``}${variableName} ${splitResponse[1] ? `+ " ${splitResponse[1]}"` : ``})`;
+  return `print(${splitResponse[0] ? `"${splitResponse[0]} " + ` : ``}${variableName} ${splitResponse[1] ? `+ " ${splitResponse[1]}"` : ``})`;
 }
