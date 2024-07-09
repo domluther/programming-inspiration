@@ -154,8 +154,8 @@ const questions = [
     answer1: '10',
     answer2: '2',
     calculation: '{variable1}  / {variable2}',
-    result: 5,
-    response: '"You each owe £", {result}',
+    result: '£5',
+    response: '"You each owe", {result}',
   },
   {
     topic: 'convert someones weight to kilograms',
