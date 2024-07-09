@@ -1,8 +1,4 @@
-/******************************************
-/* CSS
-/*******************************************/
-
-/* Box Model Hack */
+/* Reset and base styles */
 * {
   box-sizing: border-box;
 }
@@ -12,9 +8,33 @@ body {
   margin: 2rem;
   font-family: 'Roboto', sans-serif;
 }
-/******************************************
-/* LAYOUT
-/*******************************************/
+
+/* Typography */
+h1 {
+  font-size: 2.4rem;
+  margin: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+/* Layout */
+div {
+  max-width: 800px;
+  margin: auto;
+}
 
 .cartoon1,
 .cartoon2 {
@@ -23,140 +43,70 @@ body {
   display: inline-block;
 }
 
-div {
-  max-width: 800px;
-  margin: auto;
-}
-
 .cartoon1 img,
 .cartoon2 img {
   max-width: 100%;
   vertical-align: middle;
 }
 
-/* Cartoon 1 */
-#exampleQuestion {
+/* Common styles for positioned elements */
+.cartoon1 p,
+.cartoon2 p {
   position: absolute;
+  font-size: 1.5rem;
+  color: black;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Cartoon 1 specific positioning */
+#exampleQuestion {
   top: 8.5%;
   left: 25%;
   max-width: 40%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
-
 #exampleAnswer {
-  position: absolute;
   top: 20%;
   left: 45%;
   max-width: 20%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
-
 #exampleResponse {
-  position: absolute;
   top: 38%;
   left: 30%;
   max-width: 25%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
 
-/* Cartoon 2 */
-
+/* Cartoon 2 specific positioning */
 #exampleQuestion1 {
-  position: absolute;
   top: 5%;
   left: 35%;
   max-width: 40%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
-
 #exampleQuestion2 {
-  position: absolute;
   top: 28%;
   left: 45%;
   max-width: 25%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
-
 #exampleAnswer1 {
-  position: absolute;
   top: 20%;
   left: 32%;
   max-width: 20%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
-
 #exampleAnswer2 {
-  position: absolute;
   top: 45%;
   left: 35%;
   max-width: 20%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
-
 #exampleResponse2 {
-  position: absolute;
   top: 60%;
   left: 45%;
   max-width: 25%;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px; /* Add padding to text */
 }
 
+/* Code block styles */
 .code {
   position: relative;
   line-height: 1.75rem;
-}
-
-#copyMe {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-}
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
-
-h1 {
-  font-size: 2.4rem;
-  text-align: center;
-  margin: 1rem;
-}
-
-h2 {
-  font-size: 2rem;
-  text-align: center;
-}
-
-h3 {
-  margin: 1rem;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.code {
   font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
   background-color: lightgray;
@@ -164,10 +114,18 @@ h3 {
   font-size: 1.2rem;
 }
 
+#copyMe {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+}
+
+/* Utility classes */
 .hidden {
   display: none;
 }
 
+/* Button styles */
 .btn {
   text-decoration: none;
   background-color: orange;
