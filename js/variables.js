@@ -221,7 +221,7 @@ const questions = [
     answer2: '£150 ',
     calculation: '{variable2} / {variable1}',
     result: 5,
-    response: '"It will take", {result}, "weeks to save £", {answer2}',
+    response: '"It will take", {result}, "weeks to save ", {answer2}',
   },
   {
     topic: 'work out how much someone spends on chocolate',
@@ -471,7 +471,7 @@ function inspire(override) {
   if (override === 'bob') questionToPick = 1;
   const question = questions[questionToPick - 1];
   console.table(question);
-  topicEle.innerText = `ask someone ${question.topic}.`;
+  topicEle.innerText = `${question.topic}.`;
   // One input or two inputs?
   const oneQuestion = question.variable2 === '';
   if (oneQuestion) {
@@ -537,7 +537,6 @@ function copyCode() {
   const codeText = document
     .querySelector('.code')
     .innerText.replace('📋\n\n', '');
-  // let codeText = `${codeQuestion1Ele.innerText}\n${codeResponseEle.innerText}`;
   navigator.clipboard.writeText(codeText);
 }
 
