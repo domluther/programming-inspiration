@@ -22,7 +22,7 @@ const questions = [
     Variable: 'spongebob',
     Topic: 'their favourite Spongebob character',
     Question: 'Who is the best Spongebob character?',
-    Answer: 'Sponge',
+    Answer: 'Mr Krabs',
     Response: 'Absolutely. No-one is better than {answer}.',
   },
   {
@@ -413,5 +413,5 @@ function copyCode() {
 
 function generatePrintStatement(response, variableName) {
   const splitResponse = response.split('{answer}');
-  return `print(${splitResponse[0] ? `"${splitResponse[0]} " + ` : ``}${variableName} ${splitResponse[1] ? `+ " ${splitResponse[1]}"` : ``})`;
+  return `print(${splitResponse[0] ? `"${splitResponse[0]} ", ` : ``}${variableName} ${splitResponse[1] ? `, " ${splitResponse[1]}"` : ``})`;
 }
