@@ -35,7 +35,7 @@ const questions = [
   {
     variable: 'age',
     topic: 'their age',
-    question: 'How old are you?z',
+    question: 'How old are you?',
     answer: '25',
     response: '"Oh wow! I am", {answer}, "too!"',
   },
