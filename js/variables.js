@@ -255,7 +255,7 @@ const questions = [
     variable2: 'width',
     variable3: 'area',
     question1: "What's the length of the rectangle?",
-    question2: "What's the width of the recatangle?",
+    question2: "What's the width of the rectangle?",
     answer1: '25',
     answer2: '5',
     calculation: '{variable1} * {variable2}',
