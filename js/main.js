@@ -29,7 +29,7 @@ const questions = [
     variable: 'name',
     topic: 'their name',
     question: 'What is your full name?',
-    answer: 'Bob',
+    answer: 'Bob Smith Frederick',
     response: '"Nice to meet you", {answer}.',
   },
   {
@@ -190,7 +190,7 @@ const questions = [
     variable: 'secret',
     topic: 'for a secret',
     question: 'What is a secret?',
-    answer: 'my middle name is gerald',
+    answer: 'Mr Luther doesn't like ducks 😭',
     response: '"Oh wow! I never knew", {answer}, "."',
   },
   {
@@ -295,7 +295,7 @@ const questions = [
     variable: 'fruit',
     topic: 'their favourite fruit',
     question: 'What is your favourite fruit?',
-    answer: 'bananas',
+    answer: 'banana',
     response: '{answer}, "ice cream sounds good."',
   },
   {
