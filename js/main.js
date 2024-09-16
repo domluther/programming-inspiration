@@ -163,7 +163,7 @@ const questions = [
     topic: 'their favourite holiday',
     question: 'What is your favourite holiday?',
     answer: 'Christmas',
-    response: '"Definitely!", [answer}, "is the best."',
+    response: '"Definitely!", {answer}, "is the best."',
   },
   {
     variable: 'food',
