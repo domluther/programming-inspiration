@@ -29,7 +29,7 @@ forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 // https://www.convertcsv.com/csv-to-json.htm to create
 const questions = [
   {
-    topic: "ask someone's the best show",
+    topic: 'ask someone the best show',
     variable1: 'best_show',
     variable2: 'correct_answer',
     question1: 'What is the best TV show?',
