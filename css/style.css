@@ -103,6 +103,36 @@ div {
   max-width: 25%;
 }
 
+/* Cartoon 3 specific positioning */
+#selectionQuestion {
+  top: 9%;
+  left: 18%;
+  max-width: 45%;
+}
+#selectionAnswer1 {
+  top: 18%;
+  left: 72%;
+  max-width: 25%;
+}
+
+#ifReply {
+  top: 31%;
+  left: 37%;
+  max-width: 30%;
+}
+
+#selectionAnswer2 {
+  top: 58%;
+  left: 50%;
+  max-width: 25%;
+}
+
+#elseReply {
+  top: 73%;
+  left: 37%;
+  max-width: 33%;
+}
+
 /* Code block styles */
 .code {
   position: relative;
@@ -112,6 +142,10 @@ div {
   background-color: lightgray;
   padding: 2rem;
   font-size: 1.2rem;
+}
+
+.code p {
+  white-space: pre;
 }
 
 #copyMe {

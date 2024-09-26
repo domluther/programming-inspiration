@@ -4,20 +4,21 @@ const cartoon1Ele = document.querySelector('.cartoon1');
 const cartoon2Ele = document.querySelector('.cartoon2');
 const exampleEle = document.querySelector('.example');
 const topicEle = document.querySelector('#topic');
-const exampleQuestionEle = document.querySelector('#exampleQuestion');
-const exampleQuestion1Ele = document.querySelector('#exampleQuestion1');
-const exampleQuestion2Ele = document.querySelector('#exampleQuestion2');
-const exampleAnswerEle = document.querySelector('#exampleAnswer');
-const exampleAnswer1Ele = document.querySelector('#exampleAnswer1');
+const selectionQuestionEle = document.querySelector('#selectionQuestion');
+const selectionAnswer1Ele = document.querySelector('#selectionAnswer1');
+const selectionAnswer2Ele = document.querySelector('#selectionAnswer2');
+const ifReplyEle = document.querySelector('#ifReply');
+const elseReplyEle = document.querySelector('#elseReply');
 const exampleAnswer2Ele = document.querySelector('#exampleAnswer2');
 const exampleResponseEle = document.querySelector('#exampleResponse');
 const exampleResponse2Ele = document.querySelector('#exampleResponse2');
 const codeEle = document.querySelector('.code');
 const copyBtn = document.querySelector('#copyMe');
-const codeQuestion1Ele = document.querySelector('#codeQuestion1');
-const codeQuestion2Ele = document.querySelector('#codeQuestion2');
-const codeCalculationEle = document.querySelector('#codeCalculation');
-const codeResponseEle = document.querySelector('#response');
+const codeQuestionEle = document.querySelector('#codeQuestion');
+const codeCorrectAnswerEle = document.querySelector('#codeCorrectAnswer');
+const codeIfCheckEle = document.querySelector('#codeIfCheck');
+const codeIfReplyEle = document.querySelector('#codeIfReply');
+const codeElseReplyEle = document.querySelector('#codeElseReply');
 const forceSpongeBtn = document.querySelector('#forceSpongebob');
 
 inspireBtn.addEventListener('click', inspire);
@@ -28,434 +29,285 @@ forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 // https://www.convertcsv.com/csv-to-json.htm to create
 const questions = [
   {
-    topic: 'work out how many hours Squidward has practiced',
-    variable1: 'hours',
-    variable2: 'days',
-    variable3: 'hours_practiced',
-    question1: 'How many hours a day has Squidward practiced?',
-    question2: 'How many days?',
-    answer1: '4',
-    answer2: '9',
-    calculation: '{variable1} * {variable2}',
-    result: 36,
-    response: '"Squidward has practiced", {result}, "hours"',
+    topic: "ask someone's the best show",
+    variable1: 'best_show',
+    variable2: 'correct_answer',
+    question1: 'What is the best TV show?',
+    answer1: 'spongebob squarepants',
+    answer2: 'stranger things',
+    ifReply: '"Absolutely!", {answer1}, "is glorious"',
+    elseReply: '{answer2}, "?!?! No way - it is", {answer1}',
   },
   {
-    topic: 'add two numbers together',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'total',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '4',
-    answer2: '9',
-    calculation: '{variable1} + {variable2}',
-    result: 13,
-    response: '{answer1}, "+", {answer2}, "is", {result}',
+    topic: "ask someone's favourite colour",
+    variable1: 'colour',
+    variable2: 'correct_answer',
+    question1: 'What is your favourite colour?',
+    answer1: 'green',
+    answer2: 'blue',
+    ifReply: '"I love", {answer1}, "too"',
+    elseReply: '{answer2}, "? I prefer", {answer1}',
   },
   {
-    topic: 'times two numbers together',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'total',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '4',
-    answer2: '9',
-    calculation: '{variable1} * {variable2}',
-    result: 36,
-    response: '{answer1}, "*", {answer2}, "is", {result}',
+    topic: 'ask someone about UK geography',
+    variable1: 'capital',
+    variable2: 'correct_answer',
+    question1: "What's the capital of England?",
+    answer1: 'london',
+    answer2: 'manchester',
+    ifReply: '"Correct!", {answer1}, "is the capital of England"',
+    elseReply:
+      '"Not quite.", {answer2}, "is not the capital. It\'s", {answer1}',
   },
   {
-    topic: 'divide one number by another',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'total',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '5',
-    answer2: '10',
-    calculation: '{variable1}  / {variable2}',
-    result: 0.5,
-    response: '{answer1}, "/", {answer2}, "is", {result}',
+    topic: 'ask someone about popular music',
+    variable1: 'artist',
+    variable2: 'correct_answer',
+    question1: "Who sang 'Shape of You'?",
+    answer1: 'ed sheeran',
+    answer2: 'harry styles',
+    ifReply: '"Right!", {answer1}, "sang Shape of You"',
+    elseReply: '"Actually,", {answer2}, "didn\'t sing it.", {answer1}, "did"',
   },
   {
-    topic: 'take one number from the other',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'total',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '10',
-    answer2: '4',
-    calculation: '{variable1}  - {variable2}',
-    result: 6,
-    response: '{answer1}, "-", {answer2}, "is", {result}',
+    topic: 'ask someone about UK sports',
+    variable1: 'sport',
+    variable2: 'correct_answer',
+    question1: 'What sport is played at Wimbledon?',
+    answer1: 'tennis',
+    answer2: 'cricket',
+    ifReply: '"Correct!", {answer1}, "is played at Wimbledon"',
+    elseReply:
+      '"Sorry,", {answer2}, "isn\'t played at Wimbledon.", {answer1}, "is"',
   },
   {
-    topic: "tell you how old you'll be in ten years",
-    variable1: 'age',
-    variable2: '',
-    variable3: 'age_in_ten',
-    question1: 'How old are you now?',
-    question2: '',
-    answer1: '15',
-    answer2: '',
-    calculation: '{variable1} + 10',
-    result: 25,
-    response: '"In 10 years, you will be", {result}',
+    topic: 'ask someone about UK TV shows',
+    variable1: 'show',
+    variable2: 'correct_answer',
+    question1: 'What show features the Daleks?',
+    answer1: 'doctor who',
+    answer2: 'sherlock',
+    ifReply: '"Right!", {answer1}, "features the Daleks"',
+    elseReply:
+      '"Not quite.", {answer2}, "doesn\'t have Daleks.", {answer1}, "does"',
   },
   {
-    topic: "tell you how old you'll be next year",
-    variable1: 'age',
-    variable2: '',
-    variable3: 'age_next_year',
-    question1: 'How old are you now?',
-    question2: '',
-    answer1: '15',
-    answer2: '',
-    calculation: '{variable1} + 1',
-    result: 16,
-    response: '"Next year, you\'ll be", {result}',
+    topic: 'ask someone about UK history',
+    variable1: 'monarch',
+    variable2: 'correct_answer',
+    question1: 'Who was the longest-reigning UK monarch?',
+    answer1: 'elizabeth ii',
+    answer2: 'victoria',
+    ifReply: '"Correct!", {answer1}, "reigned the longest"',
+    elseReply:
+      '"Actually,", {answer2}, "didn\'t reign longest.", {answer1}, "did"',
   },
   {
-    topic: 'tell you how old you were last year',
-    variable1: 'age',
-    variable2: '',
-    variable3: 'age_last_year',
-    question1: 'How old are you now?',
-    question2: '',
-    answer1: '15',
-    answer2: '',
-    calculation: '{variable1} - 1',
-    result: 14,
-    response: '"Last year, you were", {result}',
+    topic: 'ask someone about UK food',
+    variable1: 'dish',
+    variable2: 'correct_answer',
+    question1: "What's in a chip butty?",
+    answer1: 'chips',
+    answer2: 'crisps',
+    ifReply: '"Right!", {answer1}, "are in a chip butty"',
+    elseReply:
+      '"Not quite.", {answer2}, "aren\'t in a chip butty.", {answer1}, "are"',
   },
   {
-    topic: 'work out how many pizza slices there are left',
-    variable1: 'slices_start',
-    variable2: 'slices_eaten',
-    variable3: 'slices_left',
-    question1: 'How many slices did you have?',
-    question2: 'How many slices did you eat?',
-    answer1: '8',
-    answer2: '2',
-    calculation: '{variable1}  - {variable2}',
-    result: 6,
-    response: '"You have", {result}, "slices left"',
+    topic: 'ask someone about UK landmarks',
+    variable1: 'landmark',
+    variable2: 'correct_answer',
+    question1: "What's the clock tower at Parliament called?",
+    answer1: 'big ben',
+    answer2: 'london eye',
+    ifReply: '"Correct! It\'s called", {answer1}',
+    elseReply: '"Sorry, it\'s not", {answer2}, "it\'s", {answer1}',
   },
   {
-    topic: 'work out how much each person owes',
-    variable1: 'total_bill',
-    variable2: 'diners',
-    variable3: 'each_owe',
-    question1: 'How much is the bill?',
-    question2: 'How many people are there?',
-    answer1: '10',
-    answer2: '2',
-    calculation: '{variable1}  / {variable2}',
-    result: '£5',
-    response: '"You each owe", {result}',
+    topic: 'ask someone about UK literature',
+    variable1: 'author',
+    variable2: 'correct_answer',
+    question1: "Who wrote 'Harry Potter'?",
+    answer1: 'j.k. rowling',
+    answer2: 'roald dahl',
+    ifReply: '"Right!", {answer1}, "wrote Harry Potter"',
+    elseReply: '"Actually,", {answer2}, "didn\'t write it.", {answer1}, "did"',
   },
   {
-    topic: 'convert someones weight to kilograms',
-    variable1: 'weight_pounds',
-    variable2: '',
-    variable3: 'weight_kg',
-    question1: 'How heavy is it in pounds?',
-    question2: '',
-    answer1: '10',
-    answer2: '',
-    calculation: '{variable1} / 2.2',
-    result: 4.5,
-    response: '{answer1}, "lbs is", {result}, "kg"',
+    topic: 'ask someone about UK currency',
+    variable1: 'currency',
+    variable2: 'correct_answer',
+    question1: "What's a quid in British currency?",
+    answer1: 'pound',
+    answer2: 'penny',
+    ifReply: '"Correct! A quid is a", {answer1}',
+    elseReply: '"Not quite. A quid isn\'t a", {answer2}, "it\'s a", {answer1}',
   },
   {
-    topic: 'tell them how many times a number fits in',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'fits_in',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '20',
-    answer2: '3',
-    calculation: '{variable1} // {variable2}',
-    result: 6,
-    response: '"There are", {result}, {answer2},"s in", {answer1}',
+    topic: 'ask someone about UK weather',
+    variable1: 'season',
+    variable2: 'correct_answer',
+    question1: 'When is it warm in the UK?',
+    answer1: 'usually never',
+    answer2: 'august',
+    ifReply: '"Right! It is warm", {answer1}',
+    elseReply: '"Actually, it isn\'t warm in", {answer2}, "it\'s", {answer1}',
   },
   {
-    topic: 'tell them the remainder when dividing',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'remainder',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '20',
-    answer2: '3',
-    calculation: '{variable1} % {variable2}',
-    result: 2,
-    response:
-      '"There are", {result}, "left over after dividing", {answer1}, "by", {answer2}',
+    topic: 'ask someone about UK politics',
+    variable1: 'position',
+    variable2: 'correct_answer',
+    question1: "What's the UK Prime Minister's residence?",
+    answer1: '10 downing street',
+    answer2: 'buckingham palace',
+    ifReply: '"Correct! The PM lives at", {answer1}',
+    elseReply: '"Not quite. It\'s", {answer1}, "not", {answer2}',
   },
   {
-    topic: 'tell them how many hours there are in that many days',
-    variable1: 'days',
-    variable2: '',
-    variable3: 'hours',
-    question1: 'Give me a number of hours',
-    question2: '',
-    answer1: '5',
-    answer2: '',
-    calculation: '{variable1} * 24',
-    result: 120,
-    response: '"There are", {result}, "hours in", {answer1}, "days"',
+    topic: 'ask someone about UK pop culture',
+    variable1: 'band',
+    variable2: 'correct_answer',
+    question1: "Which band sang 'Wonderwall'?",
+    answer1: 'oasis',
+    answer2: 'blur',
+    ifReply: '"Right!", {answer1}, "sang Wonderwall"',
+    elseReply: '"Actually, it wasn\'t", {answer2}, "it was", {answer1}',
   },
   {
-    topic: 'tell someone how long it will take to save their pocket money',
-    variable1: 'pocket_money',
-    variable2: 'goal',
-    variable3: 'months_to_save',
-    question1: 'How much is your pocket money?',
-    question2: 'How much do you want to save?',
-    answer1: '£30 ',
-    answer2: '£150 ',
-    calculation: '{variable2} / {variable1}',
-    result: 5,
-    response: '"It will take", {result}, "weeks to save ", {answer2}',
+    topic: 'ask someone about UK geography',
+    variable1: 'city',
+    variable2: 'correct_answer',
+    question1: "What's the largest city in Scotland?",
+    answer1: 'glasgow',
+    answer2: 'edinburgh',
+    ifReply: '"Correct!", {answer1}, "is the largest Scottish city"',
+    elseReply:
+      '"Not quite.", {answer2}, "isn\'t the largest. It\'s", {answer1}',
   },
   {
-    topic: 'work out how much someone spends on chocolate',
-    variable1: 'chocolate_bars',
-    variable2: 'price',
-    variable3: 'total_spend',
-    question1: 'How many chocolate bars are you buying?',
-    question2: 'How much is one bar?',
-    answer1: '5',
-    answer2: '£2 ',
-    calculation: '{variable1} * {variable2}',
-    result: 10,
-    response: '{answer1}, "chocolate bars is", {result}',
+    topic: 'ask someone about UK sports teams',
+    variable1: 'team',
+    variable2: 'correct_answer',
+    question1: 'Which football team is from Liverpool?',
+    answer1: 'liverpool fc',
+    answer2: 'manchester united',
+    ifReply: '"Right!", {answer1}, "is from Liverpool"',
+    elseReply:
+      '"Actually,", {answer2}, "isn\'t from Liverpool.", {answer1}, "is"',
   },
   {
-    topic: 'work out how much you can spend every day on holiday',
-    variable1: 'holiday_money',
-    variable2: 'days',
-    variable3: 'daily_spend',
-    question1: 'How much money do you have?',
-    question2: 'How many days is your holiday?',
-    answer1: '£50 ',
-    answer2: '5',
-    calculation: '{variable1}  / {variable2}',
-    result: 10,
-    response: '"You will have £", {result}, "a day"',
+    topic: 'ask someone about UK education',
+    variable1: 'exam',
+    variable2: 'correct_answer',
+    question1: 'What exams do UK students take at 16?',
+    answer1: 'gcses',
+    answer2: 'a-levels',
+    ifReply: '"Correct! Students take", {answer1}, "at 16"',
+    elseReply:
+      '"Not quite.", {answer2}, "are taken later.", {answer1}, "are at 16"',
   },
   {
-    topic: 'calculate the area of a rectangle',
-    variable1: 'length',
-    variable2: 'width',
-    variable3: 'area',
-    question1: "What's the length of the rectangle?",
-    question2: "What's the width of the rectangle?",
-    answer1: '25',
-    answer2: '5',
-    calculation: '{variable1} * {variable2}',
-    result: 125,
-    response: '"The area of the rectangle is", {result}',
+    topic: 'ask someone about UK technology',
+    variable1: 'inventor',
+    variable2: 'correct_answer',
+    question1: 'Who invented the World Wide Web?',
+    answer1: 'tim berners-lee',
+    answer2: 'alan turing',
+    ifReply: '"Right!", {answer1}, "invented the World Wide Web"',
+    elseReply: '"Actually, it wasn\'t", {answer2}, "it was", {answer1}',
   },
   {
-    topic: 'calculate the perimeter of a rectangle',
-    variable1: 'length',
-    variable2: 'width',
-    variable3: 'perimeter',
-    question1: "What's the length of the rectangle?",
-    question2: "What's the width of the recatangle?",
-    answer1: '25',
-    answer2: '5',
-    calculation: '{variable1} + {variable1} + {variable2} + {variable2}',
-    result: 60,
-    response: '"The perimeter of the rectangle is", {result}',
+    topic: 'ask someone about UK animals',
+    variable1: 'animal',
+    variable2: 'correct_answer',
+    question1: "What's the UK's national animal?",
+    answer1: 'lion',
+    answer2: 'bulldog',
+    ifReply: '"Correct! The UK\'s national animal is the", {answer1}',
+    elseReply: '"Not quite. It\'s not the", {answer2}, "it\'s the", {answer1}',
   },
   {
-    topic: 'tell them how many seconds there are in that many minutes',
-    variable1: 'minutes',
-    variable2: '',
-    variable3: 'seconds',
-    question1: 'Give me a number of minutes',
-    question2: '',
-    answer1: '10',
-    answer2: '',
-    calculation: '{variable1} * 60',
-    result: 600,
-    response: '"There are", {result}, "seconds in", {answer1}, "minutes"',
+    topic: 'ask someone about UK transport',
+    variable1: 'network',
+    variable2: 'correct_answer',
+    question1: "What's London's underground called?",
+    answer1: 'the tube',
+    answer2: 'the metro',
+    ifReply: '"Right! It\'s called", {answer1}',
+    elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
   },
   {
-    topic: 'calculate the average of two numbers',
-    variable1: 'num1',
-    variable2: 'num2',
-    variable3: 'average',
-    question1: 'Give me a number',
-    question2: 'Give me another number',
-    answer1: '8',
-    answer2: '4',
-    calculation: '({variable1} + {variable2}) / 2',
-    result: 6,
-    response: '"The average is", {result}',
+    topic: 'ask someone about UK inventions',
+    variable1: 'invention',
+    variable2: 'correct_answer',
+    question1: 'What did James Dyson invent?',
+    answer1: 'vacuum cleaner',
+    answer2: 'washing machine',
+    ifReply: '"Correct! Dyson invented the", {answer1}',
+    elseReply:
+      '"Not quite. He didn\'t invent the", {answer2}, "but the", {answer1}',
   },
   {
-    topic: 'work out the difference in ages',
-    variable1: 'age1',
-    variable2: 'age2',
-    variable3: 'difference',
-    question1: 'How old is the first person?',
-    question2: 'How old is the second person?',
-    answer1: '15',
-    answer2: '13',
-    calculation: '{variable1}  - {variable2}',
-    result: 2,
-    response: '"Person 1 is", {result}, "years older"',
+    topic: 'ask someone about UK celebrations',
+    variable1: 'celebration',
+    variable2: 'correct_answer',
+    question1: 'What do we celebrate on Guy Fawkes Night?',
+    answer1: 'bonfire night',
+    answer2: "new year's eve",
+    ifReply: '"Right! We celebrate", {answer1}',
+    elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
   },
   {
-    topic: 'work out how many boxes you need',
-    variable1: 'cookies',
-    variable2: 'cookies_per_box',
-    variable3: 'cookie_boxes',
-    question1: 'How many cookies are there?',
-    question2: 'How many fit in a box?',
-    answer1: '40',
-    answer2: '5',
-    calculation: '{variable1} // {variable2}',
-    result: 8,
-    response: '{answer1}, "cookies needs", {result}, "boxes"',
+    topic: 'ask someone about UK science',
+    variable1: 'scientist',
+    variable2: 'correct_answer',
+    question1: 'Who discovered penicillin?',
+    answer1: 'alexander fleming',
+    answer2: 'isaac newton',
+    ifReply: '"Correct!", {answer1}, "discovered penicillin"',
+    elseReply:
+      '"Not quite.", {answer2}, "didn\'t discover it.", {answer1}, "did"',
   },
   {
-    topic: 'say how far you have cycled',
-    variable1: 'distance',
-    variable2: 'days',
-    variable3: 'total_cycled',
-    question1: 'How far did you cycle in a day?',
-    question2: 'How many days did you cycle for?',
-    answer1: '50',
-    answer2: '3',
-    calculation: '{variable1} * {variable2}',
-    result: 150,
-    response: '"You cycled", {result}, "km in", {answer2}, "days"',
+    topic: 'ask someone about UK monarchy',
+    variable1: 'residence',
+    variable2: 'correct_answer',
+    question1: 'Where does the monarch live?',
+    answer1: 'buckingham palace',
+    answer2: 'windsor castle',
+    ifReply: '"Right! The monarch lives in", {answer1}',
+    elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
   },
   {
-    topic: 'the square of a number',
-    variable1: 'num1',
-    variable2: '',
-    variable3: 'square',
-    question1: 'Give me a number',
-    question2: '',
-    answer1: '10',
-    answer2: '',
-    calculation: '{variable1} ** 2',
-    result: 100,
-    response: '{answer1}, "squared is", {result}',
+    topic: 'ask someone about UK traditions',
+    variable1: 'tradition',
+    variable2: 'correct_answer',
+    question1: "What's traditionally eaten on Pancake Day?",
+    answer1: 'pancakes',
+    answer2: 'fish and chips',
+    ifReply: '"Correct! We eat", {answer1}, "on Pancake Day"',
+    elseReply: '"Not quite. We don\'t eat", {answer2}, "we eat", {answer1}',
   },
   {
-    topic: 'half a number',
-    variable1: 'num1',
-    variable2: '',
-    variable3: 'half',
-    question1: 'Give me a number',
-    question2: '',
-    answer1: '20',
-    answer2: '',
-    calculation: '{variable1} / 2',
-    result: 10,
-    response: '"Half of", {answer1}, "is", {result}',
+    topic: 'ask someone about UK film',
+    variable1: 'character',
+    variable2: 'correct_answer',
+    question1: 'Who is the famous British spy in films?',
+    answer1: 'james bond',
+    answer2: 'sherlock holmes',
+    ifReply: '"Right! The famous British spy is", {answer1}',
+    elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
   },
   {
-    topic: 'double a number',
-    variable1: 'num1',
-    variable2: '',
-    variable3: 'double',
-    question1: 'Give me a number',
-    question2: '',
-    answer1: '20',
-    answer2: '',
-    calculation: '{variable1} * 2',
-    result: 40,
-    response: '"Double", {answer1}, "is", {result}',
-  },
-  {
-    topic: 'area of a square',
-    variable1: 'length',
-    variable2: '',
-    variable3: 'area',
-    question1: 'How long is the square?',
-    question2: '',
-    answer1: '5',
-    answer2: '',
-    calculation: '{variable1} * {variable1}',
-    result: 25,
-    response: '"The square is", {result}, "cm2"',
-  },
-  {
-    topic: 'perimeter of a square',
-    variable1: 'length',
-    variable2: '',
-    variable3: 'perimeter',
-    question1: 'How long is the square?',
-    question2: '',
-    answer1: '4',
-    answer2: '',
-    calculation: '{variable1} * 4',
-    result: 16,
-    response: '"The square is", {result}, "cm2"',
-  },
-  {
-    topic: 'triple a number',
-    variable1: 'num1',
-    variable2: '',
-    variable3: 'triple',
-    question1: 'Give me a number',
-    question2: '',
-    answer1: '20',
-    answer2: '',
-    calculation: '{variable1} * 3',
-    result: 60,
-    response: '"Triple", {answer1}, "is", {result}',
-  },
-  {
-    topic: 'convert from celsius to fahrenheit',
-    variable1: 'celsius',
-    variable2: '',
-    variable3: 'fahrenheit',
-    question1: 'How many celsius',
-    question2: '',
-    answer1: '30',
-    answer2: '',
-    calculation: '({variable1} * 9/5) + 32',
-    result: 86,
-    response: '{answer1}, "celsius is", {result}, "fahrenheit"',
-  },
-  {
-    topic: 'age in months',
-    variable1: 'age_years',
-    variable2: '',
-    variable3: 'age_months',
-    question1: 'How many years old are you?',
-    question2: '',
-    answer1: '15',
-    answer2: '',
-    calculation: '{variable1} * 12',
-    result: 180,
-    response: '"You are", {result}, "months old"',
-  },
-  {
-    topic: 'area of a cricle',
-    variable1: 'radius',
-    variable2: '',
-    variable3: 'area',
-    question1: "What's the radius of the circle?",
-    question2: '',
-    answer1: '5',
-    answer2: '',
-    calculation: '3.14 * {variable1} * {variable1}',
-    result: 78.5,
-    response: '"The circle has an area of", {result}',
+    topic: 'ask someone about UK geography',
+    variable1: 'country',
+    variable2: 'correct_answer',
+    question1: 'What country is not part of the UK?',
+    answer1: 'ireland',
+    answer2: 'wales',
+    ifReply: '"Correct!", {answer1}, "is not part of the UK"',
+    elseReply:
+      '"Not quite.", {answer2}, "is part of the UK.", {answer1}, "isn\'t"',
   },
 ];
 
@@ -473,60 +325,36 @@ function inspire(override) {
   console.table(question);
   topicEle.innerText = `${question.topic}.`;
   // One input or two inputs?
-  const oneQuestion = question.variable2 === '';
-  if (oneQuestion) {
-    console.log('one input');
-    cartoon1Ele.classList.remove('hidden');
-    cartoon2Ele.classList.add('hidden');
-    exampleQuestionEle.innerText = question.question1;
-    exampleAnswerEle.innerText = question.answer1;
-    exampleResponseEle.innerText = replaceText(
-      question.response,
-      question,
-      false
-    )
-      .replaceAll('"', '')
-      .replaceAll(',', '');
-  } else {
-    console.log('two inputs');
-    cartoon2Ele.classList.remove('hidden');
-    cartoon1Ele.classList.add('hidden');
+  cartoon1Ele.classList.remove('hidden');
+  selectionQuestionEle.innerText = question.question1;
+  selectionAnswer1Ele.innerText = question.answer1;
+  ifReplyEle.innerText = replaceText(question.ifReply, question, false)
+    .replaceAll('"', '')
+    .replaceAll(',', '');
+  selectionAnswer2Ele.innerText = question.answer2;
+  elseReplyEle.innerText = replaceText(question.elseReply, question, false)
+    .replaceAll('"', '')
+    .replaceAll(',', '');
+  const INDENT = '    '; // 4 spaces
 
-    exampleQuestion1Ele.innerText = question.question1;
-    exampleQuestion2Ele.innerText = question.question2;
-    exampleAnswer1Ele.innerText = question.answer1;
-    exampleAnswer2Ele.innerText = question.answer2;
-    exampleResponse2Ele.innerText = replaceText(
-      question.response,
-      question,
-      false
-    )
-      .replaceAll('"', '')
-      .replaceAll(',', '');
-  }
-  codeQuestion1Ele.innerText = `${question.variable1} = int(input("${question.question1} "))`;
-  if (!oneQuestion) {
-    codeQuestion2Ele.innerText = `${question.variable2} = int(input("${question.question2} "))`;
-  }
-  codeCalculationEle.innerText = `${question.variable3} = ${replaceText(question.calculation, question)}`;
-  codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
+  codeCorrectAnswerEle.innerText = `${question.variable2} = "${question.answer1}"`;
+  codeQuestionEle.innerText = `${question.variable1} = input("${question.question1} ")`;
+  codeIfCheckEle.innerText = `if ${question.variable1} == ${question.variable2}:`;
+  codeIfReplyEle.innerText = `${INDENT}print(${replaceText(question.ifReply, question, true)})`;
+  codeElseReplyEle.innerText = `${INDENT}print(${replaceText(question.elseReply, question, true)})`;
 }
 
 // fills in variable names in template literals
 function replaceText(text, question, code = true) {
+  console.log(text, question, code);
   if (code) {
     return text
-      .replaceAll('{variable1}', question.variable1)
-      .replaceAll('{variable2}', question.variable2)
-      .replaceAll('{variable3}', question.variable3)
-      .replaceAll('{result}', question.variable3)
-      .replaceAll('{answer1}', question.variable1)
-      .replaceAll('{answer2}', question.variable2);
+      .replaceAll('{answer1}', question.variable2)
+      .replaceAll('{answer2}', question.variable1);
   }
   return text
     .replaceAll('{answer1}', question.answer1)
-    .replaceAll('{answer2}', question.answer2)
-    .replaceAll('{result}', question.result);
+    .replaceAll('{answer2}', question.answer2);
 }
 
 function showHelp() {
@@ -539,8 +367,3 @@ function copyCode() {
     .innerText.replace('📋\n\n', '');
   navigator.clipboard.writeText(codeText);
 }
-
-// function generatePrintStatement(response, variableName) {
-//   const splitResponse = response.split('{answer}');
-//   return `print(${splitResponse[0] ? `"${splitResponse[0]} ", ` : ``}${variableName} ${splitResponse[1] ? `, " ${splitResponse[1]}"` : ``})`;
-// }

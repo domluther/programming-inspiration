@@ -23,14 +23,14 @@ const questions = [
     topic: 'their favourite Spongebob character',
     question: 'Who is the best Spongebob character?',
     answer: 'Mr Krabs',
-    response: '"Absolutely. No-one is better than", {answer}.',
+    response: '"Absolutely. No-one is better than", {answer}, "."',
   },
   {
     variable: 'name',
     topic: 'their name',
     question: 'What is your full name?',
     answer: 'Bob Smith Frederick',
-    response: '"Nice to meet you", {answer}.',
+    response: '"Nice to meet you", {answer}, "."',
   },
   {
     variable: 'age',
