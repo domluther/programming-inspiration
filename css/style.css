@@ -104,30 +104,35 @@ div {
 }
 
 /* Cartoon 3 specific positioning */
-#selectionQuestion {
+#selectionQuestion,
+#originalQuestion {
   top: 9%;
   left: 18%;
   max-width: 45%;
 }
-#selectionAnswer1 {
+#selectionAnswer1,
+#wrongReply {
   top: 18%;
   left: 72%;
   max-width: 25%;
 }
 
-#ifReply {
+#ifReply,
+#repeatedQuestion {
   top: 31%;
   left: 37%;
   max-width: 30%;
 }
 
-#selectionAnswer2 {
+#selectionAnswer2,
+#correctReply {
   top: 58%;
   left: 50%;
   max-width: 25%;
 }
 
-#elseReply {
+#elseReply,
+#finalMessage {
   top: 73%;
   left: 37%;
   max-width: 33%;
