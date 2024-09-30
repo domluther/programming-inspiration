@@ -127,6 +127,39 @@ const questions = [
   //     print("Wrong guess!")
   //     attempt = int(input("Try again: "))
   // print("Correct! You guessed it!")
+
+  {
+    topic: 'find the sum of numbers until reaching 100',
+    pattern: 'int',
+    variable1: 'total',
+    variable2: 'number',
+    initialValue: '0',
+    wrongReply: '50',
+    correctReply: '100',
+    answer1: '120',
+    originalQuestion: '"Enter a number to add (or 0 to finish): "',
+    condition: '{variable1} < 100',
+    followUpQuestion: 'int(input({originalQuestion}))',
+    loopAction: '{variable1} = {variable1} + {variable2}',
+    finalMessage: '"The sum is", {answer1}',
+    finalAction: 'print({finalMessage}, "Total:", {variable1})',
+  },
+  {
+    topic: 'enter numbers until their product exceeds 1000',
+    pattern: 'int',
+    variable1: 'product',
+    variable2: 'number',
+    initialValue: '1',
+    wrongReply: '5',
+    correctReply: '72',
+    answer1: '2200',
+    originalQuestion: '"Enter a number to multiply: "',
+    condition: '{variable1} <= 1000',
+    followUpQuestion: 'int(input({originalQuestion}))',
+    loopAction: '{variable1} = {variable1} * {variable2}',
+    finalMessage: '"The product is", {answer1}',
+    finalAction: 'print({finalMessage})',
+  },
 ];
 
 const numOfQuestions = questions.length;
