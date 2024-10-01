@@ -1,3 +1,11 @@
+import {
+  showHelp,
+  showBackground,
+  copyCode,
+  setupTabs,
+  replaceText,
+} from './utils.js';
+
 // Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
@@ -6,7 +14,6 @@ const forceSpongeBtn = document.querySelector('#forceSpongebob');
 const copyBtn = document.querySelector('#copyMe');
 
 const cartoon1Ele = document.querySelector('.cartoon1');
-const cartoon2Ele = document.querySelector('.cartoon2');
 
 // Sections
 const backgroundEle = document.querySelector('.background');
@@ -42,8 +49,8 @@ forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 const questions = [
   {
     topic: 'ask someone the best show',
-    variable1: 'best_show',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'best_show',
     question1: 'What is the best TV show?',
     answer1: 'spongebob squarepants',
     answer2: 'stranger things',
@@ -52,8 +59,8 @@ const questions = [
   },
   {
     topic: "ask someone's favourite colour",
-    variable1: 'colour',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'colour',
     question1: 'What is your favourite colour?',
     answer1: 'green',
     answer2: 'blue',
@@ -62,8 +69,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK geography',
-    variable1: 'capital',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'capital',
     question1: "What's the capital of England?",
     answer1: 'london',
     answer2: 'manchester',
@@ -73,8 +80,8 @@ const questions = [
   },
   {
     topic: 'ask someone about popular music',
-    variable1: 'artist',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'artist',
     question1: "Who sang 'Shape of You'?",
     answer1: 'ed sheeran',
     answer2: 'harry styles',
@@ -83,8 +90,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK sports',
-    variable1: 'sport',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'sport',
     question1: 'What sport is played at Wimbledon?',
     answer1: 'tennis',
     answer2: 'cricket',
@@ -94,8 +101,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK TV shows',
-    variable1: 'show',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'show',
     question1: 'What show features the Daleks?',
     answer1: 'doctor who',
     answer2: 'sherlock',
@@ -105,8 +112,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK history',
-    variable1: 'monarch',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'monarch',
     question1: 'Who was the longest-reigning UK monarch?',
     answer1: 'elizabeth ii',
     answer2: 'victoria',
@@ -116,8 +123,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK food',
-    variable1: 'dish',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'dish',
     question1: "What's in a chip butty?",
     answer1: 'chips',
     answer2: 'crisps',
@@ -127,8 +134,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK landmarks',
-    variable1: 'landmark',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'landmark',
     question1: "What's the clock tower at Parliament called?",
     answer1: 'big ben',
     answer2: 'london eye',
@@ -137,8 +144,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK literature',
-    variable1: 'author',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'author',
     question1: "Who wrote 'Harry Potter'?",
     answer1: 'j.k. rowling',
     answer2: 'roald dahl',
@@ -147,8 +154,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK currency',
-    variable1: 'currency',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'currency',
     question1: "What's a quid in British currency?",
     answer1: 'pound',
     answer2: 'penny',
@@ -157,8 +164,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK weather',
-    variable1: 'season',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'season',
     question1: 'When is it warm in the UK?',
     answer1: 'usually never',
     answer2: 'august',
@@ -167,8 +174,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK politics',
-    variable1: 'position',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'position',
     question1: "What's the UK Prime Minister's residence?",
     answer1: '10 downing street',
     answer2: 'buckingham palace',
@@ -177,8 +184,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK pop culture',
-    variable1: 'band',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'band',
     question1: "Which band sang 'Wonderwall'?",
     answer1: 'oasis',
     answer2: 'blur',
@@ -187,8 +194,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK geography',
-    variable1: 'city',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'city',
     question1: "What's the largest city in Scotland?",
     answer1: 'glasgow',
     answer2: 'edinburgh',
@@ -198,8 +205,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK sports teams',
-    variable1: 'team',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'team',
     question1: 'Which football team is from Liverpool?',
     answer1: 'liverpool fc',
     answer2: 'manchester united',
@@ -209,8 +216,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK education',
-    variable1: 'exam',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'exam',
     question1: 'What exams do UK students take at 16?',
     answer1: 'gcses',
     answer2: 'a-levels',
@@ -220,8 +227,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK technology',
-    variable1: 'inventor',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'inventor',
     question1: 'Who invented the World Wide Web?',
     answer1: 'tim berners-lee',
     answer2: 'alan turing',
@@ -230,8 +237,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK animals',
-    variable1: 'animal',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'animal',
     question1: "What's the UK's national animal?",
     answer1: 'lion',
     answer2: 'bulldog',
@@ -240,8 +247,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK transport',
-    variable1: 'network',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'network',
     question1: "What's London's underground called?",
     answer1: 'the tube',
     answer2: 'the metro',
@@ -250,8 +257,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK inventions',
-    variable1: 'invention',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'invention',
     question1: 'What did James Dyson invent?',
     answer1: 'vacuum cleaner',
     answer2: 'washing machine',
@@ -261,8 +268,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK celebrations',
-    variable1: 'celebration',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'celebration',
     question1: 'What do we celebrate on Guy Fawkes Night?',
     answer1: 'bonfire night',
     answer2: "new year's eve",
@@ -271,8 +278,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK science',
-    variable1: 'scientist',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'scientist',
     question1: 'Who discovered penicillin?',
     answer1: 'alexander fleming',
     answer2: 'isaac newton',
@@ -282,8 +289,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK monarchy',
-    variable1: 'residence',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'residence',
     question1: 'Where does the monarch live?',
     answer1: 'buckingham palace',
     answer2: 'windsor castle',
@@ -292,8 +299,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK traditions',
-    variable1: 'tradition',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'tradition',
     question1: "What's traditionally eaten on Pancake Day?",
     answer1: 'pancakes',
     answer2: 'fish and chips',
@@ -302,8 +309,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK film',
-    variable1: 'character',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'character',
     question1: 'Who is the famous British spy in films?',
     answer1: 'james bond',
     answer2: 'sherlock holmes',
@@ -312,8 +319,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK geography',
-    variable1: 'country',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'country',
     question1: 'What country is not part of the UK?',
     answer1: 'ireland',
     answer2: 'wales',
@@ -323,8 +330,8 @@ const questions = [
   },
   {
     topic: 'ask someone about ducks',
-    variable1: 'duck_sound',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'duck_sound',
     question1: 'What sound does a duck make?',
     answer1: 'quack',
     answer2: 'moo',
@@ -333,8 +340,8 @@ const questions = [
   },
   {
     topic: 'ask someone about social media',
-    variable1: 'app',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'app',
     question1: 'Which app is known for short videos and dances?',
     answer1: 'tiktok',
     answer2: 'instagram',
@@ -344,8 +351,8 @@ const questions = [
   },
   {
     topic: 'ask someone about favourite foods',
-    variable1: 'food',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'food',
     question1: "What's your favourite fast food?",
     answer1: 'pizza',
     answer2: 'burgers',
@@ -355,8 +362,8 @@ const questions = [
   },
   {
     topic: 'ask someone about bicycle parts',
-    variable1: 'bike_part',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'bike_part',
     question1: 'What part of a bicycle do you sit on?',
     answer1: 'saddle',
     answer2: 'handlebars',
@@ -365,8 +372,8 @@ const questions = [
   },
   {
     topic: 'ask someone about recent movies',
-    variable1: 'movie',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'movie',
     question1:
       "What's the name of the movie where Timothée Chalamet plays Willy Wonka?",
     answer1: 'wonka',
@@ -376,8 +383,8 @@ const questions = [
   },
   {
     topic: 'ask someone about video games',
-    variable1: 'game',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'game',
     question1: "What's the name of the game where you build in a blocky world?",
     answer1: 'minecraft',
     answer2: 'fortnite',
@@ -386,8 +393,8 @@ const questions = [
   },
   {
     topic: 'ask someone about music genres',
-    variable1: 'genre',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'genre',
     question1: "What's your favourite music genre?",
     answer1: 'pop',
     answer2: 'rock',
@@ -396,8 +403,8 @@ const questions = [
   },
   {
     topic: 'ask someone about sports',
-    variable1: 'sport',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'sport',
     question1: 'What sport does Emma Raducanu play?',
     answer1: 'tennis',
     answer2: 'football',
@@ -406,8 +413,8 @@ const questions = [
   },
   {
     topic: 'ask someone about climate change',
-    variable1: 'action',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'action',
     question1: "What's a good way to reduce your carbon footprint?",
     answer1: 'cycling',
     answer2: 'driving',
@@ -417,8 +424,8 @@ const questions = [
   },
   {
     topic: 'ask someone about internet slang',
-    variable1: 'acronym',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'acronym',
     question1: "What does 'TBH' stand for?",
     answer1: 'to be honest',
     answer2: 'to be happy',
@@ -427,8 +434,8 @@ const questions = [
   },
   {
     topic: 'ask someone about superhero movies',
-    variable1: 'hero',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'hero',
     question1: 'Who plays Spider-Man in the recent Marvel movies?',
     answer1: 'tom holland',
     answer2: 'andrew garfield',
@@ -438,8 +445,8 @@ const questions = [
   },
   {
     topic: 'ask someone about streaming services',
-    variable1: 'service',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'service',
     question1: "Which streaming service has 'Stranger Things'?",
     answer1: 'netflix',
     answer2: 'disney+',
@@ -449,8 +456,8 @@ const questions = [
 
   {
     topic: 'ask someone about technology',
-    variable1: 'device',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'device',
     question1: 'What device do you use most for internet browsing?',
     answer1: 'smartphone',
     answer2: 'laptop',
@@ -459,8 +466,8 @@ const questions = [
   },
   {
     topic: 'ask someone about school subjects',
-    variable1: 'subject',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'subject',
     question1: "What's your favourite school subject?",
     answer1: 'maths',
     answer2: 'english',
@@ -469,8 +476,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK landmarks',
-    variable1: 'landmark',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'landmark',
     question1: "What's the name of the large Ferris wheel in London?",
     answer1: 'london eye',
     answer2: 'big ben',
@@ -479,8 +486,8 @@ const questions = [
   },
   {
     topic: 'ask someone about pets',
-    variable1: 'pet',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'pet',
     question1: "What's your favourite pet?",
     answer1: 'dog',
     answer2: 'cat',
@@ -490,8 +497,8 @@ const questions = [
   },
   {
     topic: 'ask someone about future careers',
-    variable1: 'career',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'career',
     question1: 'What career are you interested in?',
     answer1: 'doctor',
     answer2: 'teacher',
@@ -500,8 +507,8 @@ const questions = [
   },
   {
     topic: 'ask someone about UK weather',
-    variable1: 'weather',
-    variable2: 'correct_answer',
+    variable1: 'correct_answer',
+    variable2: 'weather',
     question1: "What's typical UK weather?",
     answer1: 'rainy',
     answer2: 'sunny',
@@ -537,54 +544,11 @@ function inspire(override) {
     .replaceAll(',', '');
   const INDENT = '    '; // 4 spaces
 
-  codeCorrectAnswerEle.innerText = `${question.variable2} = "${question.answer1}"`;
-  codeQuestionEle.innerText = `${question.variable1} = input("${question.question1} ")`;
-  codeIfCheckEle.innerText = `if ${question.variable1} == ${question.variable2}:`;
+  codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
+  codeQuestionEle.innerText = `${question.variable2} = input("${question.question1} ")`;
+  codeIfCheckEle.innerText = `if ${question.variable2} == ${question.variable1}:`;
   codeIfReplyEle.innerText = `${INDENT}print(${replaceText(question.ifReply, question, true)})`;
   codeElseReplyEle.innerText = `${INDENT}print(${replaceText(question.elseReply, question, true)})`;
 }
 
-// fills in variable names in template literals
-function replaceText(text, question, code = true) {
-  console.log(text, question, code);
-  if (code) {
-    return text
-      .replaceAll('{answer1}', question.variable2)
-      .replaceAll('{answer2}', question.variable1);
-  }
-  return text
-    .replaceAll('{answer1}', question.answer1)
-    .replaceAll('{answer2}', question.answer2);
-}
-
-function showHelp() {
-  codeEle.classList.toggle('hidden');
-}
-
-function showBackground() {
-  backgroundEle.classList.toggle('hidden');
-}
-
-function copyCode() {
-  const codeText = document
-    .querySelector('.code')
-    .innerText.replace('📋\n\n', '');
-  navigator.clipboard.writeText(codeText);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const tabId = button.getAttribute('data-tab');
-
-      tabButtons.forEach((btn) => btn.classList.remove('active'));
-      tabContents.forEach((content) => content.classList.remove('active'));
-
-      button.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    });
-  });
-});
+document.addEventListener('DOMContentLoaded', setupTabs);

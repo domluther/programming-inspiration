@@ -1,3 +1,11 @@
+import {
+  showHelp,
+  showBackground,
+  copyCode,
+  setupTabs,
+  replaceText,
+} from './utils.js';
+
 // Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
@@ -56,43 +64,43 @@ const questions = [
   // //    current = current - 1
   // // print("Blast Off!")
 
-  // {
-  //   topic: 'asks for a password until the correct one is entered',
-  //   pattern: 'string',
-  //   variable1: 'correct_password',
-  //   variable2: 'attempt',
-  //   initialValue: '"secret123"',
-  //   originalQuestion: 'Enter the password: ',
-  //   condition: '{variable2} != {variable1}',
-  //   followUpQuestion: 'input({originalQuestion})',
-  //   loopAction: 'print("Incorrect password.")',
-  //   finalAction: 'print("Access granted!")',
-  // },
-  // // correct_password = "secret123"
-  // // attempt = input("Enter the password: ")
-  // // while attempt != correct_password:
-  // //     print("Incorrect password.")
-  // //     attempt = input("Try again: ")
-  // // print("Access granted!")
+  {
+    topic: 'asks for a password until the correct one is entered',
+    pattern: 'string',
+    variable1: 'correct_password',
+    variable2: 'attempt',
+    initialValue: '"secret123"',
+    wrongReply: 'password',
+    correctReply: 'secret123',
+    originalQuestion: '"Enter the password: "',
+    condition: '{variable2} != {variable1}',
+    loopAction: 'print("Incorrect password.")',
+    finalMessage: '"Access granted!"',
+    finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'input({originalQuestion})',
+  },
+  // correct_password = "secret123"
+  // attempt = input("Enter the password: ")
+  // while attempt != correct_password:
+  //     print("Incorrect password.")
+  //     attempt = input("Try again: ")
+  // print("Access granted!")
 
-  // {
-  //   topic: 'asks to repeat until told to stop',
-  //   pattern: 'string',
-  //   variable1: 'stop',
-  //   variable2: 'feedback',
-  //   initialValue: '"no"',
-  //   originalQuestion: 'Should I continue? ',
-  //   condition: '{variable2} != {variable1}',
-  //   followUpQuestion: 'input({originalQuestion})',
-  //   loopAction: 'print("OK! Blah blah blah.")',
-  //   finalAction: 'print("Bye!")',
-  // },
-  // // stop = "no"
-  // // feedback = input("Should I continue: ")
-  // // while feedback != stop:
-  // //     print("OK! Blah blah blah..")
-  // //     feedback = input("Should I continue? ")
-  // // print("Bye!")
+  {
+    topic: 'asks to repeat until told to stop',
+    pattern: 'string',
+    variable1: 'stop',
+    variable2: 'feedback',
+    initialValue: '"no"',
+    wrongReply: 'yes',
+    correctReply: 'no',
+    originalQuestion: '"Should I continue? "',
+    condition: '{variable2} != {variable1}',
+    loopAction: 'print("OK! Blah blah blah.")',
+    finalMessage: '"Bye!"',
+    finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'input({originalQuestion})',
+  },
 
   {
     topic: 'add numbers input by the user until they enter 0',
@@ -105,17 +113,11 @@ const questions = [
     answer1: '12',
     originalQuestion: '"Enter a number (0 to stop)"',
     condition: '{variable2} != 0',
-    followUpQuestion: 'int(input({originalQuestion}))',
     loopAction: '{variable1} = {variable1} + {variable2}',
     finalMessage: '"The sum is", {answer1}',
     finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'int(input({originalQuestion}))',
   },
-  // total = 0
-  // number = int(input("Enter a number (0 to stop): "))
-  // while number != 0:
-  //   total = total + number
-  //   number = int(input("Enter a number (0 to stop): "))
-  // print("The sum is", total)
   {
     topic: 'ask to guess a number until they get it right',
     pattern: 'int',
@@ -127,18 +129,11 @@ const questions = [
     answer1: '12',
     originalQuestion: '"Guess the number: "',
     condition: '{variable2} != {variable1}',
-    followUpQuestion: 'int(input({originalQuestion}))',
     loopAction: 'print("Wrong guess!")',
     finalMessage: '"Correct! You guessed it!"',
     finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'int(input({originalQuestion}))',
   },
-  // secret = 7
-  // guess = int(input("Guess the number: "))
-  // while guess != secret:
-  //     print("Wrong guess!")
-  //     attempt = int(input("Try again: "))
-  // print("Correct! You guessed it!")
-
   {
     topic: 'find the sum of numbers until reaching 100',
     pattern: 'int',
@@ -150,10 +145,10 @@ const questions = [
     answer1: '120',
     originalQuestion: '"Enter a number to add (or 0 to finish): "',
     condition: '{variable1} < 100',
-    followUpQuestion: 'int(input({originalQuestion}))',
     loopAction: '{variable1} = {variable1} + {variable2}',
     finalMessage: '"The sum is", {answer1}',
     finalAction: 'print({finalMessage}, "Total:", {variable1})',
+    // followUpQuestion: 'int(input({originalQuestion}))',
   },
   {
     topic: 'enter numbers until their product exceeds 1000',
@@ -166,10 +161,10 @@ const questions = [
     answer1: '2200',
     originalQuestion: '"Enter a number to multiply: "',
     condition: '{variable1} <= 1000',
-    followUpQuestion: 'int(input({originalQuestion}))',
     loopAction: '{variable1} = {variable1} * {variable2}',
     finalMessage: '"The product is", {answer1}',
     finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'int(input({originalQuestion}))',
   },
 ];
 
@@ -188,7 +183,9 @@ function inspire(override) {
   topicEle.innerText = `${question.topic}.`;
   // What pattern is it?
   const { pattern } = question;
-  if (pattern === 'int') {
+
+  // If the pattern is string, show the loopMessage before asking question again
+  if (pattern === 'int' || pattern === 'string') {
     // Fill in blanks on cartoon
     cartoon1Ele.classList.remove('hidden');
     originalQuestionEle.innerText = question.originalQuestion.replaceAll(
@@ -228,10 +225,16 @@ function inspire(override) {
   // }
   // Fill in code block
   firstVariableEle.innerText = `${question.variable1} = ${question.initialValue}`;
-  secondVariableEle.innerText = `${question.variable2} = int(input(${replaceText(question.originalQuestion, question)}))`;
+  if (pattern === 'int') {
+    secondVariableEle.innerText = `${question.variable2} = int(input(${replaceText(question.originalQuestion, question)}))`;
+    followUpQuestionEle.innerText = `  ${question.variable2} = int(input(${replaceText(question.originalQuestion, question)}))`;
+  } else {
+    secondVariableEle.innerText = `${question.variable2} = input(${replaceText(question.originalQuestion, question)})`;
+    followUpQuestionEle.innerText = `  ${question.variable2} = input(${replaceText(question.originalQuestion, question)})`;
+  }
+
   whileConditionEle.innerText = `while ${replaceText(question.condition, question)}:`;
   loopActionEle.innerText = `  ${replaceText(question.loopAction, question)}`;
-  followUpQuestionEle.innerText = `  ${question.variable2} = int(input(${replaceText(question.originalQuestion, question)}))`;
   finalActionEle.innerText = replaceText(question.finalAction, question);
   // if (!oneQuestion) {
   //   codeQuestion2Ele.innerText = `${question.variable2} = int(input("${question.question2} "))`;
@@ -240,53 +243,4 @@ function inspire(override) {
   // codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
 }
 
-// fills in variable names in template literals
-function replaceText(text, question, code = true) {
-  if (code) {
-    return text
-      .replaceAll('{finalMessage}', question.finalMessage)
-      .replaceAll('{variable1}', question.variable1)
-      .replaceAll('{variable2}', question.variable2)
-      .replaceAll('{variable3}', question.variable3)
-      .replaceAll('{result}', question.variable3)
-      .replaceAll('{answer1}', question.variable1)
-      .replaceAll('{answer2}', question.variable2)
-      .replaceAll('{originalQuestion}', question.originalQuestion);
-  }
-  return text
-    .replaceAll('{answer1}', question.answer1)
-    .replaceAll('{answer2}', question.answer2)
-    .replaceAll('{result}', question.result);
-}
-
-function showHelp() {
-  codeEle.classList.toggle('hidden');
-}
-
-function showBackground() {
-  backgroundEle.classList.toggle('hidden');
-}
-
-function copyCode() {
-  const codeText = document
-    .querySelector('.code')
-    .innerText.replace('📋\n\n', '');
-  navigator.clipboard.writeText(codeText);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const tabId = button.getAttribute('data-tab');
-
-      tabButtons.forEach((btn) => btn.classList.remove('active'));
-      tabContents.forEach((content) => content.classList.remove('active'));
-
-      button.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    });
-  });
-});
+document.addEventListener('DOMContentLoaded', setupTabs);

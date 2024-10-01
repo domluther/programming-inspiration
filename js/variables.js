@@ -1,3 +1,11 @@
+import {
+  showHelp,
+  showBackground,
+  copyCode,
+  setupTabs,
+  replaceText,
+} from './utils.js';
+
 // Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
@@ -474,16 +482,12 @@ const numOfQuestions = questions.length;
 
 function inspire(override) {
   exampleEle.classList.remove('hidden');
-  // Help should be hidden at start
   codeEle.classList.add('hidden');
 
-  // Randomly pick a question number then set the text values
-  let questionToPick = Math.ceil(Math.random() * numOfQuestions);
-  if (override === 'bob') questionToPick = 1;
+  let questionToPick =
+    override === 'bob' ? 1 : Math.ceil(Math.random() * questions.length);
   const question = questions[questionToPick - 1];
-  console.table(question);
   topicEle.innerText = `${question.topic}.`;
-  // One input or two inputs?
 
   setCaptions(question);
   setCode(question);
@@ -533,51 +537,4 @@ function setCode(question) {
   codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
 }
 
-// fills in variable names in template literals
-function replaceText(text, question, code = true) {
-  if (code) {
-    return text
-      .replaceAll('{variable1}', question.variable1)
-      .replaceAll('{variable2}', question.variable2)
-      .replaceAll('{variable3}', question.variable3)
-      .replaceAll('{result}', question.variable3)
-      .replaceAll('{answer1}', question.variable1)
-      .replaceAll('{answer2}', question.variable2);
-  }
-  return text
-    .replaceAll('{answer1}', question.answer1)
-    .replaceAll('{answer2}', question.answer2)
-    .replaceAll('{result}', question.result);
-}
-
-function showHelp() {
-  codeEle.classList.toggle('hidden');
-}
-
-function showBackground() {
-  backgroundEle.classList.toggle('hidden');
-}
-
-function copyCode() {
-  const codeText = document
-    .querySelector('.code')
-    .innerText.replace('📋\n\n', '');
-  navigator.clipboard.writeText(codeText);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const tabId = button.getAttribute('data-tab');
-
-      tabButtons.forEach((btn) => btn.classList.remove('active'));
-      tabContents.forEach((content) => content.classList.remove('active'));
-
-      button.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    });
-  });
-});
+document.addEventListener('DOMContentLoaded', setupTabs);
