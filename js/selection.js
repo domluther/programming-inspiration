@@ -1,8 +1,20 @@
+// Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
+const backgroundBtn = document.querySelector('#background');
+const forceSpongeBtn = document.querySelector('#forceSpongebob');
+const copyBtn = document.querySelector('#copyMe');
+
 const cartoon1Ele = document.querySelector('.cartoon1');
 const cartoon2Ele = document.querySelector('.cartoon2');
+
+// Sections
+const backgroundEle = document.querySelector('.background');
 const exampleEle = document.querySelector('.example');
+const codeEle = document.querySelector('.code');
+
+// Cartoon
+
 const topicEle = document.querySelector('#topic');
 const selectionQuestionEle = document.querySelector('#selectionQuestion');
 const selectionAnswer1Ele = document.querySelector('#selectionAnswer1');
@@ -12,18 +24,18 @@ const elseReplyEle = document.querySelector('#elseReply');
 const exampleAnswer2Ele = document.querySelector('#exampleAnswer2');
 const exampleResponseEle = document.querySelector('#exampleResponse');
 const exampleResponse2Ele = document.querySelector('#exampleResponse2');
-const codeEle = document.querySelector('.code');
-const copyBtn = document.querySelector('#copyMe');
+
+// Code section
 const codeQuestionEle = document.querySelector('#codeQuestion');
 const codeCorrectAnswerEle = document.querySelector('#codeCorrectAnswer');
 const codeIfCheckEle = document.querySelector('#codeIfCheck');
 const codeIfReplyEle = document.querySelector('#codeIfReply');
 const codeElseReplyEle = document.querySelector('#codeElseReply');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
 copyBtn.addEventListener('click', copyCode);
+backgroundBtn.addEventListener('click', showBackground);
 forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 
 // https://www.convertcsv.com/csv-to-json.htm to create
@@ -549,9 +561,30 @@ function showHelp() {
   codeEle.classList.toggle('hidden');
 }
 
+function showBackground() {
+  backgroundEle.classList.toggle('hidden');
+}
+
 function copyCode() {
   const codeText = document
     .querySelector('.code')
     .innerText.replace('📋\n\n', '');
   navigator.clipboard.writeText(codeText);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+
+      tabButtons.forEach((btn) => btn.classList.remove('active'));
+      tabContents.forEach((content) => content.classList.remove('active'));
+
+      button.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+});

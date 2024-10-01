@@ -26,69 +26,95 @@
         <h2>
           Input & Output practice <span><a href="variables.html">➡️</a></span>
         </h2>
-        <a href="#" class="btn" id="inspire">Inspire me!</a>
-        <a href="#" class="btn" id="help">Help me!</a>
-        <a href="#" class="btn" id="background">Background</a>
+        <nav>
+          <a href="#" class="btn" id="background">Background</a>
+          <a href="#" class="btn" id="inspire">Inspire me!</a>
+          <a href="#" class="btn" id="help">Help me!</a>
+        </nav>
         <section class="background hidden">
-          <h1>Input and Output in Python</h1>
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="intro">
+                Introduction
+              </button>
+              <button class="tab-button" data-tab="output">Output</button>
+              <button class="tab-button" data-tab="variables">Variables</button>
+              <button class="tab-button" data-tab="input">Input</button>
+              <button class="tab-button" data-tab="together">
+                Putting It All Together
+              </button>
+            </div>
 
-          <p>
-            The first step in our programming journey is input and output in
-            Python. These are super important skills that will help you create
-            interactive programs.
-          </p>
+            <div class="tab-content active" id="intro">
+              <h1>Input and Output in Python</h1>
+              <p>
+                The first step in our programming journey is input and output in
+                Python. These are super important skills that will help you
+                create interactive programs.
+              </p>
+            </div>
 
-          <h2>Output: Talking to the User</h2>
-          <p>
-            When we want our program to show something to the user, we use the
-            <code>print()</code> function. It's like making your computer speak!
-          </p>
-          <div class="codeExample">
-            <code>print("Hello, I'm a Python program!")</code>
+            <div class="tab-content" id="output">
+              <h2>Output: Talking to the User</h2>
+              <p>
+                When we want our program to show something to the user, we use
+                the <code>print()</code> function. It's like making your
+                computer speak!
+              </p>
+              <div class="codeExample">
+                <code>print("Hello, I'm a Python program!")</code>
+              </div>
+            </div>
+
+            <div class="tab-content" id="variables">
+              <h2>Variables: Remembering Things</h2>
+              <p>
+                Variables are like boxes where we can store information. We can
+                give them names and put different types of data inside them.
+              </p>
+              <div class="codeExample">
+                <code>favourite_colour = "blue"</code>
+              </div>
+            </div>
+
+            <div class="tab-content" id="input">
+              <h2>Input: Listening to the User</h2>
+              <p>
+                The <code>input()</code> function lets us ask the user for
+                information. It's like giving the user a chance to speak to our
+                program!
+              </p>
+              <div class="codeExample">
+                <code>name = input("What's your name? ")</code>
+              </div>
+            </div>
+
+            <div class="tab-content" id="together">
+              <h2>Putting It All Together</h2>
+              <p>
+                We can use input, variables, and output together to make our
+                programs interactive. Here's a cool example:
+              </p>
+              <div class="codeExample">
+                <code>
+                  nickname = input("What is your nickname? ")<br />
+                  print(nickname, "is a great nickname!")
+                </code>
+              </div>
+              <p>
+                In this example, we ask for the user's nickname, store it in a
+                variable, and then use that variable to print a friendly
+                message.
+              </p>
+              <p>
+                Now it's your turn to try! Can you make a program that asks for
+                someone's favourite animal and then says something nice about
+                that animal?
+              </p>
+            </div>
           </div>
-
-          <h2>Variables: Remembering Things</h2>
-          <p>
-            Variables are like boxes where we can store information. We can give
-            them names and put different types of data inside them.
-          </p>
-          <div class="codeExample">
-            <code>favourite_colour = "blue"</code>
-          </div>
-
-          <h2>Input: Listening to the User</h2>
-          <p>
-            The <code>input()</code> function lets us ask the user for
-            information. It's like giving the user a chance to speak to our
-            program!
-          </p>
-          <div class="codeExample">
-            <code>name = input("What's your name? ")</code>
-          </div>
-
-          <h2>Putting It All Together</h2>
-          <p>
-            We can use input, variables, and output together to make our
-            programs interactive. Here's a cool example:
-          </p>
-          <div class="codeExample">
-            <code>
-              nickname = input("What is your nickname? ")<br />
-              print(nickname, "is a great nickname!")
-            </code>
-          </div>
-
-          <p>
-            In this example, we ask for the user's nickname, store it in a
-            variable, and then use that variable to print a friendly message.
-          </p>
-
-          <p>
-            Now it's your turn to try! Can you make a program that asks for
-            someone's favourite animal and then says something nice about that
-            animal?
-          </p>
         </section>
+
         <section class="example hidden">
           <h3>
             Write a program to...

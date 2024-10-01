@@ -36,6 +36,29 @@ div {
   margin: auto;
 }
 
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+nav .btn {
+  text-decoration: none;
+  background-color: orange;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav .btn:hover {
+  background-color: darkorange;
+}
+
+nav .btn:active {
+  background-color: red;
+}
 .cartoon1,
 .cartoon2 {
   max-width: 800px;
@@ -236,4 +259,113 @@ div {
   padding: 10px;
   margin: 10px 0;
   line-height: 2rem;
+}
+
+/* Existing styles remain the same */
+
+/* New styles for tabbed interface */
+.tab-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: 0.3s;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.tab-button:hover {
+  background-color: #ddd;
+}
+
+.tab-button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Adjust existing styles for better integration */
+.background {
+  background-color: transparent;
+  padding: 0;
+}
+
+.background h1,
+.background h2 {
+  margin-top: 0;
+}
+
+.codeExample {
+  margin: 15px 0;
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 4em;
+}
+
+ol {
+  list-style-type: number;
+  list-style-position: inside;
+}
+
+ol li {
+  padding-left: 1rem;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.summary-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.summary-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.summary-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.summary-table code {
+  background-color: #e8e8e8;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
 }

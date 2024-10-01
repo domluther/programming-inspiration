@@ -30,8 +30,177 @@
           <span><a href="selection.html">⬅️</a></span> Condition-controlled
           iteration practice with while
         </h2>
-        <a href="#" class="btn" id="inspire">Inspire me!</a>
-        <a href="#" class="btn" id="help">Help me!</a>
+        <nav>
+          <a href="#" class="btn" id="background">Background</a>
+          <a href="#" class="btn" id="inspire">Inspire me!</a>
+          <a href="#" class="btn" id="help">Help me!</a>
+        </nav>
+
+        <section class="background hidden">
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="intro">
+                Introduction
+              </button>
+              <button class="tab-button" data-tab="while-loops">
+                While Loops
+              </button>
+              <button class="tab-button" data-tab="indentation">
+                Indentation
+              </button>
+              <button class="tab-button" data-tab="operators">
+                Comparison Operators
+              </button>
+              <button class="tab-button" data-tab="example">
+                Putting It All Together
+              </button>
+            </div>
+
+            <div class="tab-content active" id="intro">
+              <h1>Iteration in Python</h1>
+              <p>
+                Welcome to the world of loops! Today, we're going to learn about
+                iteration, which is like teaching your computer to repeat tasks.
+                Imagine if you could tell your computer to do your chores over
+                and over again - that's the power of iteration!
+              </p>
+            </div>
+
+            <div class="tab-content" id="while-loops">
+              <h2>While Loops: The Repeating Magic</h2>
+              <p>
+                In Python, we use 'while' loops for iteration. These loops are
+                condition-controlled, which means they keep repeating as long as
+                a certain condition is true.
+              </p>
+              <div class="codeExample">
+                <code>
+                  count = 0<br />
+                  while count < 5:<br />
+                  <span class="tab"></span>print("Hello, World!")<br />
+                  <span class="tab"></span>count = count + 1<br />
+                </code>
+              </div>
+              <p>
+                In this example, the loop will print "Hello, World!" five times.
+                The loop keeps going while the count is less than 5.
+              </p>
+            </div>
+
+            <div class="tab-content" id="indentation">
+              <h2>The Importance of Indentation</h2>
+              <p>
+                Just like with if statements, indentation is super important in
+                while loops! It tells Python which lines of code belong to the
+                loop.
+              </p>
+              <p>After a while statement:</p>
+              <ol>
+                <li>Put a colon (:) at the end of the line</li>
+                <li>
+                  Indent the next line (usually by pressing the Tab key once)
+                </li>
+              </ol>
+              <div class="codeExample">
+                <code>
+                  while x < 10:<br />
+                  <span class="tab"></span>print(x) # This line is part of the
+                  loop<br />
+                  <span class="tab"></span>x = x + 1 # This line is also part of
+                  the loop<br />
+                  print("Loop finished") # This line is not indented, so it's
+                  not part of the loop<br />
+                </code>
+              </div>
+              <p>
+                The indented lines will repeat, but the last line only runs
+                once, after the loop is finished.
+              </p>
+            </div>
+
+            <div class="tab-content" id="operators">
+              <h2>Comparison Operators: Making Decisions</h2>
+              <p>
+                To control our loops, we use comparison operators. Here are some
+                important ones:
+              </p>
+              <table class="summary-table">
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Meaning</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>==</code></td>
+                    <td>Equal to</td>
+                  </tr>
+                  <tr>
+                    <td><code>!=</code></td>
+                    <td>Not equal to</td>
+                  </tr>
+                  <tr>
+                    <td><code>></code></td>
+                    <td>Greater than</td>
+                  </tr>
+                  <tr>
+                    <td><code><</code></td>
+                    <td>Less than</td>
+                  </tr>
+                  <tr>
+                    <td><code>>=</code></td>
+                    <td>Greater than or equal to</td>
+                  </tr>
+                  <tr>
+                    <td><code><=</code></td>
+                    <td>Less than or equal to</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="codeExample">
+                <code>
+                  while answer != "quit":<br />
+                  <span class="tab"></span>answer = input("Enter 'quit' to exit:
+                  ")<br />
+                </code>
+              </div>
+              <p>
+                This loop will keep asking for input until the user types
+                "quit".
+              </p>
+            </div>
+
+            <div class="tab-content" id="example">
+              <h2>Putting It All Together</h2>
+              <p>
+                Let's use everything we've learned to make a program that adds
+                up numbers:
+              </p>
+              <div class="codeExample">
+                <code>
+                  total = 0<br />
+                  number = int(input("Enter a number (0 to stop)"))<br />
+                  while number != 0:<br />
+                  <span class="tab"></span>total = total + number<br />
+                  <span class="tab"></span>number = int(input("Enter a number (0
+                  to stop)"))<br />
+                  print("The sum is", total)<br />
+                </code>
+              </div>
+              <p>
+                This program asks the user to enter numbers and adds them up. It
+                keeps going until the user enters 0, then it prints the total
+                sum.
+              </p>
+              <p>
+                Now it's your turn! Press the Inspire Me button to try coding
+                while loops.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section class="example hidden">
           <h3>
             Write a program to...

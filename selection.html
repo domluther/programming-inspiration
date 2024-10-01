@@ -24,12 +24,192 @@
       </header>
       <main>
         <h2>
-          <span><a href="variables.html">⬅️</a></span> Selection practice with
-          if/else
+          <span><a href="variables.html">⬅️</a></span>
+          Selection practice with if/else
           <span><a href="iterationWhile.html">➡️</a></span>
         </h2>
-        <a href="#" class="btn" id="inspire">Inspire me!</a>
-        <a href="#" class="btn" id="help">Help me!</a>
+        <nav>
+          <a href="#" class="btn" id="background">Background</a>
+          <a href="#" class="btn" id="inspire">Inspire me!</a>
+          <a href="#" class="btn" id="help">Help me!</a>
+        </nav>
+
+        <section class="background hidden">
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="intro">
+                Introduction
+              </button>
+              <button class="tab-button" data-tab="programming-constructs">
+                Programming Constructs
+              </button>
+              <button class="tab-button" data-tab="if-else">
+                If-Else Statements
+              </button>
+              <button class="tab-button" data-tab="equals-signs">
+                Equals Signs
+              </button>
+              <button class="tab-button" data-tab="indentation">
+                Indentation
+              </button>
+              <button class="tab-button" data-tab="example">
+                Putting It All Together
+              </button>
+            </div>
+
+            <div class="tab-content active" id="intro">
+              <h1>Selection in Python</h1>
+              <p>
+                Welcome to the world of decision-making in programming! Today,
+                we're going to learn about selection, which is like teaching
+                your computer to make choices. It's a bit like being the
+                director of your own interactive movie!
+              </p>
+            </div>
+
+            <div class="tab-content" id="programming-constructs">
+              <h2>The Three Musketeers of Programming</h2>
+              <p>
+                In programming, we have three main ways to control how our code
+                runs. These are called programming constructs:
+              </p>
+              <table class="summary-table">
+                <thead>
+                  <tr>
+                    <th>Construct</th>
+                    <th>Meaning</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>sequence</td>
+                    <td>
+                      This is like following a recipe step by step and in order.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>selection</td>
+                    <td>
+                      This is about making choices, today's task, uses if, elif,
+                      else.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>iteration</td>
+                    <td>
+                      This is about repeating things, but that's a story for
+                      another day.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p>
+                Today, we're focusing on selection, which is all about making
+                decisions in our code.
+              </p>
+            </div>
+
+            <div class="tab-content" id="if-else">
+              <h2>If-Else: Teaching Your Computer to Make Choices</h2>
+              <p>
+                In Python, we use 'if' and 'else' statements to make decisions.
+                It's like asking a question and doing different things based on
+                the answer.
+              </p>
+              <div class="codeExample">
+                <code>
+                  if it_is_raining:<br />
+                  <span class="tab"></span>print("Take an umbrella")<br />
+                  else:<br />
+                  <span class="tab"></span>print("Enjoy the sunshine")<br />
+                </code>
+              </div>
+              <p>
+                In this example, if it's raining, the program tells you to take
+                an umbrella. Otherwise (else), it tells you to enjoy the
+                sunshine.
+              </p>
+            </div>
+
+            <div class="tab-content" id="equals-signs">
+              <h2>The Tale of Two Equals: = vs ==</h2>
+              <p>In Python, we use equals signs in two different ways:</p>
+              <ul>
+                <li>
+                  <strong>Single equals (=)</strong>: This is for assigning
+                  values to variables. It's like putting something in a box.
+                </li>
+                <li>
+                  <strong>Double equals (==)</strong>: This is for comparing
+                  things. It's like asking "Are these the same?"
+                </li>
+              </ul>
+              <div class="codeExample">
+                <code>
+                  favourite_colour = "blue" # Assigning a value<br />
+                  if favourite_colour == "blue": # Comparing values<br />
+                  <span class="tab"></span>print("Great choice!")<br />
+                </code>
+              </div>
+            </div>
+
+            <div class="tab-content" id="indentation">
+              <h2>The Importance of Indentation</h2>
+              <p>
+                In Python, indentation (the space at the beginning of a line) is
+                super important! It tells Python which lines of code belong to
+                an if statement.
+              </p>
+              <p>After an if or else statement, you need to:</p>
+              <ol>
+                <li>Put a colon (:) at the end of the line</li>
+                <li>
+                  Indent the next line (usually by pressing the Tab key once)
+                </li>
+              </ol>
+              <div class="codeExample">
+                <code>
+                  if score > 10:<br />
+                  <span class="tab"></span>print("You win!") # This line is
+                  indented<br />
+                  <span class="tab"></span>print("Well done!") # This line is
+                  also indented<br />
+                  print("Game over") # This line is not indented, so it's not
+                  part of the if<br />
+                </code>
+              </div>
+            </div>
+
+            <div class="tab-content" id="example">
+              <h2>Putting It All Together</h2>
+              <p>Let's use everything we've learned to make a fun program:</p>
+              <div class="codeExample">
+                <code>
+                  correct_answer = "spongebob squarepants"<br />
+                  best_show = input("What is the best TV show? ")<br />
+                  if best_show == correct_answer:<br />
+                  <span class="tab"></span>print("Absolutely!", correct_answer,
+                  "is glorious")<br />
+                  else:<br />
+                  <span class="tab"></span>print(best_show, "?!?! No way - it
+                  is", correct_answer)<br />
+                </code>
+              </div>
+              <p>
+                This program asks for your favourite TV show. If you say
+                "spongebob squarepants", it agrees with you. If you say anything
+                else, it tells you that Spongebob is actually the best!
+              </p>
+              <p>
+                Now it's your turn! Can you make a program that asks for a
+                password and only lets the user in if they enter the correct
+                one?
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section class="example hidden">
           <h3>
             Write a program to...

@@ -1,16 +1,27 @@
+// Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
+const backgroundBtn = document.querySelector('#background');
+const forceSpongeBtn = document.querySelector('#forceSpongebob');
+const copyBtn = document.querySelector('#copyMe');
+
 const cartoon1Ele = document.querySelector('.cartoon1');
 const cartoon2Ele = document.querySelector('.cartoon2');
+
+// Sections
+const backgroundEle = document.querySelector('.background');
 const exampleEle = document.querySelector('.example');
+const codeEle = document.querySelector('.code');
+
+// Cartoon
 const topicEle = document.querySelector('#topic');
 const originalQuestionEle = document.querySelector('#originalQuestion');
 const repeatedQuestionEle = document.querySelector('#repeatedQuestion');
 const wrongReplyEle = document.querySelector('#wrongReply');
 const correctReplyEle = document.querySelector('#correctReply');
 const finalMessageEle = document.querySelector('#finalMessage');
-const codeEle = document.querySelector('.code');
-const copyBtn = document.querySelector('#copyMe');
+
+// Code section
 const firstVariableEle = document.querySelector('#firstVariable');
 const secondVariableEle = document.querySelector('#secondVariable');
 const whileConditionEle = document.querySelector('#whileCondition');
@@ -18,11 +29,11 @@ const loopActionEle = document.querySelector('#loopAction');
 const followUpQuestionEle = document.querySelector('#followUpQuestion');
 const finalActionEle = document.querySelector('#finalAction');
 const codeResponseEle = document.querySelector('#response');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
 copyBtn.addEventListener('click', copyCode);
+backgroundBtn.addEventListener('click', showBackground);
 forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 
 // https://www.convertcsv.com/csv-to-json.htm to create
@@ -252,6 +263,10 @@ function showHelp() {
   codeEle.classList.toggle('hidden');
 }
 
+function showBackground() {
+  backgroundEle.classList.toggle('hidden');
+}
+
 function copyCode() {
   const codeText = document
     .querySelector('.code')
@@ -259,7 +274,19 @@ function copyCode() {
   navigator.clipboard.writeText(codeText);
 }
 
-// function generatePrintStatement(response, variableName) {
-//   const splitResponse = response.split('{answer}');
-//   return `print(${splitResponse[0] ? `"${splitResponse[0]} ", ` : ``}${variableName} ${splitResponse[1] ? `, " ${splitResponse[1]}"` : ``})`;
-// }
+document.addEventListener('DOMContentLoaded', function () {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+
+      tabButtons.forEach((btn) => btn.classList.remove('active'));
+      tabContents.forEach((content) => content.classList.remove('active'));
+
+      button.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+});
