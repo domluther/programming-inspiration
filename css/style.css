@@ -185,3 +185,55 @@ div {
 .btn:active {
   background-color: red;
 }
+
+/* New styles for background section */
+.background {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  line-height: 1.6rem;
+}
+
+.background h1 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  line-height: 2.2rem;
+}
+
+.background h2 {
+  color: #34495e;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.background p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.background code {
+  background-color: #e8f4f8;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+}
+
+.background .example {
+  background-color: #e8f4f8;
+  border-left: 4px solid #3498db;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.codeExample {
+  background-color: #e8f4f8;
+  border-left: 4px solid #3498db;
+  padding: 10px;
+  margin: 10px 0;
+  line-height: 2rem;
+}

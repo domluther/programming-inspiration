@@ -29,6 +29,136 @@
         </h2>
         <a href="#" class="btn" id="inspire">Inspire me!</a>
         <a href="#" class="btn" id="help">Help me!</a>
+        <a href="#" class="btn" id="background">Background</a>
+
+        <section class="background hidden">
+          <h1>Variables and Data Types in Python</h1>
+
+          <p>
+            Welcome to the exciting world of variables! In Python, variables are
+            like magical containers that can hold different types of
+            information. Let's explore some of the most common ones.
+          </p>
+
+          <h2>Data Types: Different Flavours of Information</h2>
+          <p>
+            Just like ice cream comes in different flavours, data in Python
+            comes in different types:
+          </p>
+          <ul>
+            <li>
+              <strong>Strings</strong>: Text wrapped in quotes, like
+              <code>"Hello, Python!"</code>
+            </li>
+            <li>
+              <strong>Integers</strong>: Whole numbers, like <code>42</code> or
+              <code>-10</code>
+            </li>
+            <li>
+              <strong>Floats</strong>: Numbers with decimal points, like
+              <code>3.14</code> or <code>-0.5</code>
+            </li>
+          </ul>
+
+          <h2>Input: Getting Information from Users</h2>
+          <p>
+            Remember the <code>input()</code> function? It's super helpful, but
+            it has a secret: it always gives us a string, even if the user types
+            a number!
+          </p>
+          <div class="codeExample">
+            <code>age = input("How old are you? ")</code>
+          </div>
+          <p>
+            If the user types 12, <code>age</code> will be the string
+            <code>"12"</code>, not the number 12.
+          </p>
+
+          <h2>Casting: Changing Data Types</h2>
+          <p>
+            Sometimes we need to change the type of our data. We can do this
+            with casting:
+          </p>
+          <div class="codeExample">
+            <code>age = int(input("How old are you? "))</code>
+          </div>
+          <p>
+            Now if the user types 12, <code>age</code> will be the integer 12,
+            which we can use in maths!
+          </p>
+
+          <h2>Mathematical Operators: Doing Maths with Python</h2>
+          <p>Python is great at maths! Here are some operators you can use:</p>
+          <ul>
+            <li><code>+</code> for addition</li>
+            <li><code>-</code> for subtraction</li>
+            <li><code>*</code> for multiplication</li>
+            <li><code>/</code> for division</li>
+          </ul>
+
+          <h2>Updating Variables: Changing Values</h2>
+            <p>
+              Variables are not only for storing values - we can also change them as our program runs. This is super useful for keeping track of things that change, like scores in a game!
+            </p>
+            <p>
+              Here's how we can update a variable:
+            </p>
+            <div class="codeExample">
+              <code>
+          num = 4
+          <br>
+          print("num starts as:", num)
+          <br>
+
+          num = num + 2
+          <br>
+          print("After adding 2, num is now:", num)
+          </code>
+            </div>
+            <p>
+              In this example, <code>num</code> starts as 4. Then we add 2 to it and store the result back in <code>num</code>. So <code>num</code> becomes 6!
+            </p>
+            <p>
+              We can do this with any mathematical operation. Here are a few more examples:
+            </p>
+            <div class="codeExample">
+              <code>
+          num = num * 3  # Multiplies num by 3
+          <br>
+          num = num - 1  # Subtracts 1 from num
+          <br>
+          num = num / 2  # Divides num by 2
+              </code>
+            </p>
+            </div>
+            <p>
+              This is really powerful because it lets our variables change and grow as our program runs. Try using this in your next program!
+            </p>
+          
+          <h2>Putting It All Together</h2>
+          <p>Let's use everything we've learned to make a cool program:</p>
+          <div class="codeExample">
+            <code>
+            days = int(input("Give me a number of days: "))
+          <br>
+
+              hours = days * 24
+          <br>
+              print("There are", hours, "hours in", days, "days")
+            </code>
+          </div>
+
+          <p>
+            This program asks for a number of days, converts it to an integer,
+            calculates the number of hours, and then prints the result.
+          </p>
+
+          <p>
+            Now it's your turn! Can you make a program that asks for someone's
+            age and then calculates how many months they've been alive? (Hint:
+            multiply their age by 12!)
+          </p>
+        </section>
         <section class="example hidden">
           <h3>
             Write a program to...

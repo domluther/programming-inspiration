@@ -14,6 +14,8 @@ const exampleResponseEle = document.querySelector('#exampleResponse');
 const exampleResponse2Ele = document.querySelector('#exampleResponse2');
 const codeEle = document.querySelector('.code');
 const copyBtn = document.querySelector('#copyMe');
+const backgroundEle = document.querySelector('.background');
+const backgroundBtn = document.querySelector('#background');
 const codeQuestion1Ele = document.querySelector('#codeQuestion1');
 const codeQuestion2Ele = document.querySelector('#codeQuestion2');
 const codeCalculationEle = document.querySelector('#codeCalculation');
@@ -23,6 +25,7 @@ const forceSpongeBtn = document.querySelector('#forceSpongebob');
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
 copyBtn.addEventListener('click', copyCode);
+backgroundBtn.addEventListener('click', showBackground);
 forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 
 // https://www.convertcsv.com/csv-to-json.htm to create
@@ -533,14 +536,13 @@ function showHelp() {
   codeEle.classList.toggle('hidden');
 }
 
+function showBackground() {
+  backgroundEle.classList.toggle('hidden');
+}
+
 function copyCode() {
   const codeText = document
     .querySelector('.code')
     .innerText.replace('📋\n\n', '');
   navigator.clipboard.writeText(codeText);
 }
-
-// function generatePrintStatement(response, variableName) {
-//   const splitResponse = response.split('{answer}');
-//   return `print(${splitResponse[0] ? `"${splitResponse[0]} ", ` : ``}${variableName} ${splitResponse[1] ? `, " ${splitResponse[1]}"` : ``})`;
-// }

@@ -1,19 +1,30 @@
+// Menu buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
+const backgroundBtn = document.querySelector('#background');
+const forceSpongeBtn = document.querySelector('#forceSpongebob');
+
+// Sections
+const backgroundEle = document.querySelector('.background');
 const exampleEle = document.querySelector('.example');
-const topicEle = document.querySelector('#topic');
-const exampleQuestionEle = document.querySelector('#exampleQuestion');
-const exampleAnswerEle = document.querySelector('#exampleAnswer');
-const exampleResponseEle = document.querySelector('#exampleResponse');
 const codeEle = document.querySelector('.code');
+
+const topicEle = document.querySelector('#topic');
+
+// Code section
 const copyBtn = document.querySelector('#copyMe');
 const codeQuestionEle = document.querySelector('#question');
 const codeResponseEle = document.querySelector('#response');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
+
+// Cartoon captions
+const exampleQuestionEle = document.querySelector('#exampleQuestion');
+const exampleAnswerEle = document.querySelector('#exampleAnswer');
+const exampleResponseEle = document.querySelector('#exampleResponse');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
 copyBtn.addEventListener('click', copyCode);
+backgroundBtn.addEventListener('click', showBackground);
 forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 
 // https://www.convertcsv.com/csv-to-json.htm to create
@@ -389,12 +400,21 @@ function inspire(override) {
   if (override === 'bob') questionToPick = 1;
   const question = questions[questionToPick - 1];
   topicEle.innerText = `ask someone ${question.topic}.`;
+  // Specific for captions on this code
+  setCaptions(question);
+  setCode(question);
+}
+
+function setCaptions(question) {
   exampleQuestionEle.innerText = question.question;
   exampleAnswerEle.innerText = question.answer;
   exampleResponseEle.innerText = question.response
     .replace('{answer}', question.answer)
     .replaceAll('"', '')
     .replaceAll(',', '');
+}
+
+function setCode(question) {
   codeQuestionEle.innerText = `${question.variable} = input("${question.question} ")`;
   codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
 }
@@ -404,8 +424,13 @@ function replaceText(text, question, code = true) {
   return text.replaceAll('{answer}', question.variable);
 }
 
+// Generic functions
 function showHelp() {
   codeEle.classList.toggle('hidden');
+}
+
+function showBackground() {
+  backgroundEle.classList.toggle('hidden');
 }
 
 function copyCode() {
@@ -414,8 +439,3 @@ function copyCode() {
     .innerText.replace('📋\n\n', '');
   navigator.clipboard.writeText(codeText);
 }
-
-// function generatePrintStatement(response, variableName) {
-//   const splitResponse = response.split('{answer}');
-//   return `print(${splitResponse[0] ? `"${splitResponse[0]} ", ` : ``}${variableName} ${splitResponse[1] ? `, " ${splitResponse[1]}"` : ``})`;
-// }
