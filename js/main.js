@@ -1,8 +1,9 @@
-// Menu buttons
+// Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
 const backgroundBtn = document.querySelector('#background');
 const forceSpongeBtn = document.querySelector('#forceSpongebob');
+const copyBtn = document.querySelector('#copyMe');
 
 // Sections
 const backgroundEle = document.querySelector('.background');
@@ -11,15 +12,14 @@ const codeEle = document.querySelector('.code');
 
 const topicEle = document.querySelector('#topic');
 
-// Code section
-const copyBtn = document.querySelector('#copyMe');
-const codeQuestionEle = document.querySelector('#question');
-const codeResponseEle = document.querySelector('#response');
-
 // Cartoon captions
 const exampleQuestionEle = document.querySelector('#exampleQuestion');
 const exampleAnswerEle = document.querySelector('#exampleAnswer');
 const exampleResponseEle = document.querySelector('#exampleResponse');
+
+// Code section
+const codeQuestionEle = document.querySelector('#question');
+const codeResponseEle = document.querySelector('#response');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);

@@ -1,9 +1,21 @@
+// Buttons
 const inspireBtn = document.querySelector('#inspire');
 const helpBtn = document.querySelector('#help');
+const backgroundBtn = document.querySelector('#background');
+const forceSpongeBtn = document.querySelector('#forceSpongebob');
+const copyBtn = document.querySelector('#copyMe');
+
 const cartoon1Ele = document.querySelector('.cartoon1');
 const cartoon2Ele = document.querySelector('.cartoon2');
+
+// Sections
+const backgroundEle = document.querySelector('.background');
 const exampleEle = document.querySelector('.example');
+const codeEle = document.querySelector('.code');
+
 const topicEle = document.querySelector('#topic');
+
+// Cartoon captions
 const exampleQuestionEle = document.querySelector('#exampleQuestion');
 const exampleQuestion1Ele = document.querySelector('#exampleQuestion1');
 const exampleQuestion2Ele = document.querySelector('#exampleQuestion2');
@@ -12,15 +24,12 @@ const exampleAnswer1Ele = document.querySelector('#exampleAnswer1');
 const exampleAnswer2Ele = document.querySelector('#exampleAnswer2');
 const exampleResponseEle = document.querySelector('#exampleResponse');
 const exampleResponse2Ele = document.querySelector('#exampleResponse2');
-const codeEle = document.querySelector('.code');
-const copyBtn = document.querySelector('#copyMe');
-const backgroundEle = document.querySelector('.background');
-const backgroundBtn = document.querySelector('#background');
+
+// Code section
 const codeQuestion1Ele = document.querySelector('#codeQuestion1');
 const codeQuestion2Ele = document.querySelector('#codeQuestion2');
 const codeCalculationEle = document.querySelector('#codeCalculation');
 const codeResponseEle = document.querySelector('#response');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
@@ -476,6 +485,12 @@ function inspire(override) {
   console.table(question);
   topicEle.innerText = `${question.topic}.`;
   // One input or two inputs?
+
+  setCaptions(question);
+  setCode(question);
+}
+
+function setCaptions(question) {
   const oneQuestion = question.variable2 === '';
   if (oneQuestion) {
     console.log('one input');
@@ -507,6 +522,10 @@ function inspire(override) {
       .replaceAll('"', '')
       .replaceAll(',', '');
   }
+}
+
+function setCode(question) {
+  const oneQuestion = question.variable2 === '';
   codeQuestion1Ele.innerText = `${question.variable1} = int(input("${question.question1} "))`;
   if (!oneQuestion) {
     codeQuestion2Ele.innerText = `${question.variable2} = int(input("${question.question2} "))`;
