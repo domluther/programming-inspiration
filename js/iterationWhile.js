@@ -46,26 +46,55 @@ forceSpongeBtn.addEventListener('click', () => inspire('bob'));
 
 // https://www.convertcsv.com/csv-to-json.htm to create
 const questions = [
-  // {
-  //   topic: 'count down from 10 to 1 and then prints "Blast off!"',
-  //   pattern: 'noInput',
-  //   variable1: 'countdown',
-  //   variable2: '',
-  //   initialValue: '10',
-  //   condition: '{variable1} > 0',
-  //   update: '{variable1} - 1',
-  //   loopAction: 'print({variable1})',
-  //   finalAction: 'print("Blast off!")',
-  // },
-  // // current = 10
-  // // endAt = 0
-  // // while current != endAt:
-  // //    print(current)
-  // //    current = current - 1
-  // // print("Blast Off!")
+  {
+    topic: 'ask for the best Spongebob character until correct',
+    pattern: 'string',
+    variable1: 'correct_answer',
+    variable2: 'character',
+    initialValue: '"patrick"',
+    wrongReply: 'mr krabs',
+    correctReply: 'patrick',
+    originalQuestion: '"Who is the best Spongebob character? "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Not a chance!"',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Glad you agree!"',
+    finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'input({originalQuestion})',
+  },
+  {
+    topic: 'guess the Hogwarts house until correct',
+    pattern: 'string',
+    variable1: 'correct_house',
+    variable2: 'guess',
+    initialValue: '"gryffindor"',
+    wrongReply: 'slytherin',
+    correctReply: 'gryffindor',
+    originalQuestion: '"Guess Harry Potter\'s Hogwarts house: "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Not quite! Try again."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Correct! 10 points to Gryffindor!"',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'guess the capital of France until correct',
+    pattern: 'string',
+    variable1: 'correct_answer',
+    variable2: 'guess',
+    initialValue: '"paris"',
+    wrongReply: 'london',
+    correctReply: 'paris',
+    originalQuestion: '"What is the capital of France? "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Nope. Starts with a p."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Correct! Paris is indeed the capital of France."',
+    finalAction: 'print({finalMessage})',
+  },
 
   {
-    topic: 'asks for a password until the correct one is entered',
+    topic: 'ask for a password until the correct one is entered',
     pattern: 'string',
     variable1: 'correct_password',
     variable2: 'attempt',
@@ -88,7 +117,7 @@ const questions = [
   // print("Access granted!")
 
   {
-    topic: 'asks to repeat until told to stop',
+    topic: 'ask to repeat until told to stop',
     pattern: 'string',
     variable1: 'stop',
     variable2: 'feedback',
@@ -248,3 +277,129 @@ function inspire(override) {
 }
 
 document.addEventListener('DOMContentLoaded', setupTabs);
+
+toTest = [
+  {
+    topic: 'keep doubling a number until it exceeds 1000',
+    pattern: 'int',
+    variable1: 'limit',
+    variable2: 'number',
+    initialValue: '1000',
+    wrongReply: '64',
+    correctReply: '1024',
+    originalQuestion: '"Enter a starting number: "',
+    condition: '{variable2} <= {variable1}',
+    loopMessage: '"Current number: {variable2}"',
+    loopAction: 'print({loopMessage})\n{variable2} *= 2',
+    finalMessage: '"The number has exceeded 1000: {variable2}"',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'guess the secret word until correct',
+    pattern: 'string',
+    variable1: 'secret_word',
+    variable2: 'guess',
+    initialValue: '"python"',
+    wrongReply: 'code',
+    correctReply: 'python',
+    originalQuestion: '"Guess the secret programming language: "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Incorrect. Hint: It\'s named after a snake."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Well done! Python is correct!"',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'keep subtracting 7 from 100 until below 0',
+    pattern: 'int',
+    variable1: 'target',
+    variable2: 'number',
+    initialValue: '0',
+    wrongReply: '7',
+    correctReply: '-5',
+    originalQuestion: '"Press Enter to start subtracting"',
+    condition: '{variable2} > {variable1}',
+    loopMessage: '"Current number: {variable2}"',
+    loopAction: 'print({loopMessage})\n{variable2} -= 7',
+    finalMessage: '"The number is now below 0: {variable2}"',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'guess the number of planets in the solar system',
+    pattern: 'int',
+    variable1: 'correct_count',
+    variable2: 'guess',
+    initialValue: '8',
+    wrongReply: '9',
+    correctReply: '8',
+    originalQuestion: '"How many planets are in our solar system? "',
+    condition: '{variable2} != {variable1}',
+    loopMessage:
+      '"Not quite! Remember, Pluto is no longer considered a planet."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Correct! There are 8 planets in our solar system."',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'keep adding prime numbers until sum exceeds 50',
+    pattern: 'int',
+    variable1: 'sum',
+    variable2: 'prime',
+    initialValue: '0',
+    wrongReply: '4',
+    correctReply: '53',
+    originalQuestion: '"Enter a prime number: "',
+    condition: '{variable1} <= 50',
+    loopMessage: '"Current sum: {variable1}"',
+    loopAction: 'print({loopMessage})\n{variable1} += {variable2}',
+    finalMessage: '"The sum has exceeded 50: {variable1}"',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'guess the chemical symbol for gold until correct',
+    pattern: 'string',
+    variable1: 'correct_symbol',
+    variable2: 'guess',
+    initialValue: '"Au"',
+    wrongReply: 'Go',
+    correctReply: 'Au',
+    originalQuestion: '"What\'s the chemical symbol for gold? "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Incorrect. Hint: It comes from the Latin word \'aurum\'."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Correct! Au is the chemical symbol for gold."',
+    finalAction: 'print({finalMessage})',
+  },
+  // {
+  //   topic: 'roll a dice until getting a 6',
+  //   pattern: 'int',
+  //   variable1: 'target',
+  //   variable2: 'roll',
+  //   initialValue: '6',
+  //   wrongReply: '3',
+  //   correctReply: '6',
+  //   originalQuestion: '"Press Enter to roll the dice"',
+  //   condition: '{variable2} != {variable1}',
+  //   loopMessage: '"You rolled a {variable2}. Try again!"',
+  //   loopAction: 'print({loopMessage})\n{variable2} = random.randint(1, 6)',
+  //   finalMessage: '"Congratulations! You rolled a 6!"',
+  //   finalAction: 'print({finalMessage})',
+  // },
+  // {
+  //   topic: 'count down from 10 to 1 and then prints "Blast off!"',
+  //   pattern: 'noInput',
+  //   variable1: 'countdown',
+  //   variable2: '',
+  //   initialValue: '10',
+  //   condition: '{variable1} > 0',
+  //   update: '{variable1} - 1',
+  //   loopAction: 'print({variable1})',
+  //   finalAction: 'print("Blast off!")',
+  // },
+  // // current = 10
+  // // endAt = 0
+  // // while current != endAt:
+  // //    print(current)
+  // //    current = current - 1
+  // // print("Blast Off!")
+];
