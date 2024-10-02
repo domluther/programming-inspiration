@@ -34,6 +34,7 @@ export function replaceText(text, question, code = true) {
   if (code) {
     return text
       .replaceAll('{finalMessage}', question?.finalMessage)
+      .replaceAll('{loopMessage}', question?.loopMessage)
       .replaceAll('{variable1}', question?.variable1)
       .replaceAll('{variable2}', question?.variable2)
       .replaceAll('{variable3}', question?.variable3)

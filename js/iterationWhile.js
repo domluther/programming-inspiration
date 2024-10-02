@@ -74,7 +74,8 @@ const questions = [
     correctReply: 'secret123',
     originalQuestion: '"Enter the password: "',
     condition: '{variable2} != {variable1}',
-    loopAction: 'print("Incorrect password.")',
+    loopMessage: '"Incorrect password."',
+    loopAction: 'print({loopMessage})',
     finalMessage: '"Access granted!"',
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'input({originalQuestion})',
@@ -96,7 +97,8 @@ const questions = [
     correctReply: 'no',
     originalQuestion: '"Should I continue? "',
     condition: '{variable2} != {variable1}',
-    loopAction: 'print("OK! Blah blah blah.")',
+    loopMessage: '"OK! Blah blah blah!"',
+    loopAction: 'print({loopMessage})',
     finalMessage: '"Bye!"',
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'input({originalQuestion})',
@@ -129,7 +131,8 @@ const questions = [
     answer1: '12',
     originalQuestion: '"Guess the number: "',
     condition: '{variable2} != {variable1}',
-    loopAction: 'print("Wrong guess!")',
+    loopMessage: '"Wrong guess!"',
+    loopAction: 'print({loopMessage})',
     finalMessage: '"Correct! You guessed it!"',
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'int(input({originalQuestion}))',
@@ -184,7 +187,6 @@ function inspire(override) {
   // What pattern is it?
   const { pattern } = question;
 
-  // If the pattern is string, show the loopMessage before asking question again
   if (pattern === 'int' || pattern === 'string') {
     // Fill in blanks on cartoon
     cartoon1Ele.classList.remove('hidden');
@@ -193,10 +195,12 @@ function inspire(override) {
       ''
     );
     wrongReplyEle.innerText = question.wrongReply;
-    repeatedQuestionEle.innerText = question.originalQuestion.replaceAll(
-      '"',
-      ''
-    );
+    // show the loopMessage before asking question again
+    repeatedQuestionEle.innerText =
+      `${question.loopMessage || ''}\n${question.originalQuestion}`.replaceAll(
+        '"',
+        ''
+      );
     correctReplyEle.innerText = question.correctReply;
     finalMessageEle.innerText = replaceText(
       question.finalMessage,
