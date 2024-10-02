@@ -240,7 +240,7 @@ nav .btn:active {
 
 .background code {
   background-color: #e8f4f8;
-  padding: 2px 4px;
+  padding: 2px 0;
   border-radius: 4px;
   font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
