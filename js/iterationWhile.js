@@ -34,6 +34,7 @@ const firstVariableEle = document.querySelector('#firstVariable');
 const secondVariableEle = document.querySelector('#secondVariable');
 const whileConditionEle = document.querySelector('#whileCondition');
 const loopActionEle = document.querySelector('#loopAction');
+const loopAction2Ele = document.querySelector('#loopAction2');
 const followUpQuestionEle = document.querySelector('#followUpQuestion');
 const finalActionEle = document.querySelector('#finalAction');
 const codeResponseEle = document.querySelector('#response');
@@ -43,6 +44,13 @@ helpBtn.addEventListener('click', showHelp);
 copyBtn.addEventListener('click', copyCode);
 backgroundBtn.addEventListener('click', showBackground);
 forceSpongeBtn.addEventListener('click', () => inspire('bob'));
+
+// correct_password = "secret123"
+// attempt = input("Enter the password: ")
+// while attempt != correct_password:
+//     print("Incorrect password.")
+//     attempt = input("Try again: ")
+// print("Access granted!")
 
 // https://www.convertcsv.com/csv-to-json.htm to create
 const questions = [
@@ -62,6 +70,68 @@ const questions = [
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'input({originalQuestion})',
   },
+  {
+    topic: 'add numbers input by the user until they enter a number over 5',
+    pattern: 'int',
+    variable1: 'limit',
+    variable2: 'value',
+    initialValue: '5',
+    wrongReply: '2',
+    correctReply: '10',
+    answer1: '12',
+    answer2: '10',
+    originalQuestion: '"Enter a number over 5 to stop: "',
+    condition: '{variable2} <= {variable1}',
+    loopAction: 'print({loopMessage})',
+    loopMessage: '"Too small"',
+    finalMessage: '"You entered", {answer2}',
+    finalAction: 'print({finalMessage})',
+    // followUpQuestion: 'int(input({originalQuestion}))',
+  },
+  {
+    topic: 'count down from 5 to 1 and then prints "Blast off!"',
+    pattern: 'noInput',
+    variable1: 'count',
+    initialValue: '5',
+    combinedMessage: '5, 4, 3, 2, 1',
+    condition: '{variable1} > 0',
+    update: '{variable1} - 1',
+    loopAction: 'print({variable1})',
+    loopAction2: '{variable1} = {variable1} - 1',
+    finalMessage: '"Blast off!"',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'guess the number of planets in the solar system',
+    pattern: 'int',
+    variable1: 'correct_count',
+    variable2: 'guess',
+    initialValue: '8',
+    wrongReply: '9',
+    correctReply: '8',
+    originalQuestion: '"How many planets in our solar system? "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Nope, Pluto is not a planet."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Correct! There are 8 planets in our solar system."',
+    finalAction: 'print({finalMessage})',
+  },
+  {
+    topic: 'guess the secret word until correct',
+    pattern: 'string',
+    variable1: 'secret_word',
+    variable2: 'guess',
+    initialValue: '"python"',
+    wrongReply: 'code',
+    correctReply: 'python',
+    originalQuestion: '"Guess the secret word: "',
+    condition: '{variable2} != {variable1}',
+    loopMessage: '"Incorrect. It\'s a type of snake."',
+    loopAction: 'print({loopMessage})',
+    finalMessage: '"Well done! Python is correct!"',
+    finalAction: 'print({finalMessage})',
+  },
+
   {
     topic: 'guess the Hogwarts house until correct',
     pattern: 'string',
@@ -109,12 +179,6 @@ const questions = [
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'input({originalQuestion})',
   },
-  // correct_password = "secret123"
-  // attempt = input("Enter the password: ")
-  // while attempt != correct_password:
-  //     print("Incorrect password.")
-  //     attempt = input("Try again: ")
-  // print("Access granted!")
 
   {
     topic: 'ask to repeat until told to stop',
@@ -166,6 +230,7 @@ const questions = [
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
+  // Checks v 100 before adding it so needs an extra check due to how loop + asking again are backwards
   {
     topic: 'find the sum of numbers until reaching 100',
     pattern: 'int',
@@ -175,7 +240,7 @@ const questions = [
     wrongReply: '50',
     correctReply: '100',
     answer1: '120',
-    originalQuestion: '"Enter a number to add (or 0 to finish): "',
+    originalQuestion: '"Enter a number to add: "',
     condition: '{variable1} < 100',
     loopAction: '{variable1} = {variable1} + {variable2}',
     finalMessage: '"The sum is", {answer1}',
@@ -217,6 +282,8 @@ function inspire(override) {
   const { pattern } = question;
 
   if (pattern === 'int' || pattern === 'string') {
+    cartoon1Ele.classList.remove('hidden');
+    cartoon2Ele.classList.add('hidden');
     // Fill in blanks on cartoon
     cartoon1Ele.classList.remove('hidden');
     originalQuestionEle.innerText = question.originalQuestion.replaceAll(
@@ -238,32 +305,36 @@ function inspire(override) {
     )
       .replaceAll('"', '')
       .replaceAll(',', '');
-  }
-  //  else {
-  //   console.log('two inputs');
-  //   cartoon2Ele.classList.remove('hidden');
-  //   cartoon1Ele.classList.add('hidden');
+  } else if (pattern === 'noInput') {
+    console.log('no inputs');
+    cartoon2Ele.classList.remove('hidden');
+    cartoon1Ele.classList.add('hidden');
 
-  //   exampleQuestion1Ele.innerText = question.question1;
-  //   exampleQuestion2Ele.innerText = question.question2;
-  //   exampleAnswer1Ele.innerText = question.answer1;
-  //   exampleAnswer2Ele.innerText = question.answer2;
-  //   exampleResponse2Ele.innerText = replaceText(
-  //     question.response,
-  //     question,
-  //     false
-  //   )
-  //     .replaceAll('"', '')
-  //     .replaceAll(',', '');
-  // }
+    const exampleQuestionEle = document.querySelector('#exampleQuestion');
+    const exampleAnswerEle = document.querySelector('#exampleAnswer');
+    const exampleResponseEle = document.querySelector('#exampleResponse');
+
+    exampleQuestionEle.innerText = question.combinedMessage;
+    exampleAnswerEle.innerText = '...';
+    exampleResponseEle.innerText = replaceText(
+      question.finalMessage,
+      question,
+      false
+    )
+      .replaceAll('"', '')
+      .replaceAll(',', '');
+  }
   // Fill in code block
   firstVariableEle.innerText = `${question.variable1} = ${question.initialValue}`;
   if (pattern === 'int') {
     secondVariableEle.innerText = `${question.variable2} = int(input(${replaceText(question.originalQuestion, question)}))`;
     followUpQuestionEle.innerText = `  ${question.variable2} = int(input(${replaceText(question.originalQuestion, question)}))`;
-  } else {
+  } else if (pattern === 'string') {
     secondVariableEle.innerText = `${question.variable2} = input(${replaceText(question.originalQuestion, question)})`;
     followUpQuestionEle.innerText = `  ${question.variable2} = input(${replaceText(question.originalQuestion, question)})`;
+  } else if (pattern === 'noInput') {
+    // No input has a second loop action instead of a follow up question
+    followUpQuestionEle.innerText = `  ${replaceText(question.loopAction2, question)}`;
   }
 
   whileConditionEle.innerText = `while ${replaceText(question.condition, question)}:`;
@@ -278,7 +349,7 @@ function inspire(override) {
 
 document.addEventListener('DOMContentLoaded', setupTabs);
 
-toTest = [
+const toTest = [
   {
     topic: 'keep doubling a number until it exceeds 1000',
     pattern: 'int',
@@ -294,52 +365,7 @@ toTest = [
     finalMessage: '"The number has exceeded 1000: {variable2}"',
     finalAction: 'print({finalMessage})',
   },
-  {
-    topic: 'guess the secret word until correct',
-    pattern: 'string',
-    variable1: 'secret_word',
-    variable2: 'guess',
-    initialValue: '"python"',
-    wrongReply: 'code',
-    correctReply: 'python',
-    originalQuestion: '"Guess the secret programming language: "',
-    condition: '{variable2} != {variable1}',
-    loopMessage: '"Incorrect. Hint: It\'s named after a snake."',
-    loopAction: 'print({loopMessage})',
-    finalMessage: '"Well done! Python is correct!"',
-    finalAction: 'print({finalMessage})',
-  },
-  {
-    topic: 'keep subtracting 7 from 100 until below 0',
-    pattern: 'int',
-    variable1: 'target',
-    variable2: 'number',
-    initialValue: '0',
-    wrongReply: '7',
-    correctReply: '-5',
-    originalQuestion: '"Press Enter to start subtracting"',
-    condition: '{variable2} > {variable1}',
-    loopMessage: '"Current number: {variable2}"',
-    loopAction: 'print({loopMessage})\n{variable2} -= 7',
-    finalMessage: '"The number is now below 0: {variable2}"',
-    finalAction: 'print({finalMessage})',
-  },
-  {
-    topic: 'guess the number of planets in the solar system',
-    pattern: 'int',
-    variable1: 'correct_count',
-    variable2: 'guess',
-    initialValue: '8',
-    wrongReply: '9',
-    correctReply: '8',
-    originalQuestion: '"How many planets are in our solar system? "',
-    condition: '{variable2} != {variable1}',
-    loopMessage:
-      '"Not quite! Remember, Pluto is no longer considered a planet."',
-    loopAction: 'print({loopMessage})',
-    finalMessage: '"Correct! There are 8 planets in our solar system."',
-    finalAction: 'print({finalMessage})',
-  },
+
   {
     topic: 'keep adding prime numbers until sum exceeds 50',
     pattern: 'int',
@@ -370,36 +396,19 @@ toTest = [
     finalMessage: '"Correct! Au is the chemical symbol for gold."',
     finalAction: 'print({finalMessage})',
   },
-  // {
-  //   topic: 'roll a dice until getting a 6',
-  //   pattern: 'int',
-  //   variable1: 'target',
-  //   variable2: 'roll',
-  //   initialValue: '6',
-  //   wrongReply: '3',
-  //   correctReply: '6',
-  //   originalQuestion: '"Press Enter to roll the dice"',
-  //   condition: '{variable2} != {variable1}',
-  //   loopMessage: '"You rolled a {variable2}. Try again!"',
-  //   loopAction: 'print({loopMessage})\n{variable2} = random.randint(1, 6)',
-  //   finalMessage: '"Congratulations! You rolled a 6!"',
-  //   finalAction: 'print({finalMessage})',
-  // },
-  // {
-  //   topic: 'count down from 10 to 1 and then prints "Blast off!"',
-  //   pattern: 'noInput',
-  //   variable1: 'countdown',
-  //   variable2: '',
-  //   initialValue: '10',
-  //   condition: '{variable1} > 0',
-  //   update: '{variable1} - 1',
-  //   loopAction: 'print({variable1})',
-  //   finalAction: 'print("Blast off!")',
-  // },
-  // // current = 10
-  // // endAt = 0
-  // // while current != endAt:
-  // //    print(current)
-  // //    current = current - 1
-  // // print("Blast Off!")
+  {
+    topic: 'keep taking away until under 0',
+    pattern: 'int',
+    variable1: 'target',
+    variable2: 'number',
+    initialValue: '100',
+    wrongReply: '7',
+    correctReply: '-5',
+    originalQuestion: '"How many to take away?"',
+    condition: '{variable1} > 0',
+    loopMessage: '"Current value: {variable1}"',
+    loopAction: '{variable1} = {variable1} - {variable2}',
+    finalMessage: '"The number is now below 0"',
+    finalAction: 'print({finalMessage})',
+  },
 ];
