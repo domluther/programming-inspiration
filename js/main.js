@@ -208,7 +208,7 @@ const questions = [
     variable: 'secret',
     topic: 'for a secret',
     question: 'What is a secret?',
-    answer: 'Mr Luther does not like ducks 😭',
+    answer: 'Mr Bashford does not like ducks 😭',
     response: '"Oh wow! I never knew", {answer}, "."',
   },
   {
