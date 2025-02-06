@@ -39,6 +39,7 @@ export function replaceText(text, question, code = true) {
       .replaceAll('{variable2}', question?.variable2)
       .replaceAll('{variable3}', question?.variable3)
       .replaceAll('{result}', question?.variable3)
+      .replaceAll('{answer}', question?.variable)
       .replaceAll('{answer1}', question?.variable1)
       .replaceAll('{answer2}', question?.variable2)
       .replaceAll('{originalQuestion}', question?.originalQuestion);
