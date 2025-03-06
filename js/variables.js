@@ -496,7 +496,6 @@ function inspire(override) {
 function setCaptions(question) {
   const oneQuestion = question.variable2 === '';
   if (oneQuestion) {
-    console.log('one input');
     cartoon1Ele.classList.remove('hidden');
     cartoon2Ele.classList.add('hidden');
     exampleQuestionEle.innerText = question.question1;
@@ -509,7 +508,6 @@ function setCaptions(question) {
       .replaceAll('"', '')
       .replaceAll(',', '');
   } else {
-    console.log('two inputs');
     cartoon2Ele.classList.remove('hidden');
     cartoon1Ele.classList.add('hidden');
 
@@ -530,9 +528,10 @@ function setCaptions(question) {
 function setCode(question) {
   const oneQuestion = question.variable2 === '';
   codeQuestion1Ele.innerText = `${question.variable1} = int(input("${question.question1} "))`;
-  if (!oneQuestion) {
-    codeQuestion2Ele.innerText = `${question.variable2} = int(input("${question.question2} "))`;
-  }
+  // If there is only one question, the second line is blank
+  codeQuestion2Ele.innerText = oneQuestion
+    ? ''
+    : `${question.variable2} = int(input("${question.question2} "))`;
   codeCalculationEle.innerText = `${question.variable3} = ${replaceText(question.calculation, question)}`;
   codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
 }
