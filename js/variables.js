@@ -4,6 +4,7 @@ import {
   copyCode,
   setupTabs,
   replaceText,
+  generateQuestionNumber,
 } from './utils.js';
 
 // Buttons
@@ -13,15 +14,13 @@ const backgroundBtn = document.querySelector('#background');
 const forceSpongeBtn = document.querySelector('#forceSpongebob');
 const copyBtn = document.querySelector('#copyMe');
 
+// Sections
+const exampleEle = document.querySelector('.example');
+const codeEle = document.querySelector('.code');
 const cartoon1Ele = document.querySelector('.cartoon1');
 const cartoon2Ele = document.querySelector('.cartoon2');
 
-// Sections
-const backgroundEle = document.querySelector('.background');
-const exampleEle = document.querySelector('.example');
-const codeEle = document.querySelector('.code');
-
-// Cartoon captions
+// Cartoon
 const topicEle = document.querySelector('#topic');
 const exampleQuestionEle = document.querySelector('#exampleQuestion');
 const exampleQuestion1Ele = document.querySelector('#exampleQuestion1');
@@ -478,14 +477,13 @@ const questions = [
   },
 ];
 
-const numOfQuestions = questions.length;
-
 function inspire(override) {
   exampleEle.classList.remove('hidden');
   codeEle.classList.add('hidden');
 
-  let questionToPick =
-    override === 'bob' ? 1 : Math.ceil(Math.random() * questions.length);
+  const numOfQuestions = questions.length;
+  const questionToPick =
+    override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
   const question = questions[questionToPick - 1];
   topicEle.innerText = `${question.topic}.`;
 

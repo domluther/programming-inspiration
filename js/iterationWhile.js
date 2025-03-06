@@ -4,6 +4,7 @@ import {
   copyCode,
   setupTabs,
   replaceText,
+  generateQuestionNumber,
 } from './utils.js';
 
 // Buttons
@@ -13,13 +14,11 @@ const backgroundBtn = document.querySelector('#background');
 const forceSpongeBtn = document.querySelector('#forceSpongebob');
 const copyBtn = document.querySelector('#copyMe');
 
-const cartoon1Ele = document.querySelector('.cartoon1');
-const cartoon2Ele = document.querySelector('.cartoon2');
-
 // Sections
-const backgroundEle = document.querySelector('.background');
 const exampleEle = document.querySelector('.example');
 const codeEle = document.querySelector('.code');
+const cartoon1Ele = document.querySelector('.cartoon1');
+const cartoon2Ele = document.querySelector('.cartoon2');
 
 // Cartoon
 const topicEle = document.querySelector('#topic');
@@ -34,10 +33,8 @@ const firstVariableEle = document.querySelector('#firstVariable');
 const secondVariableEle = document.querySelector('#secondVariable');
 const whileConditionEle = document.querySelector('#whileCondition');
 const loopActionEle = document.querySelector('#loopAction');
-const loopAction2Ele = document.querySelector('#loopAction2');
 const followUpQuestionEle = document.querySelector('#followUpQuestion');
 const finalActionEle = document.querySelector('#finalAction');
-const codeResponseEle = document.querySelector('#response');
 
 inspireBtn.addEventListener('click', inspire);
 helpBtn.addEventListener('click', showHelp);
@@ -265,19 +262,25 @@ const questions = [
   },
 ];
 
-const numOfQuestions = questions.length;
-
 function inspire(override) {
   exampleEle.classList.remove('hidden');
   // Help should be hidden at start
   codeEle.classList.add('hidden');
 
   // Randomly pick a question number then set the text values
-  let questionToPick = Math.ceil(Math.random() * numOfQuestions);
-  if (override === 'bob') questionToPick = 1;
+  const numOfQuestions = questions.length;
+  const questionToPick =
+    override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
   const question = questions[questionToPick - 1];
-  console.table(question);
   topicEle.innerText = `${question.topic}.`;
+
+  setCaptions(question);
+  setCode(question);
+}
+
+document.addEventListener('DOMContentLoaded', setupTabs);
+
+function setCaptions(question) {
   // What pattern is it?
   const { pattern } = question;
 
@@ -324,6 +327,12 @@ function inspire(override) {
       .replaceAll('"', '')
       .replaceAll(',', '');
   }
+}
+
+function setCode(question) {
+  // What pattern is it?
+  const { pattern } = question;
+
   // Fill in code block
   firstVariableEle.innerText = `${question.variable1} = ${question.initialValue}`;
   if (pattern === 'int') {
@@ -340,75 +349,4 @@ function inspire(override) {
   whileConditionEle.innerText = `while ${replaceText(question.condition, question)}:`;
   loopActionEle.innerText = `  ${replaceText(question.loopAction, question)}`;
   finalActionEle.innerText = replaceText(question.finalAction, question);
-  // if (!oneQuestion) {
-  //   codeQuestion2Ele.innerText = `${question.variable2} = int(input("${question.question2} "))`;
-  // }
-  // codeCalculationEle.innerText = `${question.variable3} = ${replaceText(question.calculation, question)}`;
-  // codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
 }
-
-document.addEventListener('DOMContentLoaded', setupTabs);
-
-const toTest = [
-  {
-    topic: 'keep doubling a number until it exceeds 1000',
-    pattern: 'int',
-    variable1: 'limit',
-    variable2: 'number',
-    initialValue: '1000',
-    wrongReply: '64',
-    correctReply: '1024',
-    originalQuestion: '"Enter a starting number: "',
-    condition: '{variable2} <= {variable1}',
-    loopMessage: '"Current number: {variable2}"',
-    loopAction: 'print({loopMessage})\n{variable2} *= 2',
-    finalMessage: '"The number has exceeded 1000: {variable2}"',
-    finalAction: 'print({finalMessage})',
-  },
-
-  {
-    topic: 'keep adding prime numbers until sum exceeds 50',
-    pattern: 'int',
-    variable1: 'sum',
-    variable2: 'prime',
-    initialValue: '0',
-    wrongReply: '4',
-    correctReply: '53',
-    originalQuestion: '"Enter a prime number: "',
-    condition: '{variable1} <= 50',
-    loopMessage: '"Current sum: {variable1}"',
-    loopAction: 'print({loopMessage})\n{variable1} += {variable2}',
-    finalMessage: '"The sum has exceeded 50: {variable1}"',
-    finalAction: 'print({finalMessage})',
-  },
-  {
-    topic: 'guess the chemical symbol for gold until correct',
-    pattern: 'string',
-    variable1: 'correct_symbol',
-    variable2: 'guess',
-    initialValue: '"Au"',
-    wrongReply: 'Go',
-    correctReply: 'Au',
-    originalQuestion: '"What\'s the chemical symbol for gold? "',
-    condition: '{variable2} != {variable1}',
-    loopMessage: '"Incorrect. Hint: It comes from the Latin word \'aurum\'."',
-    loopAction: 'print({loopMessage})',
-    finalMessage: '"Correct! Au is the chemical symbol for gold."',
-    finalAction: 'print({finalMessage})',
-  },
-  {
-    topic: 'keep taking away until under 0',
-    pattern: 'int',
-    variable1: 'target',
-    variable2: 'number',
-    initialValue: '100',
-    wrongReply: '7',
-    correctReply: '-5',
-    originalQuestion: '"How many to take away?"',
-    condition: '{variable1} > 0',
-    loopMessage: '"Current value: {variable1}"',
-    loopAction: '{variable1} = {variable1} - {variable2}',
-    finalMessage: '"The number is now below 0"',
-    finalAction: 'print({finalMessage})',
-  },
-];

@@ -49,3 +49,7 @@ export function replaceText(text, question, code = true) {
     .replaceAll('{answer2}', question?.answer2)
     .replaceAll('{result}', question?.result);
 }
+
+export function generateQuestionNumber(numOfQuestions) {
+  return Math.ceil(Math.random() * numOfQuestions);
+}

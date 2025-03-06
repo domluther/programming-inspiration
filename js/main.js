@@ -4,6 +4,7 @@ import {
   copyCode,
   setupTabs,
   replaceText,
+  generateQuestionNumber,
 } from './utils.js';
 
 // Buttons
@@ -17,9 +18,8 @@ const copyBtn = document.querySelector('#copyMe');
 const exampleEle = document.querySelector('.example');
 const codeEle = document.querySelector('.code');
 
+// Cartoon
 const topicEle = document.querySelector('#topic');
-
-// Cartoon captions
 const exampleQuestionEle = document.querySelector('#exampleQuestion');
 const exampleAnswerEle = document.querySelector('#exampleAnswer');
 const exampleResponseEle = document.querySelector('#exampleResponse');
@@ -395,14 +395,14 @@ const questions = [
   },
 ];
 
-const numOfQuestions = questions.length;
-
 function inspire(override) {
   exampleEle.classList.remove('hidden');
+  // Help should be hidden at start
   codeEle.classList.add('hidden');
 
-  let questionToPick =
-    override === 'bob' ? 1 : Math.ceil(Math.random() * questions.length);
+  const numOfQuestions = questions.length;
+  const questionToPick =
+    override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
   const question = questions[questionToPick - 1];
   topicEle.innerText = `ask someone ${question.topic}.`;
 

@@ -4,6 +4,7 @@ import {
   copyCode,
   setupTabs,
   replaceText,
+  generateQuestionNumber,
 } from './utils.js';
 
 // Buttons
@@ -13,24 +14,17 @@ const backgroundBtn = document.querySelector('#background');
 const forceSpongeBtn = document.querySelector('#forceSpongebob');
 const copyBtn = document.querySelector('#copyMe');
 
-const cartoon1Ele = document.querySelector('.cartoon1');
-
 // Sections
-const backgroundEle = document.querySelector('.background');
 const exampleEle = document.querySelector('.example');
 const codeEle = document.querySelector('.code');
 
 // Cartoon
-
 const topicEle = document.querySelector('#topic');
 const selectionQuestionEle = document.querySelector('#selectionQuestion');
 const selectionAnswer1Ele = document.querySelector('#selectionAnswer1');
 const selectionAnswer2Ele = document.querySelector('#selectionAnswer2');
 const ifReplyEle = document.querySelector('#ifReply');
 const elseReplyEle = document.querySelector('#elseReply');
-const exampleAnswer2Ele = document.querySelector('#exampleAnswer2');
-const exampleResponseEle = document.querySelector('#exampleResponse');
-const exampleResponse2Ele = document.querySelector('#exampleResponse2');
 
 // Code section
 const codeQuestionEle = document.querySelector('#codeQuestion');
@@ -518,21 +512,25 @@ const questions = [
   },
 ];
 
-const numOfQuestions = questions.length;
-
 function inspire(override) {
   exampleEle.classList.remove('hidden');
   // Help should be hidden at start
   codeEle.classList.add('hidden');
 
   // Randomly pick a question number then set the text values
-  let questionToPick = Math.ceil(Math.random() * numOfQuestions);
-  if (override === 'bob') questionToPick = 1;
+  const numOfQuestions = questions.length;
+  const questionToPick =
+    override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
   const question = questions[questionToPick - 1];
-  console.table(question);
   topicEle.innerText = `${question.topic}.`;
-  // One input or two inputs?
-  cartoon1Ele.classList.remove('hidden');
+
+  setCaptions(question);
+  setCode(question);
+}
+
+document.addEventListener('DOMContentLoaded', setupTabs);
+
+function setCaptions(question) {
   selectionQuestionEle.innerText = question.question1;
   selectionAnswer1Ele.innerText = question.answer1;
   ifReplyEle.innerText = replaceText(question.ifReply, question, false)
@@ -542,6 +540,9 @@ function inspire(override) {
   elseReplyEle.innerText = replaceText(question.elseReply, question, false)
     .replaceAll('"', '')
     .replaceAll(',', '');
+}
+
+function setCode(question) {
   const INDENT = '    '; // 4 spaces
 
   codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
@@ -550,5 +551,3 @@ function inspire(override) {
   codeIfReplyEle.innerText = `${INDENT}print(${replaceText(question.ifReply, question, true)})`;
   codeElseReplyEle.innerText = `${INDENT}print(${replaceText(question.elseReply, question, true)})`;
 }
-
-document.addEventListener('DOMContentLoaded', setupTabs);
