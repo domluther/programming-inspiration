@@ -98,6 +98,19 @@ const questions = [
     finalMessage: '"Blast off!"',
     finalAction: 'print({finalMessage})',
   },
+    {
+    topic: 'count up from 1 to 10 and then prints "Coming ready or not!"',
+    pattern: 'noInput',
+    variable1: 'count',
+    initialValue: '1',
+    combinedMessage: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10',
+    condition: '{variable1} <= 10',
+    update: '{variable1} + 1',
+    loopAction: 'print({variable1})',
+    loopAction2: '{variable1} = {variable1} + 1',
+    finalMessage: '"Coming ready or not!"',
+    finalAction: 'print({finalMessage})',
+  },
   {
     topic: 'guess the number of planets in the solar system',
     pattern: 'int',
@@ -317,6 +330,7 @@ function setCaptions(question) {
     const exampleAnswerEle = document.querySelector('#exampleAnswer');
     const exampleResponseEle = document.querySelector('#exampleResponse');
 
+    originalQuestionEle.innerText = ''
     exampleQuestionEle.innerText = question.combinedMessage;
     exampleAnswerEle.innerText = '...';
     exampleResponseEle.innerText = replaceText(
@@ -330,6 +344,7 @@ function setCaptions(question) {
 }
 
 function setCode(question) {
+  console.log(question)
   // What pattern is it?
   const { pattern } = question;
 
@@ -344,6 +359,7 @@ function setCode(question) {
   } else if (pattern === 'noInput') {
     // No input has a second loop action instead of a follow up question
     followUpQuestionEle.innerText = `  ${replaceText(question.loopAction2, question)}`;
+    secondVariableEle.innerText = ''
   }
 
   whileConditionEle.innerText = `while ${replaceText(question.condition, question)}:`;
