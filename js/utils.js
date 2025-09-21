@@ -9,7 +9,7 @@ export function showBackground() {
 export function copyCode() {
   const codeText = document
     .querySelector('.code')
-    .innerText.replace('📋\n\n', '');
+    .innerText.replace('📋\n', '# explain me').replaceAll('\n\n', '\n# explain me\n');
   navigator.clipboard.writeText(codeText);
 }
 

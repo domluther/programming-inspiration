@@ -96,6 +96,11 @@
                     <td>Numbers with decimal points</td>
                     <td><code>3.14</code> or <code>-0.5</code></td>
                   </tr>
+                  <tr>
+                    <td>Boolean</td>
+                    <td>True or False values</td>
+                    <td><code>True</code> or <code>False</code></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -228,9 +233,13 @@
         </section>
 
         <section class="example hidden">
-          <h3>
-            Write a program to...
-            <span id="topic"></span>
+          <h3 class="question-header">
+            <button id="prevQuestion" class="btn btn--nav btn--nav-left" title="Previous question (← arrow key)">‹</button>
+            <span class="question-text">
+              Write a program to...
+              <span id="topic"></span>
+            </span>
+            <button id="nextQuestion" class="btn btn--nav btn--nav-right" title="Next question (→ arrow key)">›</button>
           </h3>
           <section class="cartoon1">
             <img id="questionImage" src="img/baseImage.webp" alt="" />
@@ -261,6 +270,6 @@
         🧽
       </button>
     </div>
-    <script type="module" src="js/variables.js"></script>
+    <script type="module" src="js/variables-new.js"></script>
   </body>
 </html>
