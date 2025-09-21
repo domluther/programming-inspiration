@@ -26,10 +26,11 @@
         <h1>Programming practice</h1>
       </header>
       <main>
-        <h2>
-          <span><a href="selection.html">⬅️</a></span> Condition-controlled
-          iteration practice with while
-        </h2>
+        <div class="page-header">
+          <a href="selection.html" class="btn btn--nav btn--nav-left" title="Previous page (Selection)">‹</a>
+          <h2 class="page-title">Condition-controlled iteration practice with while</h2>
+          <button class="btn btn--nav btn--nav-right" disabled title="Next page">›</button>
+        </div>
         <nav>
           <a href="#" class="btn" id="background">Background</a>
           <a href="#" class="btn" id="inspire">Inspire me!</a>
@@ -206,9 +207,13 @@
         </section>
 
         <section class="example hidden">
-          <h3>
-            Write a program to...
-            <span id="topic"></span>
+          <h3 class="question-header">
+            <button id="prevQuestion" class="btn btn--nav btn--nav-left" title="Previous question (← arrow key)">‹</button>
+            <span class="question-text">
+              Write a program to...
+              <span id="topic"></span>
+            </span>
+            <button id="nextQuestion" class="btn btn--nav btn--nav-right" title="Next question (→ arrow key)">›</button>
           </h3>
           <section class="cartoon1">
             <img id="questionImage" src="img/baseImageWhile.webp" alt="" />
@@ -242,6 +247,6 @@
         🧽
       </button>
     </div>
-    <script type="module" src="js/iterationWhile.js"></script>
+    <script type="module" src="js/iterationWhile-new.js"></script>
   </body>
 </html>

@@ -49,6 +49,36 @@ h3 {
   overflow-wrap: break-word;
 }
 
+/* Page header with navigation buttons - similar to question header */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  min-height: 4rem;
+}
+
+.page-title {
+  flex: 1;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0;
+}
+
+/* Larger navigation buttons for page headers */
+.page-header .btn--nav {
+  min-width: 3rem;
+  min-height: 3rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.4rem;
+}
+
 /* General paragraph styles - NOT for positioned cartoon text */
 .background p,
 .tab-content p {
@@ -80,7 +110,7 @@ main {
   background-color: #f8f9fa; /* Light grey to match other sections but distinct from body */
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -240,26 +270,26 @@ nav {
 }
 
 /* ===== POSITIONED ELEMENTS (SPEECH BUBBLES) ===== */
-/* Main page elements */
+/* Main page elements - also used on simple iteration cartoon */
 #exampleQuestion {
   top: 8.5%;
   left: 25%;
   width: 42%;
-  height: 4.5rem;
+  height: 10%;
 }
 
 #exampleAnswer {
-  top: 19.5%;
+  top: 20%;
   left: 45%;
   width: 19.5%;
-  height: 6rem;
+  height: 12%;
 }
 
 #exampleResponse {
-  top: 36%;
+  top: 37%;
   left: 29%;
   width: 28%;
-  height: 8rem;
+  height: 16%;
 }
 
 /* Variables page - two question format */
@@ -336,38 +366,38 @@ nav {
 
 /* iteration pages */
 #originalQuestion {
-  top: 9%;
+  top: 6%;
   left: 18%;
-  width: 45%;
-  height: 4rem;
+  width: 46%;
+  height: 14%;
 }
 
 #wrongReply {
-  top: 18%;
-  left: 72%;
-  width: 25%;
-  height: 3rem;
+  top: 17%;
+  left: 68%;
+  width: 28%;
+  height: 10%;
 }
 
 #repeatedQuestion {
-  top: 30%;
-  left: 35%;
-  width: 35%;
-  height: 4rem;
+  top: 31%;
+  left: 31%;
+  width: 43%;
+  height: 15%;
 }
 
 #correctReply {
-  top: 58%;
-  left: 50%;
-  width: 25%;
-  height: 3rem;
+  top: 57%;
+  left: 47%;
+  width: 28%;
+  height: 11%;
 }
 
 #finalMessage {
-  top: 73%;
-  left: 37%;
-  width: 33%;
-  height: 3rem;
+  top: 75%;
+  left: 34%;
+  width: 39%;
+  height: 14%;
 }
 
 /* ===== CODE BLOCKS ===== */

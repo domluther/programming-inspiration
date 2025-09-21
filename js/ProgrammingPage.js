@@ -106,6 +106,16 @@ export class ProgrammingPage {
   setupKeyboardNavigation() {
     document.addEventListener('keydown', (event) => {
       // Only handle navigation if the example section is visible
+        switch (event.key){
+            case 'b':
+                event.preventDefault();
+                this.utils.showBackground();
+                break;
+            case 'i':
+                event.preventDefault();
+                this.inspire();
+                break;
+        }
       if (this.exampleEle && !this.exampleEle.classList.contains('hidden')) {
         switch (event.key) {
           case 'ArrowLeft':
@@ -115,6 +125,15 @@ export class ProgrammingPage {
           case 'ArrowRight':
             event.preventDefault();
             this.navigateQuestion(1);
+            break;
+        case '?':
+            event.preventDefault();
+            this.utils.showHelp();
+            break;
+        case 'c':
+            if (this.codeEle && this.codeEle.classList.contains('hidden')) break;
+            event.preventDefault();
+            this.utils.copyCode();
             break;
         }
       }
