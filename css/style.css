@@ -30,6 +30,25 @@ h3 {
   text-align: center;
 }
 
+/* Question header with navigation buttons */
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+  min-height: 3rem;
+}
+
+.question-text {
+  flex: 1;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 /* General paragraph styles - NOT for positioned cartoon text */
 .background p,
 .tab-content p {
@@ -60,7 +79,6 @@ div {
 main {
   background-color: #f8f9fa; /* Light grey to match other sections but distinct from body */
   border-radius: 0.5rem;
-  padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
 }
@@ -109,6 +127,45 @@ main {
 .btn--small {
   padding: 0.2rem 0.5rem;
   font-size: 0.875rem;
+}
+
+.btn--nav {
+  padding: 0.3rem 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #ff8c00; /* orange */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn--nav:hover {
+  background-color: #ff7700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
+}
+
+.btn--nav:active {
+  background-color: #e67300;
+  transform: translateY(0);
+}
+
+.btn--nav:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn--copy {
@@ -184,19 +241,31 @@ nav {
 #exampleQuestion {
   top: 8.5%;
   left: 25%;
-  max-width: 40%;
+  width: 40%;
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #exampleAnswer {
-  top: 20%;
+  top: 19%;
   left: 45%;
-  max-width: 20%;
+  width: 20%;
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #exampleResponse {
-  top: 38%;
+  top: 36%;
   left: 30%;
-  max-width: 25%;
+  width: 27%;
+  min-height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Variables page - two question format */
@@ -204,30 +273,50 @@ nav {
   top: 5%;
   left: 35%;
   max-width: 40%;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #exampleQuestion2 {
   top: 28%;
   left: 45%;
   max-width: 25%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #exampleAnswer1 {
   top: 20%;
   left: 32%;
   max-width: 20%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #exampleAnswer2 {
   top: 45%;
   left: 35%;
   max-width: 20%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #exampleResponse2 {
   top: 60%;
   left: 45%;
   max-width: 25%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Selection and iteration pages */
@@ -236,6 +325,10 @@ nav {
   top: 9%;
   left: 18%;
   max-width: 45%;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #selectionAnswer1,
@@ -243,18 +336,30 @@ nav {
   top: 18%;
   left: 72%;
   max-width: 25%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #ifReply{
   top: 31%;
   left: 37%;
   max-width: 30%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #repeatedQuestion {
   top: 30%;
   left: 35%;
   max-width: 35%;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #selectionAnswer2,
@@ -262,6 +367,10 @@ nav {
   top: 58%;
   left: 50%;
   max-width: 25%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #elseReply,
@@ -269,6 +378,10 @@ nav {
   top: 73%;
   left: 37%;
   max-width: 33%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ===== CODE BLOCKS ===== */

@@ -7,36 +7,9 @@ import {
   generateQuestionNumber,
 } from './utils.js';
 
-// ===== DOM ELEMENT SELECTION =====
-// Buttons
-const inspireBtn = document.querySelector('#inspire');
-const helpBtn = document.querySelector('#help');
-const backgroundBtn = document.querySelector('#background');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
-const copyBtn = document.querySelector('#copyMe');
+import { ProgrammingPage } from './ProgrammingPage.js';
 
-// Sections
-const exampleEle = document.querySelector('.example');
-const codeEle = document.querySelector('.code');
-
-// Cartoon elements
-const topicEle = document.querySelector('#topic');
-const exampleQuestionEle = document.querySelector('#exampleQuestion');
-const exampleAnswerEle = document.querySelector('#exampleAnswer');
-const exampleResponseEle = document.querySelector('#exampleResponse');
-
-// Code section elements
-const codeQuestionEle = document.querySelector('#question');
-const codeResponseEle = document.querySelector('#response');
-
-// ===== EVENT LISTENERS =====
-inspireBtn?.addEventListener('click', inspire);
-helpBtn?.addEventListener('click', showHelp);
-copyBtn?.addEventListener('click', copyCode);
-backgroundBtn?.addEventListener('click', showBackground);
-forceSpongeBtn?.addEventListener('click', () => inspire('bob'));
-
-// https://www.convertcsv.com/csv-to-json.htm to create
+// Input/Output page questions
 const questions = [
   {
     variable: 'spongebob',
@@ -397,59 +370,73 @@ const questions = [
   },
 ];
 
-// ===== MAIN FUNCTIONS =====
-function inspire(override) {
-  try {
-    exampleEle?.classList.remove('hidden');
-    // Help should be hidden at start
-    codeEle?.classList.add('hidden');
+/**
+ * Input/Output page implementation
+ */
+class InputOutputPage extends ProgrammingPage {
+  constructor() {
+    super({
+      questions: questions,
+      pageType: 'input-output',
+      utils: {
+        showHelp,
+        showBackground,
+        copyCode,
+        setupTabs,
+        replaceText,
+        generateQuestionNumber
+      }
+    });
+  }
 
-    const numOfQuestions = questions.length;
-    const questionToPick =
-      override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
-    const question = questions[questionToPick - 1];
-    
-    if (topicEle && question?.topic) {
-      topicEle.innerText = `ask someone ${question.topic}.`;
+  initializePageElements() {
+    // Input/Output specific elements
+    this.exampleQuestionEle = document.querySelector('#exampleQuestion');
+    this.exampleAnswerEle = document.querySelector('#exampleAnswer');
+    this.exampleResponseEle = document.querySelector('#exampleResponse');
+    this.codeQuestionEle = document.querySelector('#question');
+    this.codeResponseEle = document.querySelector('#response');
+  }
+
+  setTopic(question) {
+    if (this.topicEle && question.topic) {
+      // Input/Output specific: "ask someone [topic]."
+      this.topicEle.innerText = `ask someone ${question.topic}.`;
     }
+  }
 
-    setCaptions(question);
-    setCode(question);
-  } catch (error) {
-    console.error('Error in inspire function:', error);
+  setCaptions(question) {
+    try {
+      if (this.exampleQuestionEle) {
+        this.exampleQuestionEle.innerText = question.question;
+      }
+      if (this.exampleAnswerEle) {
+        this.exampleAnswerEle.innerText = question.answer;
+      }
+      if (this.exampleResponseEle && question.response) {
+        this.exampleResponseEle.innerText = question.response
+          .replace('{answer}', question.answer)
+          .replaceAll('"', '')
+          .replaceAll(',', '');
+      }
+    } catch (error) {
+      console.error('Error in setCaptions function:', error);
+    }
+  }
+
+  setCode(question) {
+    try {
+      if (this.codeQuestionEle) {
+        this.codeQuestionEle.innerText = `${question.variable} = input("${question.question} ")`;
+      }
+      if (this.codeResponseEle) {
+        this.codeResponseEle.innerText = `print(${this.replaceText(question.response, question, true)})`;
+      }
+    } catch (error) {
+      console.error('Error in setCode function:', error);
+    }
   }
 }
 
-function setCaptions(question) {
-  try {
-    if (exampleQuestionEle && question?.question) {
-      exampleQuestionEle.innerText = question.question;
-    }
-    if (exampleAnswerEle && question?.answer) {
-      exampleAnswerEle.innerText = question.answer;
-    }
-    if (exampleResponseEle && question?.response) {
-      exampleResponseEle.innerText = question.response
-        .replace('{answer}', question.answer)
-        .replaceAll('"', '')
-        .replaceAll(',', '');
-    }
-  } catch (error) {
-    console.error('Error in setCaptions function:', error);
-  }
-}
-
-function setCode(question) {
-  try {
-    if (codeQuestionEle && question?.variable && question?.question) {
-      codeQuestionEle.innerText = `${question.variable} = input("${question.question} ")`;
-    }
-    if (codeResponseEle && question?.response) {
-      codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
-    }
-  } catch (error) {
-    console.error('Error in setCode function:', error);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', setupTabs);
+// Initialize the page
+const inputOutputPage = new InputOutputPage();
