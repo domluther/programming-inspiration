@@ -13,6 +13,9 @@ export class ProgrammingPage {
     // Navigation state
     this.currentQuestionIndex = 0;
     
+    // Concatenation mode state (false = comma, true = plus)
+    this.usePlusMode = false;
+    
     // Initialize common elements that exist on all pages
     this.initializeCommonElements();
     
@@ -21,6 +24,9 @@ export class ProgrammingPage {
     
     // Set up common event listeners
     this.setupEventListeners();
+    
+    // Initialize concatenation toggle
+    this.initializeConcatenationToggle();
     
     // Set up tabs on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
@@ -259,6 +265,30 @@ export class ProgrammingPage {
     }
     // Fallback implementation
     return text;
+  }
+
+  /**
+   * Initialize concatenation toggle (common to all pages)
+   */
+  initializeConcatenationToggle() {
+    this.concatToggle = document.querySelector('#concatToggle');
+    if (this.concatToggle) {
+      this.concatToggle.addEventListener('change', (e) => {
+        this.usePlusMode = e.target.checked;
+        // Refresh the current question display
+        this.updateCurrentQuestion();
+      });
+    }
+  }
+
+  /**
+   * Update current question display (useful when toggling modes)
+   */
+  updateCurrentQuestion() {
+    if (this.questions && this.questions[this.currentQuestionIndex]) {
+      const question = this.questions[this.currentQuestionIndex];
+      this.displayQuestion(question);
+    }
   }
 
   /**
