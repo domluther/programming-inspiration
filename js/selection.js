@@ -7,39 +7,9 @@ import {
   generateQuestionNumber,
 } from './utils.js';
 
-// Buttons
-const inspireBtn = document.querySelector('#inspire');
-const helpBtn = document.querySelector('#help');
-const backgroundBtn = document.querySelector('#background');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
-const copyBtn = document.querySelector('#copyMe');
+import { ProgrammingPage } from './ProgrammingPage.js';
 
-// Sections
-const exampleEle = document.querySelector('.example');
-const codeEle = document.querySelector('.code');
-
-// Cartoon
-const topicEle = document.querySelector('#topic');
-const selectionQuestionEle = document.querySelector('#selectionQuestion');
-const selectionAnswer1Ele = document.querySelector('#selectionAnswer1');
-const selectionAnswer2Ele = document.querySelector('#selectionAnswer2');
-const ifReplyEle = document.querySelector('#ifReply');
-const elseReplyEle = document.querySelector('#elseReply');
-
-// Code section
-const codeQuestionEle = document.querySelector('#codeQuestion');
-const codeCorrectAnswerEle = document.querySelector('#codeCorrectAnswer');
-const codeIfCheckEle = document.querySelector('#codeIfCheck');
-const codeIfReplyEle = document.querySelector('#codeIfReply');
-const codeElseReplyEle = document.querySelector('#codeElseReply');
-
-inspireBtn.addEventListener('click', inspire);
-helpBtn.addEventListener('click', showHelp);
-copyBtn.addEventListener('click', copyCode);
-backgroundBtn.addEventListener('click', showBackground);
-forceSpongeBtn.addEventListener('click', () => inspire('bob'));
-
-// https://www.convertcsv.com/csv-to-json.htm to create
+// Selection page questions
 const questions = [
   {
     topic: 'ask someone the best show',
@@ -49,7 +19,9 @@ const questions = [
     answer1: 'spongebob squarepants',
     answer2: 'stranger things',
     ifReply: '"Absolutely!", {answer1}, "is glorious"',
+    ifReplyPlus: '"Absolutely! " + {answer1} + " is glorious"',
     elseReply: '{answer2}, "?!?! No way - it is", {answer1}',
+    elseReplyPlus: '{answer2} + "?!?! No way - it is " + {answer1}',
   },
   {
     topic: "ask someone's favourite colour",
@@ -59,7 +31,9 @@ const questions = [
     answer1: 'green',
     answer2: 'blue',
     ifReply: '"I love", {answer1}, "too"',
+    ifReplyPlus: '"I love " + {answer1} + " too"',
     elseReply: '{answer2}, "? I prefer", {answer1}',
+    elseReplyPlus: '{answer2} + "? I prefer " + {answer1}',
   },
   {
     topic: 'ask someone about UK geography',
@@ -69,8 +43,11 @@ const questions = [
     answer1: 'london',
     answer2: 'manchester',
     ifReply: '"Correct!", {answer1}, "is the capital of England"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is the capital of England"',
     elseReply:
       '"Not quite.", {answer2}, "is not the capital. It\'s", {answer1}',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " is not the capital. It\'s " + {answer1}',
   },
   {
     topic: 'ask someone about popular music',
@@ -80,7 +57,9 @@ const questions = [
     answer1: 'ed sheeran',
     answer2: 'harry styles',
     ifReply: '"Right!", {answer1}, "sang Shape of You"',
+    ifReplyPlus: '"Right! " + {answer1} + " sang Shape of You"',
     elseReply: '"Actually,", {answer2}, "didn\'t sing it.", {answer1}, "did"',
+    elseReplyPlus: '"Actually, " + {answer2} + " didn\'t sing it. " + {answer1} + " did"',
   },
   {
     topic: 'ask someone about UK sports',
@@ -90,8 +69,11 @@ const questions = [
     answer1: 'tennis',
     answer2: 'cricket',
     ifReply: '"Correct!", {answer1}, "is played at Wimbledon"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is played at Wimbledon"',
     elseReply:
       '"Sorry,", {answer2}, "isn\'t played at Wimbledon.", {answer1}, "is"',
+    elseReplyPlus:
+      '"Sorry, " + {answer2} + " isn\'t played at Wimbledon. " + {answer1} + " is"',
   },
   {
     topic: 'ask someone about UK TV shows',
@@ -101,8 +83,11 @@ const questions = [
     answer1: 'doctor who',
     answer2: 'sherlock',
     ifReply: '"Right!", {answer1}, "features the Daleks"',
+    ifReplyPlus: '"Right! " + {answer1} + " features the Daleks"',
     elseReply:
       '"Not quite.", {answer2}, "doesn\'t have Daleks.", {answer1}, "does"',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " doesn\'t have Daleks. " + {answer1} + " does"',
   },
   {
     topic: 'ask someone about UK history',
@@ -112,8 +97,11 @@ const questions = [
     answer1: 'elizabeth ii',
     answer2: 'victoria',
     ifReply: '"Correct!", {answer1}, "reigned the longest"',
+    ifReplyPlus: '"Correct! " + {answer1} + " reigned the longest"',
     elseReply:
       '"Actually,", {answer2}, "didn\'t reign longest.", {answer1}, "did"',
+    elseReplyPlus:
+      '"Actually, " + {answer2} + " didn\'t reign longest. " + {answer1} + " did"',
   },
   {
     topic: 'ask someone about UK food',
@@ -123,8 +111,11 @@ const questions = [
     answer1: 'chips',
     answer2: 'crisps',
     ifReply: '"Right!", {answer1}, "are in a chip butty"',
+    ifReplyPlus: '"Right! " + {answer1} + " are in a chip butty"',
     elseReply:
       '"Not quite.", {answer2}, "aren\'t in a chip butty.", {answer1}, "are"',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " aren\'t in a chip butty. " + {answer1} + " are"',
   },
   {
     topic: 'ask someone about UK landmarks',
@@ -134,7 +125,9 @@ const questions = [
     answer1: 'big ben',
     answer2: 'london eye',
     ifReply: '"Correct! It\'s called", {answer1}',
+    ifReplyPlus: '"Correct! It\'s called " + {answer1}',
     elseReply: '"Sorry, it\'s not", {answer2}, "it\'s", {answer1}',
+    elseReplyPlus: '"Sorry, it\'s not " + {answer2} + " it\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK literature',
@@ -144,7 +137,9 @@ const questions = [
     answer1: 'j.k. rowling',
     answer2: 'roald dahl',
     ifReply: '"Right!", {answer1}, "wrote Harry Potter"',
+    ifReplyPlus: '"Right! " + {answer1} + " wrote Harry Potter"',
     elseReply: '"Actually,", {answer2}, "didn\'t write it.", {answer1}, "did"',
+    elseReplyPlus: '"Actually, " + {answer2} + " didn\'t write it. " + {answer1} + " did"',
   },
   {
     topic: 'ask someone about UK currency',
@@ -154,7 +149,9 @@ const questions = [
     answer1: 'pound',
     answer2: 'penny',
     ifReply: '"Correct! A quid is a", {answer1}',
+    ifReplyPlus: '"Correct! A quid is a " + {answer1}',
     elseReply: '"Not quite. A quid isn\'t a", {answer2}, "it\'s a", {answer1}',
+    elseReplyPlus: '"Not quite. A quid isn\'t a " + {answer2} + " it\'s a " + {answer1}',
   },
   {
     topic: 'ask someone about UK weather',
@@ -164,7 +161,9 @@ const questions = [
     answer1: 'usually never',
     answer2: 'august',
     ifReply: '"Right! It is warm", {answer1}',
+    ifReplyPlus: '"Right! It is warm " + {answer1}',
     elseReply: '"Actually, it isn\'t warm in", {answer2}, "it\'s", {answer1}',
+    elseReplyPlus: '"Actually, it isn\'t warm in " + {answer2} + " it\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK politics',
@@ -174,7 +173,9 @@ const questions = [
     answer1: '10 downing street',
     answer2: 'buckingham palace',
     ifReply: '"Correct! The PM lives at", {answer1}',
+    ifReplyPlus: '"Correct! The PM lives at " + {answer1}',
     elseReply: '"Not quite. It\'s", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Not quite. It\'s " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about UK pop culture',
@@ -184,7 +185,9 @@ const questions = [
     answer1: 'oasis',
     answer2: 'blur',
     ifReply: '"Right!", {answer1}, "sang Wonderwall"',
+    ifReplyPlus: '"Right! " + {answer1} + " sang Wonderwall"',
     elseReply: '"Actually, it wasn\'t", {answer2}, "it was", {answer1}',
+    elseReplyPlus: '"Actually, it wasn\'t " + {answer2} + " it was " + {answer1}',
   },
   {
     topic: 'ask someone about UK geography',
@@ -194,8 +197,11 @@ const questions = [
     answer1: 'glasgow',
     answer2: 'edinburgh',
     ifReply: '"Correct!", {answer1}, "is the largest Scottish city"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is the largest Scottish city"',
     elseReply:
       '"Not quite.", {answer2}, "isn\'t the largest. It\'s", {answer1}',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " isn\'t the largest. It\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK sports teams',
@@ -205,8 +211,11 @@ const questions = [
     answer1: 'liverpool fc',
     answer2: 'manchester united',
     ifReply: '"Right!", {answer1}, "is from Liverpool"',
+    ifReplyPlus: '"Right! " + {answer1} + " is from Liverpool"',
     elseReply:
       '"Actually,", {answer2}, "isn\'t from Liverpool.", {answer1}, "is"',
+    elseReplyPlus:
+      '"Actually, " + {answer2} + " isn\'t from Liverpool. " + {answer1} + " is"',
   },
   {
     topic: 'ask someone about UK education',
@@ -216,8 +225,11 @@ const questions = [
     answer1: 'gcses',
     answer2: 'a-levels',
     ifReply: '"Correct! Students take", {answer1}, "at 16"',
+    ifReplyPlus: '"Correct! Students take " + {answer1} + " at 16"',
     elseReply:
       '"Not quite.", {answer2}, "are taken later.", {answer1}, "are at 16"',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " are taken later. " + {answer1} + " are at 16"',
   },
   {
     topic: 'ask someone about UK technology',
@@ -227,7 +239,9 @@ const questions = [
     answer1: 'tim berners-lee',
     answer2: 'alan turing',
     ifReply: '"Right!", {answer1}, "invented the World Wide Web"',
+    ifReplyPlus: '"Right! " + {answer1} + " invented the World Wide Web"',
     elseReply: '"Actually, it wasn\'t", {answer2}, "it was", {answer1}',
+    elseReplyPlus: '"Actually, it wasn\'t " + {answer2} + " it was " + {answer1}',
   },
   {
     topic: 'ask someone about UK animals',
@@ -237,7 +251,9 @@ const questions = [
     answer1: 'lion',
     answer2: 'bulldog',
     ifReply: '"Correct! The UK\'s national animal is the", {answer1}',
+    ifReplyPlus: '"Correct! The UK\'s national animal is the " + {answer1}',
     elseReply: '"Not quite. It\'s not the", {answer2}, "it\'s the", {answer1}',
+    elseReplyPlus: '"Not quite. It\'s not the " + {answer2} + " it\'s the " + {answer1}',
   },
   {
     topic: 'ask someone about UK transport',
@@ -247,7 +263,9 @@ const questions = [
     answer1: 'the tube',
     answer2: 'the metro',
     ifReply: '"Right! It\'s called", {answer1}',
+    ifReplyPlus: '"Right! It\'s called " + {answer1}',
     elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
+    elseReplyPlus: '"Actually, it\'s not " + {answer2} + " it\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK inventions',
@@ -257,8 +275,11 @@ const questions = [
     answer1: 'vacuum cleaner',
     answer2: 'washing machine',
     ifReply: '"Correct! Dyson invented the", {answer1}',
+    ifReplyPlus: '"Correct! Dyson invented the " + {answer1}',
     elseReply:
       '"Not quite. He didn\'t invent the", {answer2}, "but the", {answer1}',
+    elseReplyPlus:
+      '"Not quite. He didn\'t invent the " + {answer2} + " but the " + {answer1}',
   },
   {
     topic: 'ask someone about UK celebrations',
@@ -268,7 +289,9 @@ const questions = [
     answer1: 'bonfire night',
     answer2: "new year's eve",
     ifReply: '"Right! We celebrate", {answer1}',
+    ifReplyPlus: '"Right! We celebrate " + {answer1}',
     elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
+    elseReplyPlus: '"Actually, it\'s not " + {answer2} + " it\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK science',
@@ -278,8 +301,11 @@ const questions = [
     answer1: 'alexander fleming',
     answer2: 'isaac newton',
     ifReply: '"Correct!", {answer1}, "discovered penicillin"',
+    ifReplyPlus: '"Correct! " + {answer1} + " discovered penicillin"',
     elseReply:
       '"Not quite.", {answer2}, "didn\'t discover it.", {answer1}, "did"',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " didn\'t discover it. " + {answer1} + " did"',
   },
   {
     topic: 'ask someone about UK monarchy',
@@ -289,7 +315,9 @@ const questions = [
     answer1: 'buckingham palace',
     answer2: 'windsor castle',
     ifReply: '"Right! The monarch lives in", {answer1}',
+    ifReplyPlus: '"Right! The monarch lives in " + {answer1}',
     elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
+    elseReplyPlus: '"Actually, it\'s not " + {answer2} + " it\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK traditions',
@@ -299,7 +327,9 @@ const questions = [
     answer1: 'pancakes',
     answer2: 'fish and chips',
     ifReply: '"Correct! We eat", {answer1}, "on Pancake Day"',
+    ifReplyPlus: '"Correct! We eat " + {answer1} + " on Pancake Day"',
     elseReply: '"Not quite. We don\'t eat", {answer2}, "we eat", {answer1}',
+    elseReplyPlus: '"Not quite. We don\'t eat " + {answer2} + " we eat " + {answer1}',
   },
   {
     topic: 'ask someone about UK film',
@@ -309,7 +339,9 @@ const questions = [
     answer1: 'james bond',
     answer2: 'sherlock holmes',
     ifReply: '"Right! The famous British spy is", {answer1}',
+    ifReplyPlus: '"Right! The famous British spy is " + {answer1}',
     elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
+    elseReplyPlus: '"Actually, it\'s not " + {answer2} + " it\'s " + {answer1}',
   },
   {
     topic: 'ask someone about UK geography',
@@ -319,8 +351,11 @@ const questions = [
     answer1: 'ireland',
     answer2: 'wales',
     ifReply: '"Correct!", {answer1}, "is not part of the UK"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is not part of the UK"',
     elseReply:
       '"Not quite.", {answer2}, "is part of the UK.", {answer1}, "isn\'t"',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " is part of the UK. " + {answer1} + " isn\'t"',
   },
   {
     topic: 'ask someone about ducks',
@@ -330,7 +365,9 @@ const questions = [
     answer1: 'quack',
     answer2: 'moo',
     ifReply: '"Correct!", {answer1}, "is the sound ducks make"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is the sound ducks make"',
     elseReply: '"Not quite! Ducks go", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Not quite! Ducks go " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about social media',
@@ -340,8 +377,11 @@ const questions = [
     answer1: 'tiktok',
     answer2: 'instagram',
     ifReply: '"Correct!", {answer1}, "is famous for short videos and dances"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is famous for short videos and dances"',
     elseReply:
       '"Not quite.", {answer2}, "isn\'t known for that, but", {answer1}, "is"',
+    elseReplyPlus:
+      '"Not quite. " + {answer2} + " isn\'t known for that, but " + {answer1} + " is"',
   },
   {
     topic: 'ask someone about favourite foods',
@@ -351,8 +391,11 @@ const questions = [
     answer1: 'pizza',
     answer2: 'burgers',
     ifReply: '"Yum! I love", {answer1}, "too"',
+    ifReplyPlus: '"Yum! I love " + {answer1} + " too"',
     elseReply:
       '"Nice choice! I prefer", {answer1}, "but", {answer2}, "are good too"',
+    elseReplyPlus:
+      '"Nice choice! I prefer " + {answer1} + " but " + {answer2} + " are good too"',
   },
   {
     topic: 'ask someone about bicycle parts',
@@ -362,7 +405,9 @@ const questions = [
     answer1: 'saddle',
     answer2: 'handlebars',
     ifReply: '"Correct! You sit on the", {answer1}',
+    ifReplyPlus: '"Correct! You sit on the " + {answer1}',
     elseReply: '"Actually, you sit on the", {answer1}, "not the", {answer2}',
+    elseReplyPlus: '"Actually, you sit on the " + {answer1} + " not the " + {answer2}',
   },
   {
     topic: 'ask someone about recent movies',
@@ -373,7 +418,9 @@ const questions = [
     answer1: 'wonka',
     answer2: 'charlie and the chocolate factory',
     ifReply: '"Right!", {answer1}, "is the recent Willy Wonka movie"',
+    ifReplyPlus: '"Right! " + {answer1} + " is the recent Willy Wonka movie"',
     elseReply: '"Not quite. It\'s", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Not quite. It\'s " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about video games',
@@ -383,7 +430,9 @@ const questions = [
     answer1: 'minecraft',
     answer2: 'fortnite',
     ifReply: '"Correct!", {answer1}, "is the blocky building game"',
+    ifReplyPlus: '"Correct! " + {answer1} + " is the blocky building game"',
     elseReply: '"Actually, it\'s", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Actually, it\'s " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about music genres',
@@ -393,7 +442,9 @@ const questions = [
     answer1: 'pop',
     answer2: 'rock',
     ifReply: '"Cool! I enjoy", {answer1}, "too"',
+    ifReplyPlus: '"Cool! I enjoy " + {answer1} + " too"',
     elseReply: '"Nice!", {answer2}, "is great, but I\'m more into", {answer1}',
+    elseReplyPlus: '"Nice! " + {answer2} + " is great, but I\'m more into " + {answer1}',
   },
   {
     topic: 'ask someone about sports',
@@ -403,7 +454,9 @@ const questions = [
     answer1: 'tennis',
     answer2: 'football',
     ifReply: '"Correct! Emma Raducanu plays", {answer1}',
+    ifReplyPlus: '"Correct! Emma Raducanu plays " + {answer1}',
     elseReply: '"Actually, she plays", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Actually, she plays " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about climate change',
@@ -413,8 +466,11 @@ const questions = [
     answer1: 'cycling',
     answer2: 'driving',
     ifReply: '"Agreed!", {answer1}, "is great for reducing carbon footprint"',
+    ifReplyPlus: '"Agreed! " + {answer1} + " is great for reducing carbon footprint"',
     elseReply:
       '"Actually,", {answer1}, "is better than", {answer2}, "for the environment"',
+    elseReplyPlus:
+      '"Actually, " + {answer1} + " is better than " + {answer2} + " for the environment"',
   },
   {
     topic: 'ask someone about internet slang',
@@ -424,7 +480,9 @@ const questions = [
     answer1: 'to be honest',
     answer2: 'to be happy',
     ifReply: '"Correct! TBH means", {answer1}',
+    ifReplyPlus: '"Correct! TBH means " + {answer1}',
     elseReply: '"Not quite. TBH stands for", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Not quite. TBH stands for " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about superhero movies',
@@ -434,8 +492,11 @@ const questions = [
     answer1: 'tom holland',
     answer2: 'andrew garfield',
     ifReply: '"Right!", {answer1}, "plays Spider-Man in recent Marvel films"',
+    ifReplyPlus: '"Right! " + {answer1} + " plays Spider-Man in recent Marvel films"',
     elseReply:
       '"Actually, it\'s", {answer1}, "not", {answer2}, "in the recent movies"',
+    elseReplyPlus:
+      '"Actually, it\'s " + {answer1} + " not " + {answer2} + " in the recent movies"',
   },
   {
     topic: 'ask someone about streaming services',
@@ -445,7 +506,9 @@ const questions = [
     answer1: 'netflix',
     answer2: 'disney+',
     ifReply: '"Right!", {answer1}, "has Stranger Things"',
+    ifReplyPlus: '"Right! " + {answer1} + " has Stranger Things"',
     elseReply: '"Actually, it\'s on", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Actually, it\'s on " + {answer1} + " not " + {answer2}',
   },
 
   {
@@ -456,7 +519,9 @@ const questions = [
     answer1: 'smartphone',
     answer2: 'laptop',
     ifReply: '"Same here! I use my", {answer1}, "most too"',
+    ifReplyPlus: '"Same here! I use my " + {answer1} + " most too"',
     elseReply: '"Interesting! I use my", {answer1}, "more than my", {answer2}',
+    elseReplyPlus: '"Interesting! I use my " + {answer1} + " more than my " + {answer2}',
   },
   {
     topic: 'ask someone about school subjects',
@@ -466,7 +531,9 @@ const questions = [
     answer1: 'maths',
     answer2: 'english',
     ifReply: '"Cool! I enjoy", {answer1}, "too"',
+    ifReplyPlus: '"Cool! I enjoy " + {answer1} + " too"',
     elseReply: '"Nice!", {answer2}, "is great, but I prefer", {answer1}',
+    elseReplyPlus: '"Nice! " + {answer2} + " is great, but I prefer " + {answer1}',
   },
   {
     topic: 'ask someone about UK landmarks',
@@ -476,7 +543,9 @@ const questions = [
     answer1: 'london eye',
     answer2: 'big ben',
     ifReply: '"Correct! It\'s called the", {answer1}',
+    ifReplyPlus: '"Correct! It\'s called the " + {answer1}',
     elseReply: '"Actually, it\'s the", {answer1}, "not", {answer2}',
+    elseReplyPlus: '"Actually, it\'s the " + {answer1} + " not " + {answer2}',
   },
   {
     topic: 'ask someone about pets',
@@ -486,8 +555,11 @@ const questions = [
     answer1: 'dog',
     answer2: 'cat',
     ifReply: '"Nice! I love", {answer1}, "s too"',
+    ifReplyPlus: '"Nice! I love " + {answer1} + "s too"',
     elseReply:
       '"Cool!", {answer2}, "s are great, but I prefer", {answer1}, "s"',
+    elseReplyPlus:
+      '"Cool! " + {answer2} + "s are great, but I prefer " + {answer1} + "s"',
   },
   {
     topic: 'ask someone about future careers',
@@ -497,7 +569,9 @@ const questions = [
     answer1: 'doctor',
     answer2: 'teacher',
     ifReply: '"Interesting! Being a", {answer1}, "sounds great"',
+    ifReplyPlus: '"Interesting! Being a " + {answer1} + " sounds great"',
     elseReply: '"Nice choice!", {answer2}, "is great, and so is", {answer1}',
+    elseReplyPlus: '"Nice choice! " + {answer2} + " is great, and so is " + {answer1}',
   },
   {
     topic: 'ask someone about UK weather',
@@ -507,47 +581,116 @@ const questions = [
     answer1: 'rainy',
     answer2: 'sunny',
     ifReply: '"Right!", {answer1}, "weather is quite typical in the UK"',
+    ifReplyPlus: '"Right! " + {answer1} + " weather is quite typical in the UK"',
     elseReply:
       '"Well,", {answer2}, "days happen, but", {answer1}, "is more typical"',
+    elseReplyPlus:
+      '"Well, " + {answer2} + " days happen, but " + {answer1} + " is more typical"',
   },
 ];
 
-function inspire(override) {
-  exampleEle.classList.remove('hidden');
-  // Help should be hidden at start
-  codeEle.classList.add('hidden');
 
-  // Randomly pick a question number then set the text values
-  const numOfQuestions = questions.length;
-  const questionToPick =
-    override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
-  const question = questions[questionToPick - 1];
-  topicEle.innerText = `${question.topic}.`;
+/**
+ * Selection page with if/else programming concepts
+ */
+class SelectionPage extends ProgrammingPage {
+  constructor() {
+    super({
+      questions: questions,
+      pageType: 'selection',
+      utils: {
+        showHelp,
+        showBackground,
+        copyCode,
+        setupTabs,
+        replaceText,
+        generateQuestionNumber
+      }
+    });
+  }
 
-  setCaptions(question);
-  setCode(question);
+  initializePageElements() {
+    // Selection-specific elements for cartoon
+    this.selectionQuestionEle = document.querySelector('#selectionQuestion');
+    this.selectionAnswer1Ele = document.querySelector('#selectionAnswer1');
+    this.selectionAnswer2Ele = document.querySelector('#selectionAnswer2');
+    this.ifReplyEle = document.querySelector('#ifReply');
+    this.elseReplyEle = document.querySelector('#elseReply');
+
+    // Code section elements
+    this.codeQuestionEle = document.querySelector('#codeQuestion');
+    this.codeCorrectAnswerEle = document.querySelector('#codeCorrectAnswer');
+    this.codeIfCheckEle = document.querySelector('#codeIfCheck');
+    this.codeIfReplyEle = document.querySelector('#codeIfReply');
+    this.codeElseReplyEle = document.querySelector('#codeElseReply');
+      }
+
+  setTopic(question) {
+    if (this.topicEle && question.topic) {
+      // Selection specific: "ask someone [topic]."
+      this.topicEle.innerText = `${question.topic}.`;
+    }
+  }
+
+  setCaptions(question) {
+    try {
+      if (this.selectionQuestionEle) {
+        this.selectionQuestionEle.innerText = question.question1;
+      }
+      if (this.selectionAnswer1Ele) {
+        this.selectionAnswer1Ele.innerText = question.answer1;
+      }
+      if (this.ifReplyEle && question.ifReply) {
+        this.ifReplyEle.innerText = this.replaceText(question.ifReply, question, false)
+          .replaceAll('"', '')
+          .replaceAll(',', '');
+      }
+      if (this.selectionAnswer2Ele) {
+        this.selectionAnswer2Ele.innerText = question.answer2;
+      }
+      if (this.elseReplyEle && question.elseReply) {
+        this.elseReplyEle.innerText = this.replaceText(question.elseReply, question, false)
+          .replaceAll('"', '')
+          .replaceAll(',', '');
+      }
+    } catch (error) {
+      console.error('Error in setCaptions function:', error);
+    }
+  }
+
+  setCode(question) {
+    try {
+      const INDENT = '    '; // 4 spaces
+      
+      if (this.codeCorrectAnswerEle) {
+        this.codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
+      }
+      if (this.codeQuestionEle) {
+        this.codeQuestionEle.innerText = `${question.variable2} = input("${question.question1} ")`;
+      }
+      if (this.codeIfCheckEle) {
+        this.codeIfCheckEle.innerText = `if ${question.variable2} == ${question.variable1}:`;
+      }
+      if (this.codeIfReplyEle) {
+        // Choose the appropriate response based on concatenation mode
+        const ifReplyText = this.usePlusMode ? 
+          (question.ifReplyPlus || question.ifReply) : 
+          question.ifReply;
+        this.codeIfReplyEle.innerText = `${INDENT}print(${this.replaceText(ifReplyText, question, true)})`;
+      }
+      if (this.codeElseReplyEle) {
+        // Choose the appropriate response based on concatenation mode
+        const elseReplyText = this.usePlusMode ? 
+          (question.elseReplyPlus || question.elseReply) : 
+          question.elseReply;
+        this.codeElseReplyEle.innerText = `${INDENT}print(${this.replaceText(elseReplyText, question, true)})`;
+      }
+    } catch (error) {
+      console.error('Error in setCode function:', error);
+    }
+  }
+
 }
 
-document.addEventListener('DOMContentLoaded', setupTabs);
-
-function setCaptions(question) {
-  selectionQuestionEle.innerText = question.question1;
-  selectionAnswer1Ele.innerText = question.answer1;
-  ifReplyEle.innerText = replaceText(question.ifReply, question, false)
-    .replaceAll('"', '')
-    .replaceAll(',', '');
-  selectionAnswer2Ele.innerText = question.answer2;
-  elseReplyEle.innerText = replaceText(question.elseReply, question, false)
-    .replaceAll('"', '')
-    .replaceAll(',', '');
-}
-
-function setCode(question) {
-  const INDENT = '    '; // 4 spaces
-
-  codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
-  codeQuestionEle.innerText = `${question.variable2} = input("${question.question1} ")`;
-  codeIfCheckEle.innerText = `if ${question.variable2} == ${question.variable1}:`;
-  codeIfReplyEle.innerText = `${INDENT}print(${replaceText(question.ifReply, question, true)})`;
-  codeElseReplyEle.innerText = `${INDENT}print(${replaceText(question.elseReply, question, true)})`;
-}
+// Initialize the page
+const selectionPage = new SelectionPage();

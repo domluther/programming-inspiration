@@ -93,6 +93,15 @@ export class ProgrammingPage {
       this.forceSpongeBtn.addEventListener('click', () => this.inspire('bob'));
     }
 
+    // Inspire links event listeners
+    const inspireLinks = document.querySelectorAll('.inspire-link');
+    inspireLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.inspire();
+      });
+    });
+
     // Navigation event listeners
     if (this.prevBtn) {
       this.prevBtn.addEventListener('click', () => this.navigateQuestion(-1));
@@ -121,7 +130,11 @@ export class ProgrammingPage {
                 event.preventDefault();
                 this.inspire();
                 break;
-        }
+            case 't':
+                event.preventDefault();
+                this.toggleConcatenationMode();
+                break;        
+            }
       if (this.exampleEle && !this.exampleEle.classList.contains('hidden')) {
         switch (event.key) {
           case 'ArrowLeft':
@@ -289,6 +302,28 @@ export class ProgrammingPage {
     
     // Initialize background content on page load
     this.updateBackgroundContent();
+  }
+
+  /**
+   * Toggle concatenation mode (useful for keyboard shortcut)
+   */
+  toggleConcatenationMode() {
+    if (this.concatToggle) {
+      // Toggle the checkbox
+      this.concatToggle.checked = !this.concatToggle.checked;
+      
+      // Update the mode state
+      this.usePlusMode = this.concatToggle.checked;
+      
+      // Save state to cookie
+      this.saveToggleState();
+      
+      // Update background content visibility
+      this.updateBackgroundContent();
+      
+      // Refresh the current question display
+      this.updateCurrentQuestion();
+    }
   }
 
   /**

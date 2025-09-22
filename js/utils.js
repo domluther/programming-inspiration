@@ -11,6 +11,40 @@ export function copyCode() {
     .querySelector('.code')
     .innerText.replace('📋\n', '# explain me').replaceAll('\n\n', '\n# explain me\n');
   navigator.clipboard.writeText(codeText);
+  
+  // Show toast message
+  showToast('Code copied.\nPaste into Thonny and run it, then add comments to explain.');
+}
+
+export function showToast(message) {
+  // Remove any existing toast
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = message.replace(/\n/g, '<br>');
+  
+  // Add to document
+  document.body.appendChild(toast);
+  
+  // Show toast with animation
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 100);
+  
+  // Hide and remove toast after 4 seconds
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.remove();
+      }
+    }, 300);
+  }, 4000);
 }
 
 export function setupTabs() {

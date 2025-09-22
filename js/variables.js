@@ -7,43 +7,9 @@ import {
   generateQuestionNumber,
 } from './utils.js';
 
-// Buttons
-const inspireBtn = document.querySelector('#inspire');
-const helpBtn = document.querySelector('#help');
-const backgroundBtn = document.querySelector('#background');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
-const copyBtn = document.querySelector('#copyMe');
+import { ProgrammingPage } from './ProgrammingPage.js';
 
-// Sections
-const exampleEle = document.querySelector('.example');
-const codeEle = document.querySelector('.code');
-const cartoon1Ele = document.querySelector('.cartoon1');
-const cartoon2Ele = document.querySelector('.cartoon2');
-
-// Cartoon
-const topicEle = document.querySelector('#topic');
-const exampleQuestionEle = document.querySelector('#exampleQuestion');
-const exampleQuestion1Ele = document.querySelector('#exampleQuestion1');
-const exampleQuestion2Ele = document.querySelector('#exampleQuestion2');
-const exampleAnswerEle = document.querySelector('#exampleAnswer');
-const exampleAnswer1Ele = document.querySelector('#exampleAnswer1');
-const exampleAnswer2Ele = document.querySelector('#exampleAnswer2');
-const exampleResponseEle = document.querySelector('#exampleResponse');
-const exampleResponse2Ele = document.querySelector('#exampleResponse2');
-
-// Code section
-const codeQuestion1Ele = document.querySelector('#codeQuestion1');
-const codeQuestion2Ele = document.querySelector('#codeQuestion2');
-const codeCalculationEle = document.querySelector('#codeCalculation');
-const codeResponseEle = document.querySelector('#response');
-
-inspireBtn.addEventListener('click', inspire);
-helpBtn.addEventListener('click', showHelp);
-copyBtn.addEventListener('click', copyCode);
-backgroundBtn.addEventListener('click', showBackground);
-forceSpongeBtn.addEventListener('click', () => inspire('bob'));
-
-// https://www.convertcsv.com/csv-to-json.htm to create
+// Variables page questions
 const questions = [
   {
     topic: 'work out how many hours Squidward has practiced',
@@ -57,6 +23,7 @@ const questions = [
     calculation: '{variable1} * {variable2}',
     result: 36,
     response: '"Squidward has practiced", {result}, "hours"',
+    responsePlus: '"Squidward has practiced " + str({result}) + " hours"',
   },
   {
     topic: 'add two numbers together',
@@ -70,6 +37,7 @@ const questions = [
     calculation: '{variable1} + {variable2}',
     result: 13,
     response: '{answer1}, "+", {answer2}, "is", {result}',
+    responsePlus: 'str({answer1}) + " + " + str({answer2}) + " is " + str({result})',
   },
   {
     topic: 'times two numbers together',
@@ -83,6 +51,7 @@ const questions = [
     calculation: '{variable1} * {variable2}',
     result: 36,
     response: '{answer1}, "*", {answer2}, "is", {result}',
+    responsePlus: 'str({answer1}) + " * " + str({answer2}) + " is " + str({result})',
   },
   {
     topic: 'divide one number by another',
@@ -96,6 +65,7 @@ const questions = [
     calculation: '{variable1}  / {variable2}',
     result: 0.5,
     response: '{answer1}, "/", {answer2}, "is", {result}',
+    responsePlus: 'str({answer1}) + " / " + str({answer2}) + " is " + str({result})',
   },
   {
     topic: 'take one number from the other',
@@ -109,6 +79,7 @@ const questions = [
     calculation: '{variable1}  - {variable2}',
     result: 6,
     response: '{answer1}, "-", {answer2}, "is", {result}',
+    responsePlus: 'str({answer1}) + " - " + str({answer2}) + " is " + str({result})',
   },
   {
     topic: "tell you how old you'll be in ten years",
@@ -122,6 +93,7 @@ const questions = [
     calculation: '{variable1} + 10',
     result: 25,
     response: '"In 10 years, you will be", {result}',
+    responsePlus: '"In 10 years, you will be " + str({result})',
   },
   {
     topic: "tell you how old you'll be next year",
@@ -135,6 +107,7 @@ const questions = [
     calculation: '{variable1} + 1',
     result: 16,
     response: '"Next year, you\'ll be", {result}',
+    responsePlus: '"Next year, you\'ll be " + str({result})',
   },
   {
     topic: 'tell you how old you were last year',
@@ -148,6 +121,7 @@ const questions = [
     calculation: '{variable1} - 1',
     result: 14,
     response: '"Last year, you were", {result}',
+    responsePlus: '"Last year, you were " + str({result})',
   },
   {
     topic: 'work out how many pizza slices there are left',
@@ -161,6 +135,7 @@ const questions = [
     calculation: '{variable1}  - {variable2}',
     result: 6,
     response: '"You have", {result}, "slices left"',
+    responsePlus: '"You have " + str({result}) + " slices left"',
   },
   {
     topic: 'work out how much each person owes',
@@ -174,6 +149,7 @@ const questions = [
     calculation: '{variable1}  / {variable2}',
     result: '£5',
     response: '"You each owe", {result}',
+    responsePlus: '"You each owe " + str({result})',
   },
   {
     topic: 'convert someones weight to kilograms',
@@ -187,6 +163,7 @@ const questions = [
     calculation: '{variable1} / 2.2',
     result: 4.5,
     response: '{answer1}, "lbs is", {result}, "kg"',
+    responsePlus: 'str({answer1}) + " lbs is " + str({result}) + " kg"',
   },
   {
     topic: 'tell them how many times a number fits in',
@@ -200,6 +177,7 @@ const questions = [
     calculation: '{variable1} // {variable2}',
     result: 6,
     response: '"There are", {result}, {answer2},"s in", {answer1}',
+    responsePlus: '"There are " + str({result}) + " " + str({answer2}) + "s in " + str({answer1})',
   },
   {
     topic: 'tell them the remainder when dividing',
@@ -214,6 +192,8 @@ const questions = [
     result: 2,
     response:
       '"There are", {result}, "left over after dividing", {answer1}, "by", {answer2}',
+    responsePlus:
+      '"There are " + str({result}) + " left over after dividing " + str({answer1}) + " by " + str({answer2})',
   },
   {
     topic: 'tell them how many hours there are in that many days',
@@ -227,6 +207,7 @@ const questions = [
     calculation: '{variable1} * 24',
     result: 120,
     response: '"There are", {result}, "hours in", {answer1}, "days"',
+    responsePlus: '"There are " + str({result}) + " hours in " + str({answer1}) + " days"',
   },
   {
     topic: 'tell someone how long it will take to save their pocket money',
@@ -240,6 +221,7 @@ const questions = [
     calculation: '{variable2} / {variable1}',
     result: 5,
     response: '"It will take", {result}, "weeks to save ", {answer2}',
+    responsePlus: '"It will take " + str({result}) + " weeks to save " + str({answer2})',
   },
   {
     topic: 'work out how much someone spends on chocolate',
@@ -253,6 +235,7 @@ const questions = [
     calculation: '{variable1} * {variable2}',
     result: 10,
     response: '{answer1}, "chocolate bars is", {result}',
+    responsePlus: 'str({answer1}) + " chocolate bars is " + str({result})',
   },
   {
     topic: 'work out how much you can spend every day on holiday',
@@ -266,6 +249,7 @@ const questions = [
     calculation: '{variable1}  / {variable2}',
     result: 10,
     response: '"You will have £", {result}, "a day"',
+    responsePlus: '"You will have £" + str({result}) + " a day"',
   },
   {
     topic: 'calculate the area of a rectangle',
@@ -279,6 +263,7 @@ const questions = [
     calculation: '{variable1} * {variable2}',
     result: 125,
     response: '"The area of the rectangle is", {result}',
+    responsePlus: '"The area of the rectangle is " + str({result})',
   },
   {
     topic: 'calculate the perimeter of a rectangle',
@@ -292,6 +277,7 @@ const questions = [
     calculation: '{variable1} + {variable1} + {variable2} + {variable2}',
     result: 60,
     response: '"The perimeter of the rectangle is", {result}',
+    responsePlus: '"The perimeter of the rectangle is " + str({result})',
   },
   {
     topic: 'tell them how many seconds there are in that many minutes',
@@ -305,6 +291,7 @@ const questions = [
     calculation: '{variable1} * 60',
     result: 600,
     response: '"There are", {result}, "seconds in", {answer1}, "minutes"',
+    responsePlus: '"There are " + str({result}) + " seconds in " + str({answer1}) + " minutes"',
   },
   {
     topic: 'calculate the average of two numbers',
@@ -318,6 +305,7 @@ const questions = [
     calculation: '({variable1} + {variable2}) / 2',
     result: 6,
     response: '"The average is", {result}',
+    responsePlus: '"The average is " + str({result})',
   },
   {
     topic: 'work out the difference in ages',
@@ -331,6 +319,7 @@ const questions = [
     calculation: '{variable1}  - {variable2}',
     result: 2,
     response: '"Person 1 is", {result}, "years older"',
+    responsePlus: '"Person 1 is " + str({result}) + " years older"',
   },
   {
     topic: 'work out how many boxes you need',
@@ -344,6 +333,7 @@ const questions = [
     calculation: '{variable1} // {variable2}',
     result: 8,
     response: '{answer1}, "cookies needs", {result}, "boxes"',
+    responsePlus: 'str({answer1}) + " cookies needs " + str({result}) + " boxes"',
   },
   {
     topic: 'say how far you have cycled',
@@ -357,6 +347,7 @@ const questions = [
     calculation: '{variable1} * {variable2}',
     result: 150,
     response: '"You cycled", {result}, "km in", {answer2}, "days"',
+    responsePlus: '"You cycled " + str({result}) + " km in " + str({answer2}) + " days"',
   },
   {
     topic: 'the square of a number',
@@ -370,6 +361,7 @@ const questions = [
     calculation: '{variable1} ** 2',
     result: 100,
     response: '{answer1}, "squared is", {result}',
+    responsePlus: 'str({answer1}) + " squared is " + str({result})',
   },
   {
     topic: 'half a number',
@@ -383,6 +375,7 @@ const questions = [
     calculation: '{variable1} / 2',
     result: 10,
     response: '"Half of", {answer1}, "is", {result}',
+    responsePlus: '"Half of " + str({answer1}) + " is " + str({result})',
   },
   {
     topic: 'double a number',
@@ -396,6 +389,7 @@ const questions = [
     calculation: '{variable1} * 2',
     result: 40,
     response: '"Double", {answer1}, "is", {result}',
+    responsePlus: '"Double " + str({answer1}) + " is " + str({result})',
   },
   {
     topic: 'area of a square',
@@ -409,6 +403,7 @@ const questions = [
     calculation: '{variable1} * {variable1}',
     result: 25,
     response: '"The square is", {result}, "cm2"',
+    responsePlus: '"The square is " + str({result}) + " cm2"',
   },
   {
     topic: 'perimeter of a square',
@@ -422,6 +417,7 @@ const questions = [
     calculation: '{variable1} * 4',
     result: 16,
     response: '"The square is", {result}, "cm2"',
+    responsePlus: '"The square is " + str({result}) + " cm2"',
   },
   {
     topic: 'triple a number',
@@ -435,6 +431,7 @@ const questions = [
     calculation: '{variable1} * 3',
     result: 60,
     response: '"Triple", {answer1}, "is", {result}',
+    responsePlus: '"Triple " + str({answer1}) + " is " + str({result})',
   },
   {
     topic: 'convert from celsius to fahrenheit',
@@ -448,6 +445,7 @@ const questions = [
     calculation: '({variable1} * 9/5) + 32',
     result: 86,
     response: '{answer1}, "celsius is", {result}, "fahrenheit"',
+    responsePlus: 'str({answer1}) + " celsius is " + str({result}) + " fahrenheit"',
   },
   {
     topic: 'age in months',
@@ -461,6 +459,7 @@ const questions = [
     calculation: '{variable1} * 12',
     result: 180,
     response: '"You are", {result}, "months old"',
+    responsePlus: '"You are " + str({result}) + " months old"',
   },
   {
     topic: 'area of a cricle',
@@ -474,64 +473,152 @@ const questions = [
     calculation: '3.14 * {variable1} * {variable1}',
     result: 78.5,
     response: '"The circle has an area of", {result}',
+    responsePlus: '"The circle has an area of " + str({result})',
   },
 ];
 
-function inspire(override) {
-  exampleEle.classList.remove('hidden');
-  codeEle.classList.add('hidden');
+/**
+ * Variables page implementation
+ */
+class VariablesPage extends ProgrammingPage {
+  constructor() {
+    super({
+      questions: questions,
+      pageType: 'variables',
+      utils: {
+        showHelp,
+        showBackground,
+        copyCode,
+        setupTabs,
+        replaceText,
+        generateQuestionNumber
+      }
+    });
+  }
 
-  const numOfQuestions = questions.length;
-  const questionToPick =
-    override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
-  const question = questions[questionToPick - 1];
-  topicEle.innerText = `${question.topic}.`;
+  initializePageElements() {
+    // Variables-specific elements for different cartoon layouts
+    this.cartoon1Ele = document.querySelector('.cartoon1');
+    this.cartoon2Ele = document.querySelector('.cartoon2');
+    
+    // Single question format elements
+    this.exampleQuestionEle = document.querySelector('#exampleQuestion');
+    this.exampleAnswerEle = document.querySelector('#exampleAnswer');
+    this.exampleResponseEle = document.querySelector('#exampleResponse');
+    
+    // Two question format elements
+    this.exampleQuestion1Ele = document.querySelector('#exampleQuestion1');
+    this.exampleQuestion2Ele = document.querySelector('#exampleQuestion2');
+    this.exampleAnswer1Ele = document.querySelector('#exampleAnswer1');
+    this.exampleAnswer2Ele = document.querySelector('#exampleAnswer2');
+    this.exampleResponse2Ele = document.querySelector('#exampleResponse2');
+    
+    // Code section elements
+    this.codeQuestion1Ele = document.querySelector('#codeQuestion1');
+    this.codeQuestion2Ele = document.querySelector('#codeQuestion2');
+    this.codeCalculationEle = document.querySelector('#codeCalculation');
+    this.codeResponseEle = document.querySelector('#response');
 
-  setCaptions(question);
-  setCode(question);
-}
+  }
 
-function setCaptions(question) {
-  const oneQuestion = question.variable2 === '';
-  if (oneQuestion) {
-    cartoon1Ele.classList.remove('hidden');
-    cartoon2Ele.classList.add('hidden');
-    exampleQuestionEle.innerText = question.question1;
-    exampleAnswerEle.innerText = question.answer1;
-    exampleResponseEle.innerText = replaceText(
-      question.response,
-      question,
-      false
-    )
-      .replaceAll('"', '')
-      .replaceAll(',', '');
-  } else {
-    cartoon2Ele.classList.remove('hidden');
-    cartoon1Ele.classList.add('hidden');
+  setTopic(question) {
+    if (this.topicEle && question.topic) {
+      // Variables specific: topic with period at the end
+      this.topicEle.innerText = `${question.topic}.`;
+    }
+  }
 
-    exampleQuestion1Ele.innerText = question.question1;
-    exampleQuestion2Ele.innerText = question.question2;
-    exampleAnswer1Ele.innerText = question.answer1;
-    exampleAnswer2Ele.innerText = question.answer2;
-    exampleResponse2Ele.innerText = replaceText(
-      question.response,
-      question,
-      false
-    )
-      .replaceAll('"', '')
-      .replaceAll(',', '');
+  setCaptions(question) {
+    try {
+      // Determine if this is a one-question or two-question format
+      const isTwoQuestion = question.question2 && question.question2.trim() !== '';
+      
+      if (isTwoQuestion) {
+        // Show two-question cartoon, hide single-question
+        if (this.cartoon1Ele) this.cartoon1Ele.classList.add('hidden');
+        if (this.cartoon2Ele) this.cartoon2Ele.classList.remove('hidden');
+        
+        // Set two-question elements
+        if (this.exampleQuestion1Ele) {
+          this.exampleQuestion1Ele.innerText = question.question1;
+        }
+        if (this.exampleQuestion2Ele) {
+          this.exampleQuestion2Ele.innerText = question.question2;
+        }
+        if (this.exampleAnswer1Ele) {
+          this.exampleAnswer1Ele.innerText = question.answer1;
+        }
+        if (this.exampleAnswer2Ele) {
+          this.exampleAnswer2Ele.innerText = question.answer2;
+        }
+        if (this.exampleResponse2Ele && question.response) {
+          // For captions, always use the original response and process it to show actual values
+          let processedText = this.replaceText(question.response, question, false)
+            .replaceAll('"', '')
+            .replaceAll(',', '');
+          
+          this.exampleResponse2Ele.innerText = processedText;
+        }
+      } else {
+        // Show single-question cartoon, hide two-question
+        if (this.cartoon1Ele) this.cartoon1Ele.classList.remove('hidden');
+        if (this.cartoon2Ele) this.cartoon2Ele.classList.add('hidden');
+        
+        // Set single-question elements
+        if (this.exampleQuestionEle) {
+          this.exampleQuestionEle.innerText = question.question1;
+        }
+        if (this.exampleAnswerEle) {
+          this.exampleAnswerEle.innerText = question.answer1;
+        }
+        if (this.exampleResponseEle && question.response) {
+          // For captions, always use the original response and process it to show actual values
+          let processedText = this.replaceText(question.response, question, false)
+            .replaceAll('"', '')
+            .replaceAll(',', '');
+          
+          this.exampleResponseEle.innerText = processedText;
+        }
+      }
+    } catch (error) {
+      console.error('Error in setCaptions function:', error);
+    }
+  }
+
+  setCode(question) {
+    try {
+      // Set input questions with int() casting
+      if (this.codeQuestion1Ele && question.variable1) {
+        this.codeQuestion1Ele.innerText = `${question.variable1} = int(input("${question.question1} "))`;
+      }
+      
+      // Check if it's a one-question or two-question format
+      const oneQuestion = question.variable2 === '';
+      if (this.codeQuestion2Ele) {
+        this.codeQuestion2Ele.innerText = oneQuestion 
+          ? '' 
+          : `${question.variable2} = int(input("${question.question2} "))`;
+      }
+      
+      // Set calculation using replaceText utility
+      if (this.codeCalculationEle && question.calculation) {
+        this.codeCalculationEle.innerText = `${question.variable3} = ${this.replaceText(question.calculation, question)}`;
+      }
+      
+      // Set response based on concatenation mode
+      if (this.codeResponseEle && question.response) {
+        // Choose the appropriate response based on concatenation mode
+        const responseText = this.usePlusMode ? 
+          (question.responsePlus || question.response) : 
+          question.response;
+          
+        this.codeResponseEle.innerText = `print(${this.replaceText(responseText, question, true)})`;
+      }
+    } catch (error) {
+      console.error('Error in setCode function:', error);
+    }
   }
 }
 
-function setCode(question) {
-  const oneQuestion = question.variable2 === '';
-  codeQuestion1Ele.innerText = `${question.variable1} = int(input("${question.question1} "))`;
-  // If there is only one question, the second line is blank
-  codeQuestion2Ele.innerText = oneQuestion
-    ? ''
-    : `${question.variable2} = int(input("${question.question2} "))`;
-  codeCalculationEle.innerText = `${question.variable3} = ${replaceText(question.calculation, question)}`;
-  codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
-}
-
-document.addEventListener('DOMContentLoaded', setupTabs);
+// Initialize the page
+const variablesPage = new VariablesPage();

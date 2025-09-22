@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Selection practice questions with if/else statements" />
-    <meta name="keywords" content="selection, if statements, else statements, conditional logic, programming practice" />
+    <meta name="description" content="Learn selection and if/else statements with interactive Python programming practice questions and examples." />
+    <meta name="keywords" content="python programming, selection, if statements, else statements, conditional logic, practice questions, coding exercises, python tutorial" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <title>Selection practice questions</title>
+    <title>Programming Practice - Selection</title>
 
     <!-- external CSS link -->
     <link rel="stylesheet" href="css/reset.css" />
@@ -117,12 +117,12 @@
                 It's like asking a question and doing different things based on
                 the answer.
               </p>
-              <div class="codeExample">
+              <div class="code-example">
                 <code>
-                  if it_is_raining:<br />
-                  <span class="tab"></span>print("Take an umbrella")<br />
-                  else:<br />
-                  <span class="tab"></span>print("Enjoy the sunshine")<br />
+                  <div>if it_is_raining:</div>
+                  <div><span class="tab"></span>print("Take an umbrella")</div>
+                  <div>else:</div>
+                  <div><span class="tab"></span>print("Enjoy the sunshine")</div>
                 </code>
               </div>
               <p>
@@ -160,11 +160,11 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="codeExample">
+              <div class="code-example">
                 <code>
-                  favourite_colour = "blue" # Assigning a value<br />
-                  if favourite_colour == "blue": # Comparing values<br />
-                  <span class="tab"></span>print("Great choice!")<br />
+                  <div>favourite_colour = "blue" # Assigning a value</div>
+                  <div>if favourite_colour == "blue": # Comparing values</div>
+                  <div><span class="tab"></span>print("Great choice!")</div>
                 </code>
               </div>
             </div>
@@ -183,15 +183,15 @@
                   <span class="highlight">Indent</span> the next line (usually by pressing the Tab key <span class="highlight">⭾</span> once).
                 </li>
               </ol>
-              <div class="codeExample">
+              <div class="code-example">
                 <code>
-                  if score > 10:<br />
-                  <span class="tab"></span>print("You win!") # This line is
-                  indented<br />
-                  <span class="tab"></span>print("Well done!") # This line is
-                  also indented<br />
-                  print("Game over") # This line is not indented, so it's not
-                  part of the if<br />
+                  <div>if score > 10:</div>
+                  <div><span class="tab"></span>print("You win!") # This line is
+                  indented</div>
+                  <div><span class="tab"></span>print("Well done!") # This line is
+                  also indented</div>
+                  <div>print("Game over") # This line is not indented, so it's not
+                  part of the if</div>
                 </code>
               </div>
               <p>
@@ -204,28 +204,24 @@
             <div class="tab-content" id="example">
               <h2>Putting It All Together</h2>
               <p>Let's use everything we've learned to make a fun program:</p>
-              <div class="codeExample">
+              <div class="code-example">
                 <code>
-                  correct_ans = "spongebob squarepants"<br />
-                  best_show = input("What is the best TV show? ")<br />
-                  if best_show == correct_ans:<br />
-                  <span class="background-comma">
+                  <div>correct_ans = "spongebob squarepants"</div>
+                  <div>best_show = input("What is the best TV show? ")</div>
+                  <div>if best_show == correct_ans:</div>
+                  <div><span class="background-comma">
                     <span class="tab"></span>print("Absolutely!", correct_ans,
-                    "is glorious")<br />
-                  </span>
-                  <span class="background-plus">
+                    "is glorious")</span></div>
+                  <div><span class="background-plus">
                     <span class="tab"></span>print("Absolutely! " + correct_ans +
-                    " is glorious")<br />
-                  </span>
-                  else:<br />
-                  <span class="background-comma">
+                    " is glorious")</span></div>
+                  <div>else:</div>
+                  <div><span class="background-comma">
                     <span class="tab"></span>print(best_show, "?!?! No way - it
-                    is", correct_ans)<br />
-                  </span>
-                  <span class="background-plus">
+                    is", correct_ans)</span></div>
+                  <div><span class="background-plus">
                     <span class="tab"></span>print(best_show + "? No way - it
-                    is " + correct_ans)<br />
-                  </span>
+                    is " + correct_ans)</span></div>
                 </code>
               </div>
               <p>
@@ -241,7 +237,7 @@
               <p>
                 Now it's your turn! Can you make a program that asks for a
                 password and only lets the user in if they enter the correct
-                one? Press inspire me for more ideas of what to code.
+                one? Press <a href="#" class="inspire-link">inspire me</a> for more ideas of what to code.
               </p>
             </div>
           </div>
@@ -294,6 +290,6 @@
         🧽
       </button>
     </div>
-    <script type="module" src="js/selection-new.js"></script>
+    <script type="module" src="js/selection.js"></script>
   </body>
 </html>

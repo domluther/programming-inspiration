@@ -7,36 +7,9 @@ import {
   generateQuestionNumber,
 } from './utils.js';
 
-// ===== DOM ELEMENT SELECTION =====
-// Buttons
-const inspireBtn = document.querySelector('#inspire');
-const helpBtn = document.querySelector('#help');
-const backgroundBtn = document.querySelector('#background');
-const forceSpongeBtn = document.querySelector('#forceSpongebob');
-const copyBtn = document.querySelector('#copyMe');
+import { ProgrammingPage } from './ProgrammingPage.js';
 
-// Sections
-const exampleEle = document.querySelector('.example');
-const codeEle = document.querySelector('.code');
-
-// Cartoon elements
-const topicEle = document.querySelector('#topic');
-const exampleQuestionEle = document.querySelector('#exampleQuestion');
-const exampleAnswerEle = document.querySelector('#exampleAnswer');
-const exampleResponseEle = document.querySelector('#exampleResponse');
-
-// Code section elements
-const codeQuestionEle = document.querySelector('#question');
-const codeResponseEle = document.querySelector('#response');
-
-// ===== EVENT LISTENERS =====
-inspireBtn?.addEventListener('click', inspire);
-helpBtn?.addEventListener('click', showHelp);
-copyBtn?.addEventListener('click', copyCode);
-backgroundBtn?.addEventListener('click', showBackground);
-forceSpongeBtn?.addEventListener('click', () => inspire('bob'));
-
-// https://www.convertcsv.com/csv-to-json.htm to create
+// Input/Output page questions
 const questions = [
   {
     variable: 'spongebob',
@@ -44,6 +17,7 @@ const questions = [
     question: 'Who is the best Spongebob character?',
     answer: 'Mr Krabs',
     response: '"Absolutely. No-one is better than", {answer}, "."',
+    responsePlus: '"Absolutely. No-one is better than " + {answer} + "."',
   },
   {
     variable: 'name',
@@ -51,6 +25,7 @@ const questions = [
     question: 'What is your full name?',
     answer: 'Bob Smith Frederick',
     response: '"Nice to meet you", {answer}, "."',
+    responsePlus: '"Nice to meet you " + {answer} + "."',
   },
   {
     variable: 'age',
@@ -58,6 +33,7 @@ const questions = [
     question: 'How old are you?',
     answer: '25',
     response: '"Oh wow! I am", {answer}, "too!"',
+    responsePlus: '"Oh wow! I am " + {answer} + " too!"',
   },
   {
     variable: 'birthday',
@@ -65,6 +41,7 @@ const questions = [
     question: 'When is your birthday?',
     answer: 'March 23rd',
     response: '"I will add", {answer}, "to my calendar!"',
+    responsePlus: '"I will add " + {answer} + " to my calendar!"',
   },
   {
     variable: 'born',
@@ -72,6 +49,7 @@ const questions = [
     question: 'Where were you born?',
     answer: 'Crewe',
     response: '"I really like", {answer}, "."',
+    responsePlus: '"I really like " + {answer} + "."',
   },
   {
     variable: 'hometown',
@@ -79,6 +57,7 @@ const questions = [
     question: 'What is your current hometown?',
     answer: 'Manchester',
     response: '"I\'ve never been to", {answer}, "."',
+    responsePlus: '"I\'ve never been to " + {answer} + "."',
   },
   {
     variable: 'job',
@@ -86,6 +65,7 @@ const questions = [
     question: 'What is your occupation?',
     answer: 'teacher',
     response: '"I think being a", {answer}, "sounds good."',
+    responsePlus: '"I think being a " + {answer} + " sounds good."',
   },
   {
     variable: 'hobby',
@@ -93,6 +73,7 @@ const questions = [
     question: 'What is your favourite hobby?',
     answer: 'dancing',
     response: '"I\'ve never tried", {answer}, "."',
+    responsePlus: '"I\'ve never tried " + {answer} + "."',
   },
   {
     variable: 'siblings',
@@ -100,6 +81,7 @@ const questions = [
     question: 'How many siblings do you have?',
     answer: '4',
     response: '"Oh really?", {answer}, "?"',
+    responsePlus: '"Oh really? " + {answer} + "?"',
   },
   {
     variable: 'food',
@@ -107,6 +89,7 @@ const questions = [
     question: 'What is your favourite food?',
     answer: 'eggs',
     response: '{answer}, "sounds yummy."',
+    responsePlus: '{answer} + " sounds yummy."',
   },
   {
     variable: 'colour',
@@ -114,6 +97,7 @@ const questions = [
     question: 'What is your favourite colour?',
     answer: 'orange',
     response: '"I love", {answer}, "too!"',
+    responsePlus: '"I love " + {answer} + " too!"',
   },
   {
     variable: 'time',
@@ -121,6 +105,7 @@ const questions = [
     question: 'Are you a morning person or a night owl?',
     answer: 'morning person',
     response: '"I am also a", {answer}, "."',
+    responsePlus: '"I am also a " + {answer} + "."',
   },
   {
     variable: 'pets',
@@ -128,6 +113,7 @@ const questions = [
     question: 'Do you have any pets?',
     answer: 'a dog',
     response: '"I really want", {answer}, "."',
+    responsePlus: '"I really want " + {answer} + "."',
   },
   {
     variable: 'season',
@@ -135,6 +121,7 @@ const questions = [
     question: 'What is your favourite season?',
     answer: 'winter',
     response: '"Yes!", {answer}, "is the best."',
+    responsePlus: '"Yes! " + {answer} + " is the best."',
   },
   {
     variable: 'film_genre',
@@ -142,6 +129,7 @@ const questions = [
     question: 'What is your favourite film genre?',
     answer: 'comedy',
     response: '"I like", {answer}, "films too."',
+    responsePlus: '"I like " + {answer} + " films too."',
   },
   {
     variable: 'drink',
@@ -149,6 +137,7 @@ const questions = [
     question: 'Do you prefer tea or coffee?',
     answer: 'tea',
     response: '"Me too!", {answer}, "is the best."',
+    responsePlus: '"Me too! " + {answer} + " is the best."',
   },
   {
     variable: 'music',
@@ -156,6 +145,7 @@ const questions = [
     question: 'What is your favourite type of music?',
     answer: 'rock',
     response: '{answer}, "? Cool!"',
+    responsePlus: '{answer} + "? Cool!"',
   },
   {
     variable: 'film',
@@ -163,6 +153,7 @@ const questions = [
     question: 'What is your favourite film?',
     answer: 'The Lion King',
     response: '{answer}, "is a great film."',
+    responsePlus: '{answer} + " is a great film."',
   },
   {
     variable: 'book',
@@ -170,6 +161,7 @@ const questions = [
     question: 'What is your favourite book?',
     answer: 'The Lion King',
     response: '{answer}, "is a great book."',
+    responsePlus: '{answer} + " is a great book."',
   },
   {
     variable: 'allergies',
@@ -177,6 +169,7 @@ const questions = [
     question: 'Do you have any allergies?',
     answer: 'hayfever',
     response: '"Sorry to hear that.", {answer}, "sounds hard."',
+    responsePlus: '"Sorry to hear that. " + {answer} + " sounds hard."',
   },
   {
     variable: 'holiday',
@@ -184,6 +177,7 @@ const questions = [
     question: 'What is your favourite holiday?',
     answer: 'Christmas',
     response: '"Definitely!", {answer}, "is the best."',
+    responsePlus: '"Definitely! " + {answer} + " is the best."',
   },
   {
     variable: 'food',
@@ -191,6 +185,7 @@ const questions = [
     question: 'Do you prefer sweet or savoury foods?',
     answer: 'sweet foods',
     response: '"I also like", {answer}, "."',
+    responsePlus: '"I also like " + {answer} + "."',
   },
   {
     variable: 'sport',
@@ -198,6 +193,7 @@ const questions = [
     question: 'What is your favourite sport?',
     answer: 'football',
     response: '"Playing", {answer}, "is great fun."',
+    responsePlus: '"Playing " + {answer} + " is great fun."',
   },
   {
     variable: 'animal',
@@ -205,6 +201,7 @@ const questions = [
     question: 'What is the best Taylor Swift song?',
     answer: 'Wildest Dreams',
     response: '{answer}, "is Taylor\'s best song."',
+    responsePlus: '{answer} + " is Taylor\'s best song."',
   },
   {
     variable: 'secret',
@@ -212,6 +209,7 @@ const questions = [
     question: 'What is a secret?',
     answer: 'Mr Bashford does not like ducks 😭',
     response: '"Oh wow! I never knew", {answer}, "."',
+    responsePlus: '"Oh wow! I never knew " + {answer} + "."',
   },
   {
     variable: 'place',
@@ -219,6 +217,7 @@ const questions = [
     question: "What is your favourite place you've ever visited?",
     answer: 'Manchester',
     response: '"I really want to go to", {answer}, "."',
+    responsePlus: '"I really want to go to " + {answer} + "."',
   },
   {
     variable: 'bed',
@@ -226,6 +225,7 @@ const questions = [
     question: 'What time do you go to bed?',
     answer: '10pm',
     response: '{answer}, "is so late!"',
+    responsePlus: '{answer} + " is so late!"',
   },
   {
     variable: 'dessert',
@@ -233,6 +233,7 @@ const questions = [
     question: 'What is your favourite type of dessert?',
     answer: 'chocolate ice cream',
     response: '"Now I want to eat", {answer}, "."',
+    responsePlus: '"Now I want to eat " + {answer} + "."',
   },
   {
     variable: 'wakeup',
@@ -240,6 +241,7 @@ const questions = [
     question: 'What time do you wake up?',
     answer: '6am',
     response: '{answer}, "is so early!"',
+    responsePlus: '{answer} + " is so early!"',
   },
   {
     variable: 'memory',
@@ -247,6 +249,7 @@ const questions = [
     question: 'What is your favourite childhood memory?',
     answer: 'learning to ride a bicycle',
     response: '{answer}, "sounds really fun."',
+    responsePlus: '{answer} + " sounds really fun."',
   },
   {
     variable: 'lunch',
@@ -254,6 +257,7 @@ const questions = [
     question: 'What do you do at lunch?',
     answer: 'nap',
     response: '"I want to", {answer}, "too."',
+    responsePlus: '"I want to " + {answer} + " too."',
   },
   {
     variable: 'game',
@@ -261,6 +265,7 @@ const questions = [
     question: 'What is your favourite board game or card game?',
     answer: 'snap',
     response: '"I like playing", {answer}, "too."',
+    responsePlus: '"I like playing " + {answer} + " too."',
   },
   {
     variable: 'subject',
@@ -268,6 +273,7 @@ const questions = [
     question: 'What is your favourite subject?',
     answer: 'computing',
     response: '{answer}, "is good."',
+    responsePlus: '{answer} + " is good."',
   },
   {
     variable: 'job',
@@ -275,6 +281,7 @@ const questions = [
     question: 'What is your dream job?',
     answer: 'to be a football player',
     response: '"I hope you can", {answer}, "."',
+    responsePlus: '"I hope you can " + {answer} + "."',
   },
   {
     variable: 'maccies',
@@ -282,6 +289,7 @@ const questions = [
     question: 'What is the best food at Maccies?',
     answer: 'chicken nuggets',
     response: '"I love", {answer}, "too!"',
+    responsePlus: '"I love " + {answer} + " too!"',
   },
   {
     variable: 'outdoor',
@@ -289,6 +297,7 @@ const questions = [
     question: 'What is your favourite outdoor activity?',
     answer: 'riding a bike',
     response: '{answer}, "is really good."',
+    responsePlus: '{answer} + " is really good."',
   },
   {
     variable: 'nickname',
@@ -296,6 +305,7 @@ const questions = [
     question: 'What is your nickname?',
     answer: 'bob bob',
     response: '{answer}, "is a great nickname."',
+    responsePlus: '{answer} + " is a great nickname."',
   },
   {
     variable: 'tv_show',
@@ -303,6 +313,7 @@ const questions = [
     question: 'What is your favourite TV show?',
     answer: 'Bluey',
     response: '"I need to watch", {answer}, "."',
+    responsePlus: '"I need to watch " + {answer} + "."',
   },
   {
     variable: 'month',
@@ -310,6 +321,7 @@ const questions = [
     question: 'What is your favourite month?',
     answer: 'March',
     response: '"Oh really? I wonder why you like", {answer}, "."',
+    responsePlus: '"Oh really? I wonder why you like " + {answer} + "."',
   },
   {
     variable: 'fruit',
@@ -317,6 +329,7 @@ const questions = [
     question: 'What is your favourite fruit?',
     answer: 'banana',
     response: '{answer}, "ice cream sounds good."',
+    responsePlus: '{answer} + " ice cream sounds good."',
   },
   {
     variable: 'skill',
@@ -324,6 +337,7 @@ const questions = [
     question: 'What is your special skill?',
     answer: 'dancing',
     response: '"You must be good at", {answer}, "."',
+    responsePlus: '"You must be good at " + {answer} + "."',
   },
   {
     variable: 'food',
@@ -331,6 +345,7 @@ const questions = [
     question: 'What is the best Pixar film?',
     answer: 'Coco',
     response: '{answer}, "makes me cry."',
+    responsePlus: '{answer} + " makes me cry."',
   },
   {
     variable: 'name',
@@ -338,6 +353,7 @@ const questions = [
     question: 'What is your friends name?',
     answer: 'Sally',
     response: '"Lucky", {answer}, "."',
+    responsePlus: '"Lucky " + {answer} + "."',
   },
   {
     variable: 'exercise',
@@ -345,6 +361,7 @@ const questions = [
     question: 'What is your favourite type of exercise?',
     answer: 'running',
     response: '{answer}, "sounds tiring."',
+    responsePlus: '{answer} + " sounds tiring."',
   },
   {
     variable: 'travel',
@@ -352,6 +369,7 @@ const questions = [
     question: 'Who is your favourite actor?',
     answer: 'Dwayne Johnson',
     response: '{answer}, "is THE BEST."',
+    responsePlus: '{answer} + " is THE BEST."',
   },
   {
     variable: 'weather',
@@ -359,6 +377,7 @@ const questions = [
     question: 'What is your favourite type of weather?',
     answer: 'sunny',
     response: '"I love it when it is", {answer}, "."',
+    responsePlus: '"I love it when it is " + {answer} + "."',
   },
   {
     variable: 'quote',
@@ -366,6 +385,7 @@ const questions = [
     question: 'What is your favourite quote?',
     answer: 'Life is trying things to see if they work',
     response: '"I\'ve never heard that.", {answer}, "."',
+    responsePlus: '"I\'ve never heard that. " + {answer} + "."',
   },
   {
     variable: 'art',
@@ -373,6 +393,7 @@ const questions = [
     question: 'What is your favourite type of art?',
     answer: 'pop art',
     response: '"I need to learn about", {answer}, "."',
+    responsePlus: '"I need to learn about " + {answer} + "."',
   },
   {
     variable: 'superpower',
@@ -380,6 +401,7 @@ const questions = [
     question: 'What superpower would you like?',
     answer: 'fly',
     response: '"I wish I could", {answer}, "."',
+    responsePlus: '"I wish I could " + {answer} + "."',
   },
   {
     variable: 'flower',
@@ -387,6 +409,7 @@ const questions = [
     question: 'What is your favourite type of flower?',
     answer: 'daisy',
     response: '{answer}, "is such a pretty flower."',
+    responsePlus: '{answer} + " is such a pretty flower."',
   },
   {
     variable: 'future',
@@ -394,62 +417,94 @@ const questions = [
     question: 'What is your plan for the future?',
     answer: 'learn to fly',
     response: '"I hope you can", {answer}, "."',
+    responsePlus: '"I hope you can " + {answer} + "."',
   },
 ];
 
-// ===== MAIN FUNCTIONS =====
-function inspire(override) {
-  try {
-    exampleEle?.classList.remove('hidden');
-    // Help should be hidden at start
-    codeEle?.classList.add('hidden');
+/**
+ * Input/Output page implementation
+ */
+class InputOutputPage extends ProgrammingPage {
+  constructor() {
+    super({
+      questions: questions,
+      pageType: 'input-output',
+      utils: {
+        showHelp,
+        showBackground,
+        copyCode,
+        setupTabs,
+        replaceText,
+        generateQuestionNumber
+      }
+    });
+  }
 
-    const numOfQuestions = questions.length;
-    const questionToPick =
-      override === 'bob' ? 1 : generateQuestionNumber(numOfQuestions);
-    const question = questions[questionToPick - 1];
-    
-    if (topicEle && question?.topic) {
-      topicEle.innerText = `ask someone ${question.topic}.`;
+  initializePageElements() {
+    // Input/Output specific elements
+    this.exampleQuestionEle = document.querySelector('#exampleQuestion');
+    this.exampleAnswerEle = document.querySelector('#exampleAnswer');
+    this.exampleResponseEle = document.querySelector('#exampleResponse');
+    this.codeQuestionEle = document.querySelector('#question');
+    this.codeResponseEle = document.querySelector('#response');
+  }
+
+  setTopic(question) {
+    if (this.topicEle && question.topic) {
+      // Input/Output specific: "ask someone [topic]."
+      this.topicEle.innerText = `ask someone ${question.topic}.`;
     }
+  }
 
-    setCaptions(question);
-    setCode(question);
-  } catch (error) {
-    console.error('Error in inspire function:', error);
+  setCaptions(question) {
+    try {
+      if (this.exampleQuestionEle) {
+        this.exampleQuestionEle.innerText = question.question;
+      }
+      if (this.exampleAnswerEle) {
+        this.exampleAnswerEle.innerText = question.answer;
+      }
+      if (this.exampleResponseEle && question.response) {
+        // Choose the appropriate response based on concatenation mode
+        const responseText = this.usePlusMode ? 
+          (question.responsePlus || question.response) : 
+          question.response;
+          
+        let processedText = responseText.replace('{answer}', question.answer);
+        
+        if (this.usePlusMode) {
+          // In plus mode, remove quotes and + symbols
+          processedText = processedText.replaceAll('"', '').replaceAll(' + ', '').replaceAll('+', '');
+        } else {
+          // In comma mode, remove commas and quotes as before
+          processedText = processedText.replaceAll('"', '').replaceAll(',', '');
+        }
+        
+        this.exampleResponseEle.innerText = processedText;
+      }
+    } catch (error) {
+      console.error('Error in setCaptions function:', error);
+    }
+  }
+
+  setCode(question) {
+    try {
+      if (this.codeQuestionEle) {
+        this.codeQuestionEle.innerText = `${question.variable} = input("${question.question} ")`;
+      }
+      if (this.codeResponseEle) {
+        // Choose the appropriate response based on concatenation mode
+        const responseText = this.usePlusMode ? 
+          (question.responsePlus || question.response) : 
+          question.response;
+          
+        this.codeResponseEle.innerText = `print(${this.replaceText(responseText, question, true)})`;
+      }
+    } catch (error) {
+      console.error('Error in setCode function:', error);
+    }
   }
 }
 
-function setCaptions(question) {
-  try {
-    if (exampleQuestionEle && question?.question) {
-      exampleQuestionEle.innerText = question.question;
-    }
-    if (exampleAnswerEle && question?.answer) {
-      exampleAnswerEle.innerText = question.answer;
-    }
-    if (exampleResponseEle && question?.response) {
-      exampleResponseEle.innerText = question.response
-        .replace('{answer}', question.answer)
-        .replaceAll('"', '')
-        .replaceAll(',', '');
-    }
-  } catch (error) {
-    console.error('Error in setCaptions function:', error);
-  }
-}
-
-function setCode(question) {
-  try {
-    if (codeQuestionEle && question?.variable && question?.question) {
-      codeQuestionEle.innerText = `${question.variable} = input("${question.question} ")`;
-    }
-    if (codeResponseEle && question?.response) {
-      codeResponseEle.innerText = `print(${replaceText(question.response, question, true)})`;
-    }
-  } catch (error) {
-    console.error('Error in setCode function:', error);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', setupTabs);
+// Initialize the page
+const inputOutputPage = new InputOutputPage();

@@ -95,11 +95,6 @@ code {
 }
 
 /* ===== LAYOUT ===== */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 div {
   max-width: 800px;
   margin: auto;
@@ -114,10 +109,6 @@ main {
 }
 
 /* ===== UTILITY CLASSES ===== */
-.text-center {
-  text-align: center;
-}
-
 /* Example sections - ensure they work with cartoon containers */
 .example {
   display: block;
@@ -204,13 +195,6 @@ main {
   right: 2%;
 }
 
-/* Legacy ID selector for copy button - maintain exact positioning */
-#copyMe {
-  position: absolute;
-  top: 10%;
-  right: 2%;
-}
-
 /* ===== NAVIGATION ===== */
 nav {
   display: flex;
@@ -220,27 +204,6 @@ nav {
 }
 
 /* ===== CARTOON/IMAGE CONTAINERS ===== */
-.cartoon-container {
-  max-width: 800px;
-  position: relative;
-  display: inline-block;
-}
-
-.cartoon-container img {
-  max-width: 100%;
-  vertical-align: middle;
-}
-
-.cartoon-container p {
-  position: absolute;
-  font-size: 1.5rem;
-  color: #000;
-  text-align: center;
-  padding: 0.625rem;
-  margin: 0;
-}
-
-/* Legacy support - keeping existing classes with EXACT original styling */
 .cartoon1,
 .cartoon2 {
   max-width: 800px;
@@ -418,21 +381,11 @@ nav {
   margin: 0;
 }
 
+/* Code example blocks used in background content sections */
 .code-example {
   background-color: #e8f4f8;
   border-left: 0.25rem solid #3498db;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 0.25rem;
-  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  line-height: 1.5;
-}
-
-/* Legacy support */
-.codeExample {
-  background-color: #e8f4f8;
-  border-left: 0.25rem solid #3498db;
-  padding: 1rem;
+  padding: 0 1rem;
   margin: 1rem 0;
   border-radius: 0.25rem;
   line-height: 1.5;
@@ -549,33 +502,46 @@ nav {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .summary-table th,
 .summary-table td {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
+  border: 1px solid #c0c4cc;
+  padding: 0.75rem;
   text-align: left;
 }
 
 .summary-table th {
-  background-color: #f2f2f2;
+  background-color: #ff8c00; /* match button orange for consistency */
+  color: #000;
   font-weight: bold;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 .summary-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+}
+
+.summary-table tr:nth-child(odd) {
+  background-color: #f0f2f5;
 }
 
 .summary-table tr:hover {
-  background-color: #f5f5f5;
+  background-color: #e8f4f8;
+  transition: background-color 0.2s ease;
 }
 
 .summary-table code {
-  background-color: #e8e8e8;
-  padding: 0.125rem 0.25rem;
+  background-color: #e8eff5;
+  color: black;
+  padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
-  font-family: monospace;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  border: 1px solid #d1d9e0;
 }
 
 /* ===== MISCELLANEOUS ===== */
@@ -684,6 +650,59 @@ ol li {
 }
 
 /* ===== UTILITY CLASSES (MUST BE LAST) ===== */
+/* Inspire links */
+.inspire-link {
+  color: #ff8c00; /* match button orange */
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.inspire-link:hover {
+  color: #ff7700; /* match button hover */
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(255, 140, 0, 0.3);
+}
+
+.inspire-link:active {
+  color: #dc143c; /* match button active */
+}
+
+/* Toast notifications */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #2d3748;
+  color: #e2e8f0;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  min-width: 250px;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  border-left: 4px solid #ff8c00;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast::before {
+  content: "✓";
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  color: #ff8c00;
+}
+
 /* Hidden class placed at end to ensure it overrides other display properties through cascade order */
 .hidden {
   display: none;
