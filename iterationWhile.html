@@ -61,16 +61,15 @@
               <h1>Iteration in Python</h1>
               <p>
                 Welcome to the world of loops! Today, we're going to learn about
-                iteration, which is like teaching your computer to repeat tasks.
-                Imagine if you could tell your computer to do your chores over
-                and over again - that's the power of iteration!
+                <span class="highlight">iteration</span>, which is like teaching your computer to repeat tasks.
+                You tell it how many times to do it and it does it over and over again - that's the power of iteration!
               </p>
             </div>
 
             <div class="tab-content" id="while-loops">
               <h2>While Loops: The Repeating Magic</h2>
               <p>
-                In Python, we use 'while' loops for iteration. These loops are
+                In Python, we use <span class="highlight">while</span> loops for iteration. These loops are
                 condition-controlled, which means they keep repeating as long as
                 a certain condition is true.
               </p>
@@ -83,24 +82,23 @@
                 </code>
               </div>
               <p>
-                In this example, the loop will print "Hello, World!" five times.
+                In this example, the loop will output "Hello, World!" five times.
                 The loop keeps going while the count is less than 5. That is
-                called the condition.
+                called the  <span class="highlight">condition</span>.
               </p>
             </div>
 
             <div class="tab-content" id="indentation">
               <h2>The Importance of Indentation</h2>
               <p>
-                Just like with if statements, indentation is super important in
-                while loops! It tells Python which lines of code belong to the
-                loop.
+                Just like with if statements,  <span class="highlight">indentation</span> is super important in
+                while loops! It tells Python which lines of code belong to the loop.
               </p>
               <p>After a while statement:</p>
               <ol>
                 <li>Put a colon (:) at the end of the line</li>
                 <li>
-                  Indent the next line (usually by pressing the Tab key once)
+                  <span class="highlight">Indent</span> the next line (usually by pressing the Tab key <span class="highlight">⭾</span> once).
                 </li>
               </ol>
               <div class="codeExample">
@@ -117,14 +115,14 @@
               </div>
               <p>
                 The indented lines will repeat, but the last line only runs
-                once, after the loop is finished.
+                once, after the loop is finished. This code will output <span class="spoiler">0 1 2 3 4 5 6 7 8 9 10 before outputting Loop done</span>.
               </p>
             </div>
 
             <div class="tab-content" id="operators">
               <h2>Comparison Operators: Making Decisions</h2>
               <p>
-                To control our loops, we use comparison operators. Here are some
+                To control our loops, we use <span class="highlight">comparison operators</span>. Here are some
                 important ones:
               </p>
               <table class="summary-table">
@@ -171,7 +169,7 @@
               </div>
               <p>
                 This loop will keep asking for input until the user types
-                "quit".
+                "quit". That could be once or it could be stuck in an infinite loop, going on forever.
               </p>
             </div>
 
@@ -189,13 +187,18 @@
                   <span class="tab"></span>total = total + number<br />
                   <span class="tab"></span>number = int(input("Enter a number (0
                   to stop)"))<br />
-                  print("The sum is", total)<br />
+                  <span class="background-comma">print("The sum is", total)</span><br />
+                  <span class="background-plus">print("The sum is " + str(total))</span><br />
                 </code>
               </div>
               <p>
-                This program asks the user to enter numbers and adds them up. It
-                keeps going until the user enters 0, then it prints the total
-                sum.
+                This program:
+                <ol>
+                  <li>Asks the user to input a number</li>
+                  <li>While the number entered isn't a 0</li>
+                  <li>Adds all the numbers up and asks again</li>
+                  <li>When the user enters a 0, it stops asking and outputs the total</li>
+                </ol>
               </p>
               <p>
                 Now it's your turn! Can you make a program that keeps asks a
@@ -242,6 +245,17 @@
             <p id="finalAction"></p>
           </section>
         </section>
+        <div class="concatenation-toggle">
+          <label class="toggle-label">
+            <span class="toggle-text">Concatenation Mode:</span>
+            <input type="checkbox" id="concatToggle" class="toggle-checkbox">
+            <span class="toggle-slider"></span>
+            <span class="toggle-modes">
+              <span class="mode-comma">Comma (,)</span>
+              <span class="mode-plus">Plus (+)</span>
+            </span>
+          </label>
+        </div>
       </main>
       <button id="forceSpongebob" class="btn small-btn" pre="Spongebob">
         🧽
