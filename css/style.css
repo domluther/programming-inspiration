@@ -518,6 +518,15 @@ nav {
   display: block;
 }
 
+.tab-content .highlight {
+  font-weight: bold;
+  color: #2c3e50; /* Darker blue-grey for strong contrast against light blue background */
+  background-color: #fff3cd; /* Light yellow background for emphasis */
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  border-bottom: 2px solid #ff8c00; /* Orange underline matching your brand color */
+}
+
 /* ===== TABLES ===== */
 .summary-table {
   width: 100%;
@@ -657,3 +666,4 @@ ol li {
 .hidden {
   display: none;
 }
+
