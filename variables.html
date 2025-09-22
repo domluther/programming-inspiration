@@ -59,9 +59,8 @@
             <div class="tab-content active" id="intro">
               <h1>Variables and Data Types in Python</h1>
               <p>
-                Welcome to the exciting world of variables! In Python, variables
-                are like magical containers that can hold different types of
-                information. Let's explore some of the most common ones.
+                Like you learnt last lesson, variables are like boxes that can hold different types of
+                data. Let's explore some of the most common ones.
               </p>
             </div>
 
@@ -109,14 +108,14 @@
               <h2>Input: Getting Information from Users</h2>
               <p>
                 Remember the <code>input()</code> function? It's super helpful,
-                but it has a secret: it always gives us a string, even if the
-                user types a number!
+                but it has a secret: it always gives us a <span class="highlight>string</span>, even if the
+                user has entered a number!
               </p>
               <div class="codeExample">
                 <code>age = input("How old are you? ")</code>
               </div>
               <p>
-                If the user enters 12, the variable <code>age</code> will be the
+                For example, if the user enters 12, the variable <code>age</code> will hold the
                 string <code>"12"</code>, not the integer <code>12</code>.
               </p>
             </div>
@@ -124,23 +123,24 @@
             <div class="tab-content" id="casting">
               <h2>Casting: Changing Data Types</h2>
               <p>
-                Sometimes we need to change the type of our data. We can do this
-                with casting:
+                Sometimes we need to change the type of our data e.g. from a string to an integer. We can do this
+                with casting.
               </p>
               <div class="codeExample">
                 <code>age = int(input("How old are you? "))</code>
               </div>
               <p>
-                Now if the user enters 12, the variable <code>age</code> will be
-                the integer <code>12</code>, which we can use in maths.
+                Now if the user enters 12, the variable <code>age</code> will hold
+                the integer <code>12</code>, which we can use for example in maths.
               </p>
               <span class="background-plus">
               <p>
                 If we want to output the value, <code>print()</code> expects <code>age</code> to be a string. This means we need to use
-                <code>str(age)</code> to cast <code>12</code>back to the string <code>"12"</code> when we output it.
+                <code>str(age)</code> to cast <code>12</code>back to the string <code>"12"</code> for us to output it.
               </p>
               <div class="codeExample">
-                <code>print("You are " + str(age) + " years old.")</code>
+                <code>print("You are " + str(age) + " years old.")<br/>
+                print("Next year you will be " + str(age + 1) + " years old.")</code>
               </div>
               </span>
             </div>
@@ -148,7 +148,7 @@
             <div class="tab-content" id="math-operators">
               <h2>Mathematical Operators: Doing Maths with Python</h2>
               <p>
-                Python is great at maths! Here are some operators you can use:
+                Python is great at maths. Here are some operators (symbols) you can use:
               </p>
               <table class="summary-table">
                 <thead>
@@ -181,9 +181,9 @@
             <div class="tab-content" id="updating-variables">
               <h2>Updating Variables: Changing Values</h2>
               <p>
-                Variables are not only for storing values - we can also change
-                them as our program runs. This is super useful for keeping track
-                of things that change, like scores in a game!
+                Variables are not only for storing values - we can also <span class="highlight">change
+                them</span> as our program runs. They can vary. This is super useful for keeping track
+                of data that changes, like scores in a game.
               </p>
               <p>Here's how we can update a variable:</p>
               <div class="codeExample">
@@ -301,4 +301,5 @@
     <script type="module" src="js/variables-new.js"></script>
   </body>
 </html>
+
 
