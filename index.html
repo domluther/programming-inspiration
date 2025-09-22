@@ -42,6 +42,7 @@
               <button class="tab-button" data-tab="output">Output</button>
               <button class="tab-button" data-tab="variables">Variables</button>
               <button class="tab-button" data-tab="input">Input</button>
+              <button class="tab-button" data-tab="comments">Comments</button>
               <button class="tab-button" data-tab="together">
                 Putting It All Together
               </button>
@@ -50,7 +51,7 @@
             <div class="tab-content active" id="intro">
               <h1>Input and Output in Python</h1>
               <p>
-                The first step in our programming journey is input and output in
+                The first step in our programming journey is <span class="highlight">input and output</span> in
                 Python. These are super important skills that will help you
                 create interactive programs.
               </p>
@@ -60,8 +61,7 @@
               <h2>Output: Talking to the User</h2>
               <p>
                 When we want our program to show something to the user, we use
-                the <code>print()</code> function. It's like making your
-                computer speak!
+                the <code>print()</code> function. It <span class="highlight">outputs</span> the value in the brackets on the screen.
               </p>
               <div class="codeExample">
                 <code>print("Hello, I'm a Python program!")</code>
@@ -71,14 +71,14 @@
             <div class="tab-content" id="variables">
               <h2>Variables: Remembering Things</h2>
               <p>
-                Variables are like boxes where we can store information. We can
-                give them names and put different types of data inside them.
+                Variables are like boxes where we can <span class="highlight">store data</span>. We can
+                give them names and put different types of data inside them. The names <span class="highlight">cannot</span> have spaces in them.
               </p>
               <div class="codeExample">
                 <code>favourite_colour = "blue"</code>
               </div>
               <p>
-                The value in the variable can be concatenated (joined together)
+                The value in the variable can be <span class="highlight">concatenated</span> (joined together)
                 with other strings using either a comma (,) or a plus (+).
               </p>
               <div class="codeExample">
@@ -102,6 +102,27 @@
               </div>
             </div>
 
+            <div class="tab-content" id="comments">
+              <h2>Comments: Notes for Humans</h2>
+              <p>
+                Comments are messages in your code that Python ignores. They are written
+                only for humans, not the computer. We use them to <span class="highlight">explain what the code does</span> or leave reminders for ourselves.
+              </p>
+              <div class="codeExample">
+                <code>
+                  # This is a comment<br />
+                  print("Hello, world!") # This comment comes after code
+                </code>
+              </div>
+              <p>
+                In Python, a comment starts with a <code>#</code> symbol. Everything after the <code>#</code> is ignored by Python.
+              </p>
+              <p>
+                We spend more time reading code than writing code. Having clear comments helps us understand what we did.
+                They're especially useful to explain new ideas.
+              </p>
+            </div>
+
             <div class="tab-content" id="together">
               <h2>Putting It All Together</h2>
               <p>
@@ -116,9 +137,12 @@
                 </code>
               </div>
               <p>
-                In this example, we ask for the user's nickname, store it in a
-                variable, and then use that variable to print a friendly
-                message.
+                In this example, we
+                <ol>
+                  <li>Ask for the user's nickname,</li>
+                  <li>Store it in a variable,</li>
+                  <li>Output the variable concatenated with a string in a message</li>
+                </ol>
               </p>
               <p>
                 Now it's your turn to try! Can you make a program that asks for
@@ -173,3 +197,4 @@
     <script type="module" src="js/main-new.js"></script>
   </body>
 </html>
+
