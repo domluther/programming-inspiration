@@ -273,12 +273,77 @@ export class ProgrammingPage {
   initializeConcatenationToggle() {
     this.concatToggle = document.querySelector('#concatToggle');
     if (this.concatToggle) {
+      // Load saved state from cookie
+      this.loadToggleState();
+      
       this.concatToggle.addEventListener('change', (e) => {
         this.usePlusMode = e.target.checked;
+        // Save state to cookie
+        this.saveToggleState();
+        // Update background content visibility
+        this.updateBackgroundContent();
         // Refresh the current question display
         this.updateCurrentQuestion();
       });
     }
+    
+    // Initialize background content on page load
+    this.updateBackgroundContent();
+  }
+
+  /**
+   * Save toggle state to cookie
+   */
+  saveToggleState() {
+    const expiryDate = new Date();
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Expire in 1 year
+    document.cookie = `concatenationMode=${this.usePlusMode}; expires=${expiryDate.toUTCString()}; path=/`;
+  }
+
+  /**
+   * Load toggle state from cookie
+   */
+  loadToggleState() {
+    const cookies = document.cookie.split(';');
+    const modeCookie = cookies.find(cookie => cookie.trim().startsWith('concatenationMode='));
+    
+    if (modeCookie) {
+      const savedState = modeCookie.split('=')[1].trim();
+      this.usePlusMode = savedState === 'true';
+    } else {
+      // Default to comma mode if no cookie exists
+      this.usePlusMode = false;
+    }
+    
+    // Update the toggle UI to match the loaded state
+    if (this.concatToggle) {
+      this.concatToggle.checked = this.usePlusMode;
+    }
+  }
+
+  /**
+   * Update background content visibility based on concatenation mode
+   */
+  updateBackgroundContent() {
+    // Show/hide comma mode elements
+    const commaElements = document.querySelectorAll('.background-comma');
+    const plusElements = document.querySelectorAll('.background-plus');
+    
+    commaElements.forEach(element => {
+      if (this.usePlusMode) {
+        element.classList.add('hidden');
+      } else {
+        element.classList.remove('hidden');
+      }
+    });
+    
+    plusElements.forEach(element => {
+      if (this.usePlusMode) {
+        element.classList.remove('hidden');
+      } else {
+        element.classList.add('hidden');
+      }
+    });
   }
 
   /**

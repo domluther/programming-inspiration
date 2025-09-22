@@ -407,7 +407,7 @@ nav {
   font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   background-color: #f6f8fa; /* Slightly warmer code background */
   padding: 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 0.5rem;
   border: 1px solid #e1e4e8;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
