@@ -10,6 +10,14 @@ import {
 import { ProgrammingPage } from './ProgrammingPage.js';
 
 // Iteration while page questions
+// 
+// finalMessage vs finalMessagePlus:
+// - finalMessage: Uses comma syntax for concatenation ("Text", {variable}, "more text")
+// - finalMessagePlus: Uses plus syntax for concatenation ("Text " + {variable} + " more text")
+// - finalMessagePlus is ONLY needed when the message contains variables for concatenation
+// - Static text messages (no variables) can use just finalMessage for both modes
+// - String variables don't need str() wrapping: {correctReply}
+// - Numeric variables need str() wrapping in plus mode: str({answer1})
 const questions = [
   {
     topic: 'ask for the best Spongebob character until correct',
@@ -42,6 +50,7 @@ const questions = [
     loopAction: 'print({loopMessage})',
     loopMessage: '"Too small"',
     finalMessage: '"You entered", {answer2}',
+    finalMessagePlus: '"You entered " + str({answer2})',
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
@@ -73,17 +82,18 @@ const questions = [
   },
   {
     topic: 'guess the number of planets in the solar system',
-    pattern: 'int',
+    pattern: 'string',
     variable1: 'correct_count',
     variable2: 'guess',
-    initialValue: '8',
+    initialValue: '"8"',
     wrongReply: '9',
     correctReply: '8',
     originalQuestion: '"How many planets in our solar system? "',
     condition: '{variable2} != {variable1}',
     loopMessage: '"Nope, Pluto is not a planet."',
     loopAction: 'print({loopMessage})',
-    finalMessage: '"Correct! There are 8 planets in our solar system."',
+    finalMessage: '"Correct! There are", {correctReply}, "planets in our solar system."',
+    finalMessagePlus: '"Correct! There are " + {correctReply} + " planets in our solar system."',
     finalAction: 'print({finalMessage})',
   },
   {
@@ -129,7 +139,8 @@ const questions = [
     condition: '{variable2} != {variable1}',
     loopMessage: '"Nope. Starts with a p."',
     loopAction: 'print({loopMessage})',
-    finalMessage: '"Correct! Paris is indeed the capital of France."',
+    finalMessage: '"Correct!", {correctReply}, "is the capital of France."',
+    finalMessagePlus: '"Correct! " + {correctReply} + " is the capital of France."',
     finalAction: 'print({finalMessage})',
   },
 
@@ -180,6 +191,7 @@ const questions = [
     condition: '{variable2} != 0',
     loopAction: '{variable1} = {variable1} + {variable2}',
     finalMessage: '"The sum is", {answer1}',
+    finalMessagePlus: '"The sum is " + str({answer1})',
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
@@ -209,11 +221,12 @@ const questions = [
     initialValue: '0',
     wrongReply: '50',
     correctReply: '100',
-    answer1: '120',
+    answer1: '150',
     originalQuestion: '"Enter a number to add: "',
     condition: '{variable1} < 100',
     loopAction: '{variable1} = {variable1} + {variable2}',
     finalMessage: '"The sum is", {answer1}',
+    finalMessagePlus: '"The sum is " + str({answer1})',
     finalAction: 'print({finalMessage}, "Total:", {variable1})',
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
@@ -225,11 +238,12 @@ const questions = [
     initialValue: '1',
     wrongReply: '5',
     correctReply: '72',
-    answer1: '2200',
+    answer1: '2160',
     originalQuestion: '"Enter a number to multiply: "',
     condition: '{variable1} <= 1000',
     loopAction: '{variable1} = {variable1} * {variable2}',
     finalMessage: '"The product is", {answer1}',
+    finalMessagePlus: '"The product is " + str({answer1})',
     finalAction: 'print({finalMessage})',
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
@@ -266,6 +280,8 @@ class IterationWhilePage extends ProgrammingPage {
     this.exampleQuestionEle = document.querySelector('#exampleQuestion');
     this.exampleAnswerEle = document.querySelector('#exampleAnswer');
     this.exampleResponseEle = document.querySelector('#exampleResponse');
+
+    // Code section elements
     this.firstVariableEle = document.querySelector('#firstVariable');
     this.secondVariableEle = document.querySelector('#secondVariable');
     this.whileConditionEle = document.querySelector('#whileCondition');
@@ -338,6 +354,7 @@ class IterationWhilePage extends ProgrammingPage {
   setCode(question) {
     try {
       const { pattern } = question;
+      const INDENT = '    '; // 4 spaces
 
       // Fill in code block
       if (this.firstVariableEle) {
@@ -349,19 +366,19 @@ class IterationWhilePage extends ProgrammingPage {
           this.secondVariableEle.innerText = `${question.variable2} = int(input(${this.replaceText(question.originalQuestion, question)}))`;
         }
         if (this.followUpQuestionEle) {
-          this.followUpQuestionEle.innerText = `    ${question.variable2} = int(input(${this.replaceText(question.originalQuestion, question)}))`;
+          this.followUpQuestionEle.innerText = `${INDENT}${question.variable2} = int(input(${this.replaceText(question.originalQuestion, question)}))`;
         }
       } else if (pattern === 'string') {
         if (this.secondVariableEle) {
           this.secondVariableEle.innerText = `${question.variable2} = input(${this.replaceText(question.originalQuestion, question)})`;
         }
         if (this.followUpQuestionEle) {
-          this.followUpQuestionEle.innerText = `    ${question.variable2} = input(${this.replaceText(question.originalQuestion, question)})`;
+          this.followUpQuestionEle.innerText = `${INDENT}${question.variable2} = input(${this.replaceText(question.originalQuestion, question)})`;
         }
       } else if (pattern === 'noInput') {
         // No input has a second loop action instead of a follow up question
         if (this.followUpQuestionEle) {
-          this.followUpQuestionEle.innerText = `    ${this.replaceText(question.loopAction2, question)}`;
+          this.followUpQuestionEle.innerText = `${INDENT}${this.replaceText(question.loopAction2, question)}`;
         }
         if (this.secondVariableEle) {
           this.secondVariableEle.innerText = '';
@@ -372,10 +389,11 @@ class IterationWhilePage extends ProgrammingPage {
         this.whileConditionEle.innerText = `while ${this.replaceText(question.condition, question)}:`;
       }
       if (this.loopActionEle) {
-        this.loopActionEle.innerText = `    ${this.replaceText(question.loopAction, question)}`;
+        this.loopActionEle.innerText = `${INDENT}${this.replaceText(question.loopAction, question)}`;
       }
       if (this.finalActionEle) {
-        this.finalActionEle.innerText = this.replaceText(question.finalAction, question);
+        const finalActionText = this.usePlusMode ? (question.finalMessagePlus || question.finalMessage) : question.finalMessage;
+        this.finalActionEle.innerText = `print(${this.replaceText(finalActionText, question)})`;
       }
     } catch (error) {
       console.error('Error in setCode function:', error);

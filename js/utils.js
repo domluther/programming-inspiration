@@ -42,11 +42,13 @@ export function replaceText(text, question, code = true) {
       .replaceAll('{answer}', question?.variable)
       .replaceAll('{answer1}', question?.variable1)
       .replaceAll('{answer2}', question?.variable2)
+      .replaceAll('{correctReply}', question?.variable1)
       .replaceAll('{originalQuestion}', question?.originalQuestion);
   }
   return text
     .replaceAll('{answer1}', question?.answer1)
     .replaceAll('{answer2}', question?.answer2)
+    .replaceAll('{correctReply}', question?.correctReply)
     .replaceAll('{result}', question?.result);
 }
 
