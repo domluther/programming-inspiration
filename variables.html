@@ -132,16 +132,16 @@
               </div>
               <p>
                 Now if the user enters 12, the variable <code>age</code> will be
-                the integer <code>12</code>, which we can use in maths!
+                the integer <code>12</code>, which we can use in maths.
               </p>
               <span class="background-plus">
+              <p>
+                If we want to output the value, <code>print()</code> expects <code>age</code> to be a string. This means we need to use
+                <code>str(age)</code> to cast <code>12</code>back to the string <code>"12"</code> when we output it.
+              </p>
               <div class="codeExample">
                 <code>print("You are " + str(age) + " years old.")</code>
               </div>
-              <p>
-                <code>print()</code> expects <code>age</code> to be a string, so we use
-                <code>str(age)</code> to convert it back to a string when we output it.
-              </p>
               </span>
             </div>
 
@@ -228,10 +228,15 @@
                 </code>
               </div>
               <p>
-                This program asks for a number of days, casts the response to an
-                integer, calculates the number of hours, and then prints the
-                result. <span class="background-comma">It uses commas to concatenate the strings and variables.</span>
-                <span class="background-plus">It uses plus signs to concatenate the strings and variables, with casting to convert numbers to strings.</span>
+                This program:
+                <ol>
+                  <li>Asks for a number of days,</li>
+                  <li>Casts the response to an integer,</li>
+                  <li>Calculates the number of hours,</li>
+                  <li>Outputs a final message with the numbers in it.</li>
+                </ol>
+                <span class="background-comma">Note - It uses commas to concatenate the strings and variables.</span>
+                <span class="background-plus">Note - It uses plus signs to concatenate the strings and variables. It used casting to convert the integers back to strings.</span>
               </p>
               <p>
                 Now it's your turn! Can you make a program that asks for
@@ -296,3 +301,4 @@
     <script type="module" src="js/variables-new.js"></script>
   </body>
 </html>
+
