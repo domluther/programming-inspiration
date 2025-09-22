@@ -575,9 +575,9 @@ ol {
 }
 
 ol li {
-  padding: 0.5rem 0; /* Vertical padding for breathing room */
+  padding: 0.2rem 0; /* Vertical padding for breathing room */
   margin-bottom: 0.5rem; /* Space between list items */
-  line-height: 1.5; /* Comfortable line height for readability */
+  line-height: 1.2; /* Comfortable line height for readability */
   padding-left: 0.5rem; /* Small left padding for text alignment */
 }
 
@@ -671,5 +671,6 @@ ol li {
 .hidden {
   display: none;
 }
+
 
 
