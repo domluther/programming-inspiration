@@ -569,11 +569,16 @@ nav {
 
 ol {
   list-style-type: decimal;
-  list-style-position: inside;
+  list-style-position: outside; /* Changed from inside for better alignment */
+  padding-left: 2rem; /* Space for numbers */
+  margin: 1rem 0; /* Vertical spacing around the list */
 }
 
 ol li {
-  padding-left: 1rem;
+  padding: 0.5rem 0; /* Vertical padding for breathing room */
+  margin-bottom: 0.5rem; /* Space between list items */
+  line-height: 1.5; /* Comfortable line height for readability */
+  padding-left: 0.5rem; /* Small left padding for text alignment */
 }
 
 /* ===== CONCATENATION TOGGLE ===== */
@@ -666,4 +671,5 @@ ol li {
 .hidden {
   display: none;
 }
+
 
