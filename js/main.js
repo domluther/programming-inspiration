@@ -383,7 +383,7 @@ const questions = [
     variable: 'quote',
     topic: 'their favourite quote',
     question: 'What is your favourite quote?',
-    answer: 'Life is trying things to see if they work',
+    answer: 'No act of kindness is ever wasted.',
     response: '"I\'ve never heard that.", {answer}, "."',
     responsePlus: '"I\'ve never heard that. " + {answer} + "."',
   },

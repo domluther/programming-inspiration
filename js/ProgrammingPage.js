@@ -46,10 +46,15 @@ export class ProgrammingPage {
     this.backgroundBtn = document.querySelector('#background');
     this.forceSpongeBtn = document.querySelector('#forceSpongebob');
     this.copyBtn = document.querySelector('#copyMe');
+    this.keyboardBtn = document.querySelector('#keyboardShortcuts');
 
     // Navigation buttons
     this.prevBtn = document.querySelector('#prevQuestion');
     this.nextBtn = document.querySelector('#nextQuestion');
+
+    // Modal elements
+    this.shortcutsModal = document.querySelector('#shortcutsModal');
+    this.modalCloseBtn = document.querySelector('.modal-close');
 
     // Common sections
     this.exampleEle = document.querySelector('.example');
@@ -93,6 +98,24 @@ export class ProgrammingPage {
       this.forceSpongeBtn.addEventListener('click', () => this.inspire('bob'));
     }
 
+    // Keyboard shortcuts modal event listeners
+    if (this.keyboardBtn) {
+      this.keyboardBtn.addEventListener('click', () => this.showKeyboardShortcuts());
+    }
+    
+    if (this.modalCloseBtn) {
+      this.modalCloseBtn.addEventListener('click', () => this.hideKeyboardShortcuts());
+    }
+    
+    // Close modal when clicking outside or pressing Escape
+    if (this.shortcutsModal) {
+      this.shortcutsModal.addEventListener('click', (e) => {
+        if (e.target === this.shortcutsModal) {
+          this.hideKeyboardShortcuts();
+        }
+      });
+    }
+
     // Inspire links event listeners
     const inspireLinks = document.querySelectorAll('.inspire-link');
     inspireLinks.forEach(link => {
@@ -133,7 +156,11 @@ export class ProgrammingPage {
             case 't':
                 event.preventDefault();
                 this.toggleConcatenationMode();
-                break;        
+                break;
+            case 'k':
+                event.preventDefault();
+                this.showKeyboardShortcuts();
+                break;
             }
       if (this.exampleEle && !this.exampleEle.classList.contains('hidden')) {
         switch (event.key) {
@@ -145,7 +172,7 @@ export class ProgrammingPage {
             event.preventDefault();
             this.navigateQuestion(1);
             break;
-        case '?':
+        case 'h':
             event.preventDefault();
             this.utils.showHelp();
             break;
@@ -388,6 +415,24 @@ export class ProgrammingPage {
     if (this.questions && this.questions[this.currentQuestionIndex]) {
       const question = this.questions[this.currentQuestionIndex];
       this.displayQuestion(question);
+    }
+  }
+
+  /**
+   * Show keyboard shortcuts modal
+   */
+  showKeyboardShortcuts() {
+    if (this.shortcutsModal) {
+      this.shortcutsModal.showModal();
+    }
+  }
+
+  /**
+   * Hide keyboard shortcuts modal
+   */
+  hideKeyboardShortcuts() {
+    if (this.shortcutsModal) {
+      this.shortcutsModal.close();
     }
   }
 

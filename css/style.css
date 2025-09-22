@@ -703,6 +703,124 @@ ol li {
   color: #ff8c00;
 }
 
+/* Keyboard shortcuts modal */
+.shortcuts-modal {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.shortcuts-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: #ff8c00;
+  color: #000;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #000;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.shortcut-section {
+  margin-bottom: 1.5rem;
+}
+
+.shortcut-section:last-child {
+  margin-bottom: 0;
+}
+
+.shortcut-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2d3748;
+  border-bottom: 2px solid #ff8c00;
+  padding-bottom: 0.5rem;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
+}
+
+.shortcut-item:last-child {
+  margin-bottom: 0;
+}
+
+.shortcut-item kbd {
+  background-color: #2d3748;
+  color: #e2e8f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+  min-width: 2rem;
+  text-align: center;
+  margin-right: 1rem;
+  box-shadow: 0 2px 4px rgba(45, 55, 72, 0.2);
+}
+
+.shortcut-item span {
+  flex: 1;
+  color: #2d3748;
+  font-size: 0.9rem;
+}
+
+/* Position keyboard button to the right of spongebob */
+#keyboardShortcuts {
+  position: fixed;
+  bottom: 1rem;
+  right: 4rem;
+}
+
 /* Hidden class placed at end to ensure it overrides other display properties through cascade order */
 .hidden {
   display: none;

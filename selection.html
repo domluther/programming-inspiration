@@ -289,6 +289,59 @@
       <button id="forceSpongebob" class="btn small-btn" pre="Spongebob">
         🧽
       </button>
+      <button id="keyboardShortcuts" class="btn small-btn" pre="Keyboard Shortcuts">
+        ⌨️
+      </button>
+
+      <!-- Keyboard Shortcuts Modal -->
+      <dialog id="shortcutsModal" class="shortcuts-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Keyboard Shortcuts</h2>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="shortcut-section">
+              <h3>Global Shortcuts</h3>
+              <div class="shortcut-item">
+                <kbd>i</kbd>
+                <span>Inspire me (generate random question)</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>b</kbd>
+                <span>Toggle background information</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>t</kbd>
+                <span>Toggle concatenation mode (comma/plus)</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>k</kbd>
+                <span>Show keyboard shortcuts</span>
+              </div>
+            </div>
+            <div class="shortcut-section">
+              <h3>When Question is Showing</h3>
+              <div class="shortcut-item">
+                <kbd>←</kbd>
+                <span>Previous question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>→</kbd>
+                <span>Next question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>h</kbd>
+                <span>Show/hide code help</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>c</kbd>
+                <span>Copy code to clipboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
     </div>
     <script type="module" src="js/selection.js"></script>
   </body>
