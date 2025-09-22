@@ -201,14 +201,26 @@
               <p>Let's use everything we've learned to make a fun program:</p>
               <div class="codeExample">
                 <code>
-                  correct_answer = "spongebob squarepants"<br />
+                  correct_ans = "spongebob squarepants"<br />
                   best_show = input("What is the best TV show? ")<br />
-                  if best_show == correct_answer:<br />
-                  <span class="tab"></span>print("Absolutely!", correct_answer,
-                  "is glorious")<br />
+                  if best_show == correct_ans:<br />
+                  <span class="background-comma">
+                    <span class="tab"></span>print("Absolutely!", correct_ans,
+                    "is glorious")<br />
+                  </span>
+                  <span class="background-plus">
+                    <span class="tab"></span>print("Absolutely! " + str(correct_ans) +
+                    " is glorious")<br />
+                  </span>
                   else:<br />
-                  <span class="tab"></span>print(best_show, "?!?! No way - it
-                  is", correct_answer)<br />
+                  <span class="background-comma">
+                    <span class="tab"></span>print(best_show, "?!?! No way - it
+                    is", correct_ans)<br />
+                  </span>
+                  <span class="background-plus">
+                    <span class="tab"></span>print(str(best_show) + "? No way - it
+                    is " + str(correct_ans))<br />
+                  </span>
                 </code>
               </div>
               <p>
@@ -256,6 +268,17 @@
             <p id="response"></p>
           </section>
         </section>
+        <div class="concatenation-toggle">
+          <label class="toggle-label">
+            <span class="toggle-text">Concatenation Mode:</span>
+            <input type="checkbox" id="concatToggle" class="toggle-checkbox">
+            <span class="toggle-slider"></span>
+            <span class="toggle-modes">
+              <span class="mode-comma">Comma (,)</span>
+              <span class="mode-plus">Plus (+)</span>
+            </span>
+          </label>
+        </div>
       </main>
       <button id="forceSpongebob" class="btn small-btn" pre="Spongebob">
         🧽
