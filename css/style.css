@@ -595,6 +595,13 @@ ol li {
   cursor: pointer;
 }
 
+/* Container for the toggle slider and mode labels */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .toggle-slider {
   position: relative;
   width: 50px;
@@ -628,8 +635,8 @@ ol li {
 
 .toggle-modes {
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  align-items: center;
+  gap: 1rem;
   font-size: 0.875rem;
   color: #666;
 }
@@ -637,16 +644,34 @@ ol li {
 .mode-comma {
   font-weight: 500;
   color: #ff8c00;
+  transition: all 0.3s ease;
 }
 
-.toggle-checkbox:checked ~ .toggle-modes .mode-comma {
-  color: #666;
+.mode-plus {
   font-weight: normal;
+  color: #666;
+  transition: all 0.3s ease;
 }
 
-.toggle-checkbox:checked ~ .toggle-modes .mode-plus {
+/* When checkbox is checked, use adjacent sibling selector for the slider and general sibling for plus mode */
+/* When checkbox is checked, use adjacent sibling selector for the slider and general sibling for plus mode */
+.toggle-checkbox:checked + .toggle-slider {
+  background-color: #4CAF50;
+}
+
+.toggle-checkbox:checked + .toggle-slider::before {
+  transform: translateX(25px);
+}
+
+.toggle-checkbox:checked ~ .mode-plus {
   color: #4CAF50;
   font-weight: 500;
+}
+
+/* When checkbox is checked, we need to target the comma that comes before it using :has() or JavaScript fallback */
+.toggle-modes:has(.toggle-checkbox:checked) .mode-comma {
+  color: #666;
+  font-weight: normal;
 }
 
 /* ===== UTILITY CLASSES (MUST BE LAST) ===== */

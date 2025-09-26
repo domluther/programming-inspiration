@@ -14,7 +14,7 @@ export class ProgrammingPage {
     this.currentQuestionIndex = 0;
     
     // Concatenation mode state (false = comma, true = plus)
-    this.usePlusMode = true;
+    this.usePlusMode = true; // Default to plus mode
     
     // Initialize common elements that exist on all pages
     this.initializeCommonElements();
@@ -313,12 +313,12 @@ export class ProgrammingPage {
   initializeConcatenationToggle() {
     this.concatToggle = document.querySelector('#concatToggle');
     if (this.concatToggle) {
-      // Load saved state from cookie
+      // Load saved state from localStorage
       this.loadToggleState();
       
       this.concatToggle.addEventListener('change', (e) => {
         this.usePlusMode = e.target.checked;
-        // Save state to cookie
+        // Save state to localStorage
         this.saveToggleState();
         // Update background content visibility
         this.updateBackgroundContent();
@@ -354,27 +354,25 @@ export class ProgrammingPage {
   }
 
   /**
-   * Save toggle state to cookie
+   * Save toggle state to localStorage
    */
   saveToggleState() {
-    const expiryDate = new Date();
-    expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Expire in 1 year
-    document.cookie = `concatenationMode=${this.usePlusMode}; expires=${expiryDate.toUTCString()}; path=/`;
+    localStorage.setItem('concatenationMode', this.usePlusMode.toString());
   }
 
   /**
-   * Load toggle state from cookie
+   * Load toggle state from localStorage
    */
   loadToggleState() {
-    const cookies = document.cookie.split(';');
-    const modeCookie = cookies.find(cookie => cookie.trim().startsWith('concatenationMode='));
+    const savedState = localStorage.getItem('concatenationMode');
     
-    if (modeCookie) {
-      const savedState = modeCookie.split('=')[1].trim();
+    if (savedState !== null) {
       this.usePlusMode = savedState === 'true';
     } else {
-      // Default to comma mode if no cookie exists
-      this.usePlusMode = false;
+      // Default to plus mode if no saved state exists
+      this.usePlusMode = true;
+      // Save the default value to localStorage
+      localStorage.setItem('concatenationMode', this.usePlusMode.toString());
     }
     
     // Update the toggle UI to match the loaded state
@@ -406,6 +404,33 @@ export class ProgrammingPage {
         element.classList.add('hidden');
       }
     });
+    
+    // Update toggle label styling
+    this.updateToggleLabels();
+  }
+
+  /**
+   * Update toggle label styling based on current mode
+   */
+  updateToggleLabels() {
+    const modeComma = document.querySelector('.mode-comma');
+    const modePlus = document.querySelector('.mode-plus');
+    
+    if (modeComma && modePlus) {
+      if (this.usePlusMode) {
+        // Plus mode active
+        modeComma.style.color = '#666';
+        modeComma.style.fontWeight = 'normal';
+        modePlus.style.color = '#4CAF50';
+        modePlus.style.fontWeight = '500';
+      } else {
+        // Comma mode active
+        modeComma.style.color = '#ff8c00';
+        modeComma.style.fontWeight = '500';
+        modePlus.style.color = '#666';
+        modePlus.style.fontWeight = 'normal';
+      }
+    }
   }
 
   /**
