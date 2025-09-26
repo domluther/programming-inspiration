@@ -14,7 +14,7 @@ export class ProgrammingPage {
     this.currentQuestionIndex = 0;
     
     // Concatenation mode state (false = comma, true = plus)
-    this.usePlusMode = false;
+    this.usePlusMode = true;
     
     // Initialize common elements that exist on all pages
     this.initializeCommonElements();
