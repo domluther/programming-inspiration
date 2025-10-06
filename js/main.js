@@ -22,6 +22,14 @@ const questions = [
   {
     variable: 'name',
     topic: 'their name',
+    question: 'What is your name?',
+    answer: 'Bob',
+    response: '"Hello", {answer}, ". Welcome to Python programming!"',
+    responsePlus: '"Hello " + {answer} + ". Welcome to Python programming!"',
+  },
+  {
+    variable: 'name',
+    topic: 'their name',
     question: 'What is your full name?',
     answer: 'Bob Smith Frederick',
     response: '"Nice to meet you", {answer}, "."',
@@ -148,6 +156,14 @@ const questions = [
     responsePlus: '{answer} + "? Cool!"',
   },
   {
+    variable: 'shoe_size',
+    topic: 'their shoe size',
+    question: 'What is your shoe size?',
+    answer: '8',
+    response: '{answer}, "? Big feet!"',
+    responsePlus: '{answer} + "? Big feet!"',
+  },
+  {
     variable: 'film',
     topic: 'their favourite film',
     question: 'What is your favourite film?',
@@ -162,6 +178,14 @@ const questions = [
     answer: 'The Lion King',
     response: '{answer}, "is a great book."',
     responsePlus: '{answer} + " is a great book."',
+  },
+  {
+    variable: 'weekend_plans',
+    topic: 'their weekend plans',
+    question: 'What are your weekend plans?',
+    answer: 'going to the park',
+    response: '"That sounds fun!", {answer}, "is a great idea."',
+    responsePlus: '"That sounds fun! " + {answer} + " is a great idea."',
   },
   {
     variable: 'allergies',
@@ -186,6 +210,14 @@ const questions = [
     answer: 'sweet foods',
     response: '"I also like", {answer}, "."',
     responsePlus: '"I also like " + {answer} + "."',
+  },
+  {
+    variable: 'holiday_destination',
+    topic: 'dream holiday destination',
+    question: 'Where is your dream holiday destination?',
+    answer: 'Bali',
+    response: '"I holiday to", {answer}, "sounds amazing."',
+    responsePlus: '"I holiday to " + {answer} + " sounds amazing."',
   },
   {
     variable: 'sport',
@@ -402,6 +434,14 @@ const questions = [
     answer: 'fly',
     response: '"I wish I could", {answer}, "."',
     responsePlus: '"I wish I could " + {answer} + "."',
+  },
+  {
+    variable: 'dream_job',
+    topic: 'about their dream job',
+    question: 'What is your dream job?',
+    answer: 'artist',
+    response: '"I wish I could be an", {answer}, "."',
+    responsePlus: '"I wish I could be an " + {answer} + "."',
   },
   {
     variable: 'flower',
