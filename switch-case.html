@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Learn switch-case statements with interactive OCR ERL programming practice questions and examples." />
+    <meta name="keywords" content="ocr erl programming, switch case, switch statements, case statements, selection, practice questions, coding exercises, ocr erl tutorial" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Programming Practice - Switch-Case (OCR ERL)</title>
+
+    <!-- external CSS link -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Programming practice</h1>
+      </header>
+      <main>
+        <div class="page-header">
+          <a href="selection.html" class="btn btn--nav btn--nav-left" title="Previous page (Selection)">‹</a>
+          <h2 class="page-title">Switch-Case (OCR ERL)</h2>
+          <button class="btn btn--nav btn--nav-right" disabled title="Next page">›</button>
+        </div>
+        <nav>
+          <a href="#" class="btn" id="background">Background</a>
+          <a href="#" class="btn" id="inspire">Inspire me!</a>
+          <a href="#" class="btn" id="help">Help me!</a>
+        </nav>
+
+        <section class="background hidden">
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="intro">
+                Introduction
+              </button>
+              <button class="tab-button" data-tab="ocr-erl-warning">
+                ⚠️ OCR ERL Syntax
+              </button>
+              <button class="tab-button" data-tab="switch-case">
+                Switch-Case Statements
+              </button>
+              <button class="tab-button" data-tab="indentation">
+                Indentation & Colons
+              </button>
+              <button class="tab-button" data-tab="example">
+                Complete Example
+              </button>
+            </div>
+
+            <div class="tab-content active" id="intro">
+              <h1>Switch-Case in OCR ERL</h1>
+              <p>
+                Welcome to the world of multi-way decision-making! Today,
+                we're going to learn about <span class="highlight">switch-case statements</span>, which allow your program to choose between multiple options based on a single value.
+              </p>
+              <p>
+                <strong>⚠️ IMPORTANT:</strong> This page uses <span class="highlight">OCR Exam Reference Language (ERL)</span> syntax, which is <strong>DIFFERENT from Python</strong>. The rest of this site uses Python, but for this topic we're using OCR ERL as specified in the exam board documentation.
+              </p>
+            </div>
+
+            <div class="tab-content" id="ocr-erl-warning">
+              <h2>⚠️ Why OCR ERL and Not Python?</h2>
+              <p>
+                Unlike the other pages on this site, this page uses <span class="highlight">OCR Exam Reference Language (ERL)</span> syntax, not Python. Here's why:
+              </p>
+              <table class="summary-table">
+                <thead>
+                  <tr>
+                    <th>Language</th>
+                    <th>Has Switch-Case?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Python</td>
+                    <td>
+                      Not until Python 3.10+ (and it's called "match-case", not "switch-case")
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>OCR ERL</td>
+                    <td>
+                      ✅ Yes! Has traditional switch-case statements that you need to know for your exam
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                <strong>Remember:</strong> OCR ERL is the pseudocode language used in OCR Computer Science exams. It's designed to be language-independent but looks similar to many programming languages. You won't run this code in Python—it's for understanding the <em>concept</em> of switch-case statements.
+              </p>
+            </div>
+
+            <div class="tab-content" id="switch-case">
+              <h2>Switch-Case: Choosing From Multiple Options</h2>
+              <p>
+                A <span class="highlight">switch-case statement</span> allows you to test a variable against multiple values and execute different code for each value. It's like a menu where you pick one option from many.
+              </p>
+              <p>
+                The basic structure in OCR ERL is:
+              </p>
+              <div class="code-example">
+                <code>
+                  <div>switch variable_name :</div>
+                  <div><span class="tab"></span>case "value1":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Response for value1")</div>
+                  <div><span class="tab"></span>case "value2":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Response for value2")</div>
+                  <div><span class="tab"></span>default:</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Response for any other value")</div>
+                  <div>endswitch</div>
+                </code>
+              </div>
+              <p>
+                Key parts:
+              </p>
+              <ul>
+                <li><code>switch variable_name :</code> - Starts the switch statement with the variable to test</li>
+                <li><code>case "value":</code> - Each case tests for a specific value</li>
+                <li><code>default:</code> - Runs if none of the cases match (like "else")</li>
+                <li><code>endswitch</code> - Marks the end of the switch statement</li>
+              </ul>
+            </div>
+
+            <div class="tab-content" id="indentation">
+              <h2>Indentation & Colons in OCR ERL</h2>
+              <p>
+                OCR ERL uses <span class="highlight">Python-style indentation</span> to show which code belongs where. This is crucial for readability!
+              </p>
+              <p>Key indentation rules:</p>
+              <ol>
+                <li>After <code>switch variable_name :</code> put a colon and indent the next line</li>
+                <li>Each <code>case</code> and <code>default</code> line is indented once</li>
+                <li>The code inside each case is indented <em>twice</em> (or once more than the case)</li>
+                <li><code>endswitch</code> returns to the original indentation level</li>
+              </ol>
+              <div class="code-example">
+                <code>
+                  <div>switch day :</div>
+                  <div><span class="tab"></span>case "Sat":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Saturday")</div>
+                  <div><span class="tab"></span>case "Sun":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Sunday")</div>
+                  <div><span class="tab"></span>default:</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Weekday")</div>
+                  <div>endswitch</div>
+                </code>
+              </div>
+              <p>
+                Notice the pattern: switch line → case lines indented once → print statements indented twice → endswitch back to start.
+              </p>
+            </div>
+
+            <div class="tab-content" id="example">
+              <h2>Complete Example</h2>
+              <p>Let's see a full OCR ERL program using switch-case:</p>
+              <div class="code-example">
+                <code>
+                  <div>best_show = input("What is the best TV show? ")</div>
+                  <div>switch best_show :</div>
+                  <div><span class="tab"></span>case "spongebob":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Absolutely! Spongebob Squarepants is glorious")</div>
+                  <div><span class="tab"></span>case "stranger things":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Good show, but not the best!")</div>
+                  <div><span class="tab"></span>default:</div>
+                  <div><span class="tab"></span><span class="tab"></span>print(best_show + "?!?! Nope! It's Spongebob!")</div>
+                  <div>endswitch</div>
+                </code>
+              </div>
+              <p>
+                This program:
+                <ol>
+                  <li>Asks the user to input their answer</li>
+                  <li>Uses switch-case to check what they entered:
+                    <ul>
+                      <li>If it matches "spongebob" exactly, it agrees enthusiastically</li>
+                      <li>If they said "stranger things", it gives a different response</li>
+                      <li>For any other answer (default), it disagrees and tells them the correct answer</li>
+                    </ul>
+                  </li>
+                </ol>
+              </p>
+              <p>
+                <strong>Your turn!</strong> Think about how you could use switch-case to create a menu system, a day-of-the-week program, or a simple game choice system. Press <a href="#" class="inspire-link">inspire me</a> to get started with practice questions!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="example hidden">
+          <h3 class="question-header">
+            <button id="prevQuestion" class="btn btn--nav btn--nav-left" title="Previous question (← arrow key)">‹</button>
+            <span class="question-text">
+              Write a program to...
+              <span id="topic"></span>
+            </span>
+            <button id="nextQuestion" class="btn btn--nav btn--nav-right" title="Next question (→ arrow key)">›</button>
+          </h3>
+          <section class="cartoon1">
+            <img id="questionImage" src="img/baseImageSelection.webp" alt="" />
+            <p id="selectionQuestion"></p>
+            <p id="selectionAnswer1"></p>
+            <p id="ifReply"></p>
+            <p id="selectionAnswer2"></p>
+            <p id="elseReply"></p>
+          </section>
+
+          <section class="code hidden">
+            <button id="copyMe" class="btn btn--small btn--copy" pre="Click to copy code">
+              📋
+            </button>
+            <p id="codeCorrectAnswer"></p>
+            <p id="codeQuestion"></p>
+            <p id="codeIfCheck"></p>
+            <p id="codeIfReply"></p>
+            <p id="codeElse"></p>
+            <p id="codeElseReply"></p>
+            <p id="response"></p>
+          </section>
+        </section>
+      </main>
+      <button id="forceSpongebob" class="btn small-btn" pre="Spongebob">
+        🧽
+      </button>
+      <button id="keyboardShortcuts" class="btn small-btn" pre="Keyboard Shortcuts">
+        ⌨️
+      </button>
+
+      <!-- Keyboard Shortcuts Modal -->
+      <dialog id="shortcutsModal" class="shortcuts-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Keyboard Shortcuts</h2>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="shortcut-section">
+              <h3>Global Shortcuts</h3>
+              <div class="shortcut-item">
+                <kbd>i</kbd>
+                <span>Inspire me (generate random question)</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>b</kbd>
+                <span>Toggle background information</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>k</kbd>
+                <span>Show keyboard shortcuts</span>
+              </div>
+            </div>
+            <div class="shortcut-section">
+              <h3>When Question is Showing</h3>
+              <div class="shortcut-item">
+                <kbd>←</kbd>
+                <span>Previous question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>→</kbd>
+                <span>Next question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>h</kbd>
+                <span>Show/hide code help</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>c</kbd>
+                <span>Copy code to clipboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+    <script type="module" src="js/switch-case.js"></script>
+  </body>
+</html>
