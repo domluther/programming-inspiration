@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Learn do-until loops with interactive OCR ERL programming practice questions and examples." />
+    <meta name="keywords" content="ocr erl programming, do until, do until loops, iteration, loops, practice questions, coding exercises, ocr erl tutorial" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Programming Practice - Do Until (OCR ERL)</title>
+
+    <!-- external CSS link -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Programming practice</h1>
+      </header>
+      <main>
+        <div class="page-header">
+          <a href="switch-case.html" class="btn btn--nav btn--nav-left" title="Previous page (Switch-Case)">‹</a>
+          <h2 class="page-title">Do Until (OCR ERL)</h2>
+          <button class="btn btn--nav btn--nav-right" disabled title="Next page">›</button>
+        </div>
+        <nav>
+          <a href="#" class="btn" id="background">Background</a>
+          <a href="#" class="btn" id="inspire">Inspire me!</a>
+          <a href="#" class="btn" id="help">Help me!</a>
+        </nav>
+
+        <section class="background hidden">
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="intro">
+                Introduction
+              </button>
+              <button class="tab-button" data-tab="ocr-erl-warning">
+                ⚠️ OCR ERL Syntax
+              </button>
+              <button class="tab-button" data-tab="do-until">
+                Do-Until Loops
+              </button>
+              <button class="tab-button" data-tab="while-vs-do-until">
+                While vs Do-Until
+              </button>
+              <button class="tab-button" data-tab="indentation">
+                Indentation & Structure
+              </button>
+              <button class="tab-button" data-tab="example">
+                Complete Example 1
+              </button>
+              <button class="tab-button" data-tab="example2">
+                Complete Example 2
+              </button>
+            </div>
+
+            <div class="tab-content active" id="intro">
+              <h1>Do-Until Loops in OCR ERL</h1>
+              <p>
+                Welcome to the world of <span class="highlight">do-until loops</span>! This is a special type of loop that's guaranteed to run <strong>at least once</strong>, making it perfect for situations where you need something to happen before checking a condition.
+              </p>
+              <p>
+                <strong>⚠️ IMPORTANT:</strong> This page uses <span class="highlight">OCR Exam Reference Language (ERL)</span> syntax, which is <strong>DIFFERENT from Python</strong>. The rest of this site uses Python, but for this topic we're using OCR ERL as specified in the exam board documentation.
+              </p>
+            </div>
+
+            <div class="tab-content" id="ocr-erl-warning">
+              <h2>⚠️ Why OCR ERL and Not Python?</h2>
+              <p>
+                Unlike the other pages on this site, this page uses <span class="highlight">OCR Exam Reference Language (ERL)</span> syntax, not Python. Here's why:
+              </p>
+              <table class="summary-table">
+                <thead>
+                  <tr>
+                    <th>Language</th>
+                    <th>Has Do-Until?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Python</td>
+                    <td>
+                      ❌ No! Python doesn't have do-until loops (you'd need to use while with a break)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>OCR ERL</td>
+                    <td>
+                      ✅ Yes! Has do-until loops that you need to know for your exam
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                <strong>Remember:</strong> OCR ERL is the pseudocode language used in OCR Computer Science exams. It's designed to be language-independent but looks similar to many programming languages. You won't run this code in Python—it's for understanding the <em>concept</em> of do-until loops.
+              </p>
+              <p>
+                <strong>💻 Want to practice coding in OCR ERL?</strong> Visit <a href="https://www.examreferencelanguage.co.uk/" target="_blank" rel="noopener noreferrer" class="highlight">examreferencelanguage.co.uk</a> where you can write and test OCR ERL code in your browser!
+              </p>
+            </div>
+
+            <div class="tab-content" id="do-until">
+              <h2>Do-Until: Run First, Check Later</h2>
+              <p>
+                A <span class="highlight">do-until loop</span> is a type of iteration where the code inside the loop runs <strong>at least once</strong>, and then keeps repeating <em>until</em> a condition becomes true.
+              </p>
+              <p>
+                The basic structure in OCR ERL is:
+              </p>
+              <div class="code-example">
+                <code>
+                  <div>do</div>
+                  <div><span class="tab"></span>// code to repeat</div>
+                  <div><span class="tab"></span>answer = input("Enter answer: ")</div>
+                  <div>until answer == "correct"</div>
+                </code>
+              </div>
+              <p>
+                Key parts:
+              </p>
+              <ul>
+                <li><code>do</code> - Starts the loop (code runs immediately)</li>
+                <li>Indented code - The statements that will repeat</li>
+                <li><code>until condition</code> - Loop continues until this condition is TRUE</li>
+              </ul>
+              <p>
+                <strong>Important:</strong> The condition is checked <em>after</em> the code runs, so the loop body executes at least once, even if the condition starts as true!
+              </p>
+            </div>
+
+            <div class="tab-content" id="while-vs-do-until">
+              <h2>🔄 While vs Do-Until: The Critical Difference</h2>
+              <p>
+                The key difference between <code>while</code> and <code>do-until</code> is <strong>when the condition is checked</strong>:
+              </p>
+              <table class="summary-table">
+                <thead>
+                  <tr>
+                    <th>Loop Type</th>
+                    <th>When Checked</th>
+                    <th>Minimum Runs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>while</code></td>
+                    <td>
+                      <strong>BEFORE</strong> the loop body runs
+                    </td>
+                    <td>
+                      0 times (might not run at all!)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>do-until</code></td>
+                    <td>
+                      <strong>AFTER</strong> the loop body runs
+                    </td>
+                    <td>
+                      At least 1 time (always runs once!)
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                <strong>Example comparison:</strong>
+              </p>
+              <div class="code-example">
+                <code>
+                  <div>// While loop - checks FIRST</div>
+                  <div>while answer == "correct":</div>
+                  <div><span class="tab"></span>print("Well done!")</div>
+                  <div>endwhile</div>
+                  <div style="margin-top: 10px;">// Do-until loop - checks AFTER</div>
+                  <div>do</div>
+                  <div><span class="tab"></span>answer = input("Guess: ")</div>
+                  <div>until answer == "correct"</div>
+                </code>
+              </div>
+              <p>
+                In the while loop, if <code>answer</code> isn't "correct" at the start, the loop never runs. In the do-until loop, the user gets asked at least once, no matter what!
+              </p>
+            </div>
+
+            <div class="tab-content" id="indentation">
+              <h2>Indentation & Structure in OCR ERL</h2>
+              <p>
+                OCR ERL uses <span class="highlight">Python-style indentation</span> to show which code belongs inside the loop.
+              </p>
+              <p>Indentation rules for do-until:</p>
+              <ol>
+                <li>Write <code>do</code> on its own line</li>
+                <li>Indent all code that should repeat</li>
+                <li>Write <code>until condition</code> at the same level as <code>do</code></li>
+              </ol>
+              <div class="code-example">
+                <code>
+                  <div>do</div>
+                  <div><span class="tab"></span>name = input("Enter name: ")</div>
+                  <div><span class="tab"></span>print("Hello " + name)</div>
+                  <div>until name == "quit"</div>
+                </code>
+              </div>
+              <p>
+                Notice: <code>do</code> and <code>until</code> are at the same indentation level, and the code between them is indented once.
+              </p>
+            </div>
+
+            <div class="tab-content" id="example">
+              <h2>Complete Example 1: Simple Loop</h2>
+              <p>Let's start with a simple OCR ERL program using a do-until loop:</p>
+              <div class="code-example">
+                <code>
+                  <div>print("Keep guessing!")</div>
+                  <div>do</div>
+                  <div><span class="tab"></span>guess = input("What is the best TV show? ")</div>
+                  <div><span class="tab"></span>print("You guessed: " + guess)</div>
+                  <div>until guess == "spongebob squarepants"</div>
+                  <div>print("Correct! You got it!")</div>
+                </code>
+              </div>
+              <p>
+                This program:
+                <ol>
+                  <li>Prints "Keep guessing!"</li>
+                  <li>Starts the do-until loop (runs at least once)</li>
+                  <li>Asks the user for their guess</li>
+                  <li>Shows them what they guessed</li>
+                  <li>Checks if they entered "spongebob squarepants" - if not, loops back to step 3</li>
+                  <li>When they get it right, exits the loop and prints "Correct! You got it!"</li>
+                </ol>
+              </p>
+              <p>
+                <strong>Key point:</strong> The user will be asked at least once, even if the condition somehow started as true, because the check happens <em>after</em> the code runs!
+              </p>
+              <p>
+                <strong>Your turn!</strong> Think about situations where you need to do something at least once before checking a condition. Press <a href="#" class="inspire-link">inspire me</a> to get started with practice questions!
+              </p>
+            </div>
+            
+            <div class="tab-content" id="example2">
+              <h2>Complete Example 2: With Selection</h2>
+              <p>Here's a more advanced example that includes selection (if-else) inside the loop:</p>
+              <div class="code-example">
+                <code>
+                  <div>print("Guess the best TV show!")</div>
+                  <div>do</div>
+                  <div><span class="tab"></span>guess = input("What is the best TV show? ")</div>
+                  <div><span class="tab"></span>if guess == "spongebob squarepants":</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Correct! Well done!")</div>
+                  <div><span class="tab"></span>else:</div>
+                  <div><span class="tab"></span><span class="tab"></span>print("Nope! Try again.")</div>
+                  <div><span class="tab"></span>endif</div>
+                  <div>until guess == "spongebob squarepants"</div>
+                  <div>print("You got it eventually!")</div>
+                </code>
+              </div>
+              <p>
+                This program:
+                <ol>
+                  <li>Prints an introduction</li>
+                  <li>Starts the do-until loop (runs at least once)</li>
+                  <li>Asks the user for their guess</li>
+                  <li>Uses selection to check if they got it right and gives appropriate feedback</li>
+                  <li>Repeats until they enter "spongebob squarepants"</li>
+                  <li>Prints a final message after they succeed</li>
+                </ol>
+              </p>
+              <p>
+                <strong>Notice:</strong> This example combines <span class="highlight">iteration</span> (the do-until loop) with <span class="highlight">selection</span> (the if-else statement) to give the user feedback while they're still guessing!
+              </p>
+              <p>
+                <strong>Tip:</strong> Start with Example 1 to understand the basics, then come back to this one to see how you can combine do-until with other programming constructs!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="example hidden">
+          <h3 class="question-header">
+            <button id="prevQuestion" class="btn btn--nav btn--nav-left" title="Previous question (← arrow key)">‹</button>
+            <span class="question-text">
+              Write a program to...
+              <span id="topic"></span>
+            </span>
+            <button id="nextQuestion" class="btn btn--nav btn--nav-right" title="Next question (→ arrow key)">›</button>
+          </h3>
+          <section class="cartoon1">
+            <img id="questionImage" src="img/baseImageSwitch.webp" alt="" />
+            <p id="switchQuestion"></p>
+            <p id="switchAnswer1"></p>
+            <p id="switchReply1"></p>
+            <p id="switchAnswer2"></p>
+            <p id="switchReply2"></p>
+            <p id="switchAnswer3"></p>
+            <p id="switchDefaultReply"></p>
+          </section>
+
+          <section class="code hidden">
+            <button id="copyMe" class="btn btn--small btn--copy" pre="Click to copy code">
+              📋
+            </button>
+            <p id="codeCorrectAnswer"></p>
+            <p id="codeQuestion"></p>
+            <p id="codeSwitch1"></p>
+            <p id="codeSwitchReply1"></p>
+            <p id="codeSwitch2"></p>
+            <p id="codeSwitchReply2"></p>
+            <p id="codeDefaultSwitch"></p>
+            <p id="codeDefaultSwitchReply"></p>
+            <p id="response"></p>
+          </section>
+          <p class="ocr-link" style="margin-top: 15px; padding: 12px; background-color: #f0f8ff; border-left: 4px solid #4CAF50; font-size: 0.95em;">
+            💻 <strong>Test this code:</strong> Copy the code above and paste it into <a href="https://www.examreferencelanguage.co.uk/" target="_blank" rel="noopener noreferrer" style="color: #4CAF50; font-weight: bold; text-decoration: underline;">examreferencelanguage.co.uk</a> to run it and see how switch-case works in OCR ERL!
+          </p>
+        </section>
+      </main>
+      <button id="forceSpongebob" class="btn small-btn" pre="Spongebob">
+        🧽
+      </button>
+      <button id="keyboardShortcuts" class="btn small-btn" pre="Keyboard Shortcuts">
+        ⌨️
+      </button>
+
+      <!-- Keyboard Shortcuts Modal -->
+      <dialog id="shortcutsModal" class="shortcuts-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Keyboard Shortcuts</h2>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="shortcut-section">
+              <h3>Global Shortcuts</h3>
+              <div class="shortcut-item">
+                <kbd>i</kbd>
+                <span>Inspire me (generate random question)</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>b</kbd>
+                <span>Toggle background information</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>k</kbd>
+                <span>Show keyboard shortcuts</span>
+              </div>
+            </div>
+            <div class="shortcut-section">
+              <h3>When Question is Showing</h3>
+              <div class="shortcut-item">
+                <kbd>←</kbd>
+                <span>Previous question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>→</kbd>
+                <span>Next question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>h</kbd>
+                <span>Show/hide code help</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>c</kbd>
+                <span>Copy code to clipboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+    <script type="module" src="js/switch-case.js"></script>
+  </body>
+</html>
