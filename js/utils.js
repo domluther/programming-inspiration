@@ -6,14 +6,18 @@ export function showBackground() {
   document.querySelector('.background').classList.toggle('hidden');
 }
 
-export function copyCode() {
+export function copyCode(mode='python') {
+  const commentCharacter = mode === 'ocr' ? '//' : '#';
   const codeText = document
     .querySelector('.code')
-    .innerText.replace('📋\n', '# explain me').replaceAll('\n\n', '\n# explain me\n');
+    .innerText.replace('📋\n', `${commentCharacter} explain me`).replaceAll('\n\n', `\n${commentCharacter} explain me\n`);
   navigator.clipboard.writeText(codeText);
   
-  // Show toast message
-  showToast('Code copied.\nPaste into Thonny and run it, then add comments to explain.');
+  // Show toast message based on mode
+  const toastMessage = mode === 'ocr' 
+    ? 'Code copied.\nPaste into examreferencelanguage.co.uk to run it, then add comments to explain.'
+    : 'Code copied.\nPaste into Thonny and run it, then add comments to explain.';
+  showToast(toastMessage);
 }
 
 export function showToast(message) {

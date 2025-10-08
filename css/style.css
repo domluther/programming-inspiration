@@ -363,6 +363,56 @@ nav {
   height: 14%;
 }
 
+/* Switch page */
+#switchQuestion{
+  top: 4%;
+  left: 15%;
+  width: 35%;
+  height: 13%;
+}
+
+#switchAnswer1{
+  top: 5.5%;
+  left: 61%;
+  width: 31%;
+  height: 11%;
+}
+
+#switchReply1{
+  top: 19%;
+  left: 23%;
+  width: 31%;
+  height: 15%;
+}
+
+#switchAnswer2{
+  top: 34%;
+  left: 49%;
+  width: 25%;
+  height: 14%;
+}
+
+#switchReply2{
+  top: 49%;
+  left: 30%;
+  width: 26%;
+  height: 16%;
+}
+
+#switchAnswer3{
+  top: 62%;
+  left: 55%;
+  width: 23%;
+  height: 13%;
+}
+
+#switchDefaultReply{
+  top: 78%;
+  left: 25%;
+  width: 32%;
+  height: 16%;
+}
+
 /* ===== CODE BLOCKS ===== */
 .code {
   position: relative;
@@ -557,7 +607,7 @@ ol {
   margin: 1rem 0; /* Vertical spacing around the list */
 }
 
-ol li {
+ol li, ul li {
   padding: 0.2rem 0; /* Vertical padding for breathing room */
   margin-bottom: 0.5rem; /* Space between list items */
   line-height: 1.2; /* Comfortable line height for readability */
