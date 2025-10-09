@@ -413,6 +413,42 @@ nav {
   height: 16%;
 }
 
+/* do until page */
+#questionText {
+  top: 6%;
+  left: 18%;
+  width: 46%;
+  height: 14%;
+}
+
+#wrongAnswer {
+  top: 17%;
+  left: 68%;
+  width: 28%;
+  height: 10%;
+}
+
+#repeatedQuestion {
+  top: 31%;
+  left: 31%;
+  width: 43%;
+  height: 15%;
+}
+
+#correctAnswer {
+  top: 57%;
+  left: 47%;
+  width: 28%;
+  height: 11%;
+}
+
+#finalMessage {
+  top: 75%;
+  left: 34%;
+  width: 39%;
+  height: 14%;
+}
+
 /* ===== CODE BLOCKS ===== */
 .code {
   position: relative;

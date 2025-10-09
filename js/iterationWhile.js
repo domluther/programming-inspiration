@@ -20,7 +20,7 @@ import { ProgrammingPage } from './ProgrammingPage.js';
 // - Numeric variables need str() wrapping in plus mode: str({answer1})
 const questions = [
   {
-    topic: 'ask for the best Spongebob character until correct',
+    topic: 'repeatedly ask for the best Spongebob character while they don\'t say Patrick',
     pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'character',
@@ -36,7 +36,7 @@ const questions = [
     // followUpQuestion: 'input({originalQuestion})',
   },
   {
-    topic: 'add numbers input by the user until they enter a number over 5',
+    topic: 'keep adding numbers input by the user while they enter 5 or less',
     pattern: 'int',
     variable1: 'limit',
     variable2: 'value',
@@ -55,7 +55,7 @@ const questions = [
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
   {
-    topic: 'count down from 5 to 1 and then prints "Blast off!"',
+    topic: 'count down from 5 to 1, then print "Blast off!"',
     pattern: 'noInput',
     variable1: 'count',
     initialValue: '5',
@@ -68,7 +68,7 @@ const questions = [
     finalAction: 'print({finalMessage})',
   },
     {
-    topic: 'count up from 1 to 10 and then prints "Coming ready or not!"',
+    topic: 'count up from 1 to 10, then print "Coming ready or not!"',
     pattern: 'noInput',
     variable1: 'count',
     initialValue: '1',
@@ -81,7 +81,7 @@ const questions = [
     finalAction: 'print({finalMessage})',
   },
   {
-    topic: 'guess the number of planets in the solar system',
+    topic: 'keep asking the number of planets in the solar system while they are incorrect',
     pattern: 'string',
     variable1: 'correct_count',
     variable2: 'guess',
@@ -97,7 +97,7 @@ const questions = [
     finalAction: 'print({finalMessage})',
   },
   {
-    topic: 'guess the secret word until correct',
+    topic: 'keep asking for the secret word while they are incorrect',
     pattern: 'string',
     variable1: 'secret_word',
     variable2: 'guess',
@@ -113,7 +113,7 @@ const questions = [
   },
 
   {
-    topic: 'guess the Hogwarts house until correct',
+    topic: 'keep guessing the Hogwarts house while they are incorrect',
     pattern: 'string',
     variable1: 'correct_house',
     variable2: 'guess',
@@ -128,7 +128,7 @@ const questions = [
     finalAction: 'print({finalMessage})',
   },
   {
-    topic: 'guess the capital of France until correct',
+    topic: 'keep guessing the capital of France while they are incorrect',
     pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'guess',
@@ -145,7 +145,7 @@ const questions = [
   },
 
   {
-    topic: 'ask for a password until the correct one is entered',
+    topic: 'keep asking for a password while the password is incorrect',
     pattern: 'string',
     variable1: 'correct_password',
     variable2: 'attempt',
@@ -162,7 +162,7 @@ const questions = [
   },
 
   {
-    topic: 'ask to repeat until told to stop',
+    topic: 'keep asking if it should continue while the user doesn\'t say no',
     pattern: 'string',
     variable1: 'stop',
     variable2: 'feedback',
@@ -179,7 +179,7 @@ const questions = [
   },
 
   {
-    topic: 'add numbers input by the user until they enter 0',
+    topic: 'add numbers input by the user while they are not 0',
     pattern: 'int',
     variable1: 'total',
     variable2: 'number',
@@ -196,7 +196,7 @@ const questions = [
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
   {
-    topic: 'ask to guess a number until they get it right',
+    topic: 'have the user guess a number while their guess is incorrect',
     pattern: 'int',
     variable1: 'secret',
     variable2: 'guess',
@@ -214,7 +214,7 @@ const questions = [
   },
   // Checks v 100 before adding it so needs an extra check due to how loop + asking again are backwards
   {
-    topic: 'find the sum of numbers until reaching 100',
+    topic: 'ask for numbers while the sum of them all is below 100',
     pattern: 'int',
     variable1: 'total',
     variable2: 'number',
@@ -231,7 +231,7 @@ const questions = [
     // followUpQuestion: 'int(input({originalQuestion}))',
   },
   {
-    topic: 'enter numbers until their product exceeds 1000',
+    topic: 'ask for numbers while their product is 1000 or below',
     pattern: 'int',
     variable1: 'product',
     variable2: 'number',
@@ -311,7 +311,10 @@ class IterationWhilePage extends ProgrammingPage {
           this.originalQuestionEle.innerText = question.originalQuestion.replaceAll('"', '');
         }
         if (this.wrongReplyEle) {
-          this.wrongReplyEle.innerText = question.wrongReply;
+          this.wrongReplyEle.innerText = `❌ ${question.wrongReply}`;
+          this.wrongReplyEle.style.color = '#f44336';
+          this.wrongReplyEle.style.fontWeight = 'bold';
+
         }
         if (this.repeatedQuestionEle) {
           // Show the loopMessage before asking question again
@@ -319,7 +322,10 @@ class IterationWhilePage extends ProgrammingPage {
             `${question.loopMessage ? question.loopMessage + '\n' : ''}${question.originalQuestion}`.replaceAll('"', '');
         }
         if (this.correctReplyEle) {
-          this.correctReplyEle.innerText = question.correctReply;
+          this.correctReplyEle.innerText = `✅ ${question.correctReply}`;
+        this.correctReplyEle.style.color = '#4CAF50';
+        this.correctReplyEle.style.fontWeight = 'bold';
+
         }
         if (this.finalMessageEle) {
           this.finalMessageEle.innerText = this.replaceText(question.finalMessage, question, false)
