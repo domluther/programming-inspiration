@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Learn selection and if/else statements with interactive Python programming practice questions and examples." />
+    <meta name="keywords" content="python programming, selection, if statements, else statements, conditional logic, practice questions, coding exercises, python tutorial" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Programming Practice - Selection</title>
+
+    <!-- external CSS link -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Programming practice</h1>
+      </header>
+      <main>
+        <div class="page-header">
+          <a href="selection.html" class="btn btn--nav btn--nav-left" title="Previous page (Selection)">‹</a>
+          <h2 class="page-title">Selection with casting </h2>
+          <a href="iterationWhile.html" class="btn btn--nav btn--nav-right" title="Next page (While loops)">›</a>
+        </div>
+        <nav>
+          <a href="#" class="btn" id="background">Background</a>
+          <a href="#" class="btn" id="inspire">Inspire me!</a>
+          <a href="#" class="btn" id="help">Help me!</a>
+        </nav>
+
+        <section class="background hidden">
+          <div class="tab-container">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="intro">
+                Quick Reminder
+              </button>
+              <button class="tab-button" data-tab="casting">
+                Casting to Integers
+              </button>
+              <button class="tab-button" data-tab="comparison">
+                Comparison Operators
+              </button>
+              <button class="tab-button" data-tab="combining">
+                Combining Concepts
+              </button>
+              <button class="tab-button" data-tab="example">
+                Complete Example
+              </button>
+            </div>
+
+            <div class="tab-content active" id="intro">
+              <h1>Selection with Casting</h1>
+              <p>
+                You've already learned how to use <span class="highlight">if-else statements</span> to make decisions based on string comparisons using <code>==</code>. 
+                Now we're leveling up! Today you'll learn how to:
+              </p>
+              <ul>
+                <li><span class="highlight">Cast</span> user input to integers using <code>int()</code></li>
+                <li>Use <span class="highlight">comparison operators</span> like <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code></li>
+                <li>Make decisions based on <span class="highlight">numerical comparisons</span></li>
+              </ul>
+              <h3>Quick Selection Reminder</h3>
+              <p>Remember the basic structure:</p>
+              <div class="code-example">
+                <code>
+                  <div>if <em>condition</em>:</div>
+                  <div><span class="tab"></span><em># Do this if condition is True</em></div>
+                  <div>else:</div>
+                  <div><span class="tab"></span><em># Do this if condition is False</em></div>
+                </code>
+              </div>
+            </div>
+
+            <div class="tab-content" id="casting">
+              <h2>Casting with int()</h2>
+              <p>
+                When you use <code>input()</code>, Python always gives you a <span class="highlight">string</span> (text), even if the user types a number!
+                To work with numbers mathematically, we need to <span class="highlight">cast</span> (convert) them to integers.
+              </p>
+              <div class="code-example">
+                <code>
+                  <div># Without casting - this is a STRING</div>
+                  <div>age = input("How old are you? ")  <em># age is "18" (text)</em></div>
+                  <div>&nbsp;</div>
+                  <div># With casting - this is an INTEGER</div>
+                  <div>age = int(input("How old are you? "))  <em># age is 18 (number)</em></div>
+                </code>
+              </div>
+              <p>
+                Why does this matter? Try this thought experiment:
+              </p>
+              <div class="code-example">
+                <code>
+                  <div>ans = "18" + "1"  <em># "181" because String concatenation</em></div>
+                  <div>ans = 18 + 1  <em># 19 because addition</em></div>
+                </code>
+              </div>
+              <p>
+                By wrapping <code>input()</code> with <code>int()</code>, we tell Python: 
+                "Take the user's input and cast it to an integer."
+              </p>
+            </div>
+
+            <div class="tab-content" id="comparison">
+              <h2>Comparison Operators</h2>
+              <p>
+                You've used <code>==</code> to check if two strings are exactly the same. 
+                But with numbers, we can do so much more. Here are the <span class="highlight">comparison operators</span>:
+              </p>
+              <table class="summary-table">
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>==</code></td>
+                    <td>Equal to</td>
+                    <td><code>5 == 5</code></td>
+                    <td>True</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;</code></td>
+                    <td>Less than</td>
+                    <td><code>3 &lt; 5</code></td>
+                    <td>True</td>
+                  </tr>
+                  <tr>
+                    <td><code>&gt;</code></td>
+                    <td>Greater than</td>
+                    <td><code>7 &gt; 5</code></td>
+                    <td>True</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;=</code></td>
+                    <td>Less than or equal to</td>
+                    <td><code>5 &lt;= 5</code></td>
+                    <td>True</td>
+                  </tr>
+                  <tr>
+                    <td><code>&gt;=</code></td>
+                    <td>Greater than or equal to</td>
+                    <td><code>6 &gt;= 5</code></td>
+                    <td>True</td>
+                  </tr>
+                  <tr>
+                    <td><code>!=</code></td>
+                    <td>Not equal to</td>
+                    <td><code>4 != 5</code></td>
+                    <td>True</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                These operators let you ask questions like "Is this number bigger than that one?" 
+                or "Is this value less than or equal to the limit?"
+              </p>
+            </div>
+
+            <div class="tab-content" id="combining">
+              <h2>Combining Casting and Comparison</h2>
+              <p>
+                Now let's put it all together! Here's how we can check if someone is old enough:
+              </p>
+              <div class="code-example">
+                <code>
+                  <div>age_limit = 18</div>
+                  <div>age = int(input("How old are you? "))</div>
+                  <div>&nbsp;</div>
+                  <div>if age &lt; age_limit:</div>
+                  <div><span class="tab"></span>print("You are too young")</div>
+                  <div>else:</div>
+                  <div><span class="tab"></span>print("You are old enough")</div>
+                </code>
+              </div>
+              <p>
+                Let's break down what happens:
+              </p>
+              <ol>
+                <li><code>age_limit = 18</code> - We set the limit. Using a variable makes the code easier to understand.</li>
+                <li><code>age = int(input(...))</code> - We get user input AND cast it to an integer</li>
+                <li><code>if age &lt; age_limit:</code> - We compare the two numbers</li>
+                <li>The program decides which message to print based on the comparison</li>
+              </ol>
+              <p>
+                <strong>Try it mentally:</strong> What happens if the user enters <code>15</code>? 
+                <span class="spoiler">15 &lt; 18 is True, so it prints "You are too young"</span>
+                <br>
+                What about <code>21</code>? 
+                <span class="spoiler">21 &lt; 18 is False, so it goes to else and prints "You are old enough"</span>
+              </p>
+            </div>
+
+            <div class="tab-content" id="example">
+              <h2>Complete Example</h2>
+              <p>Here's a full program that checks if someone can watch a 15-rated film:</p>
+              <div class="code-example">
+                <code>
+                  <div>age_limit = 18</div>
+                  <div>age = int(input("How old are you? "))</div>
+                  <div>&nbsp;</div>
+                  <div>if age &lt; age_limit:</div>
+                  <div><span class="tab"></span><em># The condition is True when age is less than age_limit</em></div>
+                  <div><span class="tab"></span><em># e.g.: if age is 15, then 15 &lt; 18 is True</em></div>
+                  <div><span class="tab"></span>print("You are young")</div>
+                  <div>else:</div>
+                  <div><span class="tab"></span><em># The condition is False otherwise</em></div>
+                  <div><span class="tab"></span><em># e.g.: if age is 20, then 20 &lt; 18 is False</em></div>
+                  <div><span class="tab"></span>print("You are old")</div>
+                </code>
+              </div>
+              <h3>Step-by-Step Walkthrough</h3>
+              <ol>
+                <li><strong>Line 1:</strong> Create a variable <code>age_limit</code> and assign the number 18 to it</li>
+                <li><strong>Line 2:</strong> Ask the user "How old are you?", take their answer (e.g., "15"), cast it to an integer (15), and assign it to <code>age</code></li>
+                <li><strong>Line 4:</strong> Check if <code>age &lt; age_limit</code> (is 15 less than 18?)</li>
+                <li><strong>Line 7:</strong> If the condition is True, print "You are young"</li>
+                <li><strong>Line 8:</strong> If the condition is False, skip to else</li>
+                <li><strong>Line 11:</strong> Print "You are old"</li>
+              </ol>
+              <p>
+                <strong>Remember:</strong> Always use <code>int()</code> when you need to do numerical comparisons with user input!
+              </p>
+              <p>
+                Now it's your turn! Press <a href="#" class="inspire-link">inspire me</a> to practice with different scenarios involving numbers, limits, and comparisons.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="example hidden">
+          <h3 class="question-header">
+            <button id="prevQuestion" class="btn btn--nav btn--nav-left" title="Previous question (← arrow key)">‹</button>
+            <span class="question-text">
+              Write a program to...
+              <span id="topic"></span>
+            </span>
+            <button id="nextQuestion" class="btn btn--nav btn--nav-right" title="Next question (→ arrow key)">›</button>
+          </h3>
+          <section class="cartoon1">
+            <img id="questionImage" src="img/baseImageSelection.webp" alt="" />
+            <p id="selectionQuestion"></p>
+            <p id="selectionAnswer1"></p>
+            <p id="ifReply"></p>
+            <p id="selectionAnswer2"></p>
+            <p id="elseReply"></p>
+          </section>
+
+          <section class="code hidden">
+            <button id="copyMe" class="btn btn--small btn--copy" pre="Click to copy code">
+              📋
+            </button>
+            <p id="codeCorrectAnswer"></p>
+            <p id="codeQuestion"></p>
+            <p id="codeIfCheck"></p>
+            <p id="codeIfReply"></p>
+            <p id="codeElse">else:</p>
+            <p id="codeElseReply"></p>
+            <p id="response"></p>
+          </section>
+        </section>
+        <div class="concatenation-toggle">
+          <label class="toggle-label">
+            <span class="toggle-text">Concatenation Mode:</span>
+            <div class="toggle-modes">
+              <span class="mode-comma">Comma (,)</span>
+              <input type="checkbox" id="concatToggle" class="toggle-checkbox">
+              <span class="toggle-slider"></span>
+              <span class="mode-plus">Plus (+)</span>
+            </div>
+          </label>
+        </div>
+      </main>
+      <button id="forceSpongebob" class="btn small-btn" pre="Spongebob">
+        🧽
+      </button>
+      <button id="keyboardShortcuts" class="btn small-btn" pre="Keyboard Shortcuts">
+        ⌨️
+      </button>
+
+      <!-- Keyboard Shortcuts Modal -->
+      <dialog id="shortcutsModal" class="shortcuts-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Keyboard Shortcuts</h2>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="shortcut-section">
+              <h3>Global Shortcuts</h3>
+              <div class="shortcut-item">
+                <kbd>i</kbd>
+                <span>Inspire me (generate random question)</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>b</kbd>
+                <span>Toggle background information</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>t</kbd>
+                <span>Toggle concatenation mode (comma/plus)</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>k</kbd>
+                <span>Show keyboard shortcuts</span>
+              </div>
+            </div>
+            <div class="shortcut-section">
+              <h3>When Question is Showing</h3>
+              <div class="shortcut-item">
+                <kbd>←</kbd>
+                <span>Previous question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>→</kbd>
+                <span>Next question</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>h</kbd>
+                <span>Show/hide code help</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd>c</kbd>
+                <span>Copy code to clipboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+    <script type="module" src="js/selection-casting.js"></script>
+  </body>
+</html>

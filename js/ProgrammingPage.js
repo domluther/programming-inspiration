@@ -177,6 +177,8 @@ export class ProgrammingPage {
             this.utils.showHelp();
             break;
         case 'c':
+            // Don't intercept Ctrl+C or Cmd+C (let browser handle copy)
+            if (event.ctrlKey || event.metaKey) break;
             if (this.codeEle && this.codeEle.classList.contains('hidden')) break;
             event.preventDefault();
             this.utils.copyCode();

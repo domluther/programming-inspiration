@@ -223,12 +223,24 @@ class SwitchCasePage extends ProgrammingPage {
     // Call parent's setupEventListeners first
     super.setupEventListeners();
     
-    // Override copy button to use OCR mode
+    // Override copy button and keyboard shortcut to use OCR mode
     if (this.copyBtn) {
       // Remove the default listener and add OCR-specific one
       this.copyBtn.removeEventListener('click', this.utils.copyCode);
       this.copyBtn.addEventListener('click', () => copyCode('ocr'));
     }
+
+    // Add specific handler for 'c' key to use OCR mode
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'c' && 
+          !event.ctrlKey && !event.metaKey && // Don't intercept Ctrl+C or Cmd+C
+          this.exampleEle && !this.exampleEle.classList.contains('hidden') &&
+          this.codeEle && !this.codeEle.classList.contains('hidden')) {
+        event.preventDefault();
+        event.stopImmediatePropagation(); // Prevent parent handler from running
+        copyCode('ocr');
+      }
+    }, true); // Use capture phase to intercept before parent handler
   }
 
   setTopic(question) {
