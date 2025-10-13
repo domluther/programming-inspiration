@@ -11,8 +11,10 @@ import { ProgrammingPage } from './ProgrammingPage.js';
 
 // Selection page questions
 const questions = [
+  // String equality questions
   {
     topic: 'ask someone the best show',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'best_show',
     question1: 'What is the best TV show?',
@@ -25,6 +27,7 @@ const questions = [
   },
   {
     topic: "ask someone's favourite colour",
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'colour',
     question1: 'What is your favourite colour?',
@@ -37,6 +40,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK geography',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'capital',
     question1: "What's the capital of England?",
@@ -51,6 +55,7 @@ const questions = [
   },
   {
     topic: 'ask someone about popular music',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'artist',
     question1: "Who sang 'Shape of You'?",
@@ -63,6 +68,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK sports',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'sport',
     question1: 'What sport is played at Wimbledon?',
@@ -77,6 +83,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK TV shows',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'show',
     question1: 'What show features the Daleks?',
@@ -91,6 +98,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK history',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'monarch',
     question1: 'Who was the longest-reigning UK monarch?',
@@ -104,33 +112,8 @@ const questions = [
       '"Actually, " + {answer2} + " didn\'t reign longest. " + {answer1} + " did"',
   },
   {
-    topic: 'ask someone about UK food',
-    variable1: 'correct_answer',
-    variable2: 'dish',
-    question1: "What's in a chip butty?",
-    answer1: 'chips',
-    answer2: 'crisps',
-    ifReply: '"Right!", {answer1}, "are in a chip butty"',
-    ifReplyPlus: '"Right! " + {answer1} + " are in a chip butty"',
-    elseReply:
-      '"Not quite.", {answer2}, "aren\'t in a chip butty.", {answer1}, "are"',
-    elseReplyPlus:
-      '"Not quite. " + {answer2} + " aren\'t in a chip butty. " + {answer1} + " are"',
-  },
-  {
-    topic: 'ask someone about UK landmarks',
-    variable1: 'correct_answer',
-    variable2: 'landmark',
-    question1: "What's the clock tower at Parliament called?",
-    answer1: 'big ben',
-    answer2: 'london eye',
-    ifReply: '"Correct! It\'s called", {answer1}',
-    ifReplyPlus: '"Correct! It\'s called " + {answer1}',
-    elseReply: '"Sorry, it\'s not", {answer2}, "it\'s", {answer1}',
-    elseReplyPlus: '"Sorry, it\'s not " + {answer2} + " it\'s " + {answer1}',
-  },
-  {
     topic: 'ask someone about UK literature',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'author',
     question1: "Who wrote 'Harry Potter'?",
@@ -142,31 +125,8 @@ const questions = [
     elseReplyPlus: '"Actually, " + {answer2} + " didn\'t write it. " + {answer1} + " did"',
   },
   {
-    topic: 'ask someone about UK currency',
-    variable1: 'correct_answer',
-    variable2: 'currency',
-    question1: "What's a quid in British currency?",
-    answer1: 'pound',
-    answer2: 'penny',
-    ifReply: '"Correct! A quid is a", {answer1}',
-    ifReplyPlus: '"Correct! A quid is a " + {answer1}',
-    elseReply: '"Not quite. A quid isn\'t a", {answer2}, "it\'s a", {answer1}',
-    elseReplyPlus: '"Not quite. A quid isn\'t a " + {answer2} + " it\'s a " + {answer1}',
-  },
-  {
-    topic: 'ask someone about UK weather',
-    variable1: 'correct_answer',
-    variable2: 'season',
-    question1: 'When is it warm in the UK?',
-    answer1: 'usually never',
-    answer2: 'august',
-    ifReply: '"Right! It is warm", {answer1}',
-    ifReplyPlus: '"Right! It is warm " + {answer1}',
-    elseReply: '"Actually, it isn\'t warm in", {answer2}, "it\'s", {answer1}',
-    elseReplyPlus: '"Actually, it isn\'t warm in " + {answer2} + " it\'s " + {answer1}',
-  },
-  {
     topic: 'ask someone about UK politics',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'position',
     question1: "What's the UK Prime Minister's residence?",
@@ -179,6 +139,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK pop culture',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'band',
     question1: "Which band sang 'Wonderwall'?",
@@ -190,35 +151,23 @@ const questions = [
     elseReplyPlus: '"Actually, it wasn\'t " + {answer2} + " it was " + {answer1}',
   },
   {
-    topic: 'ask someone about UK geography',
-    variable1: 'correct_answer',
-    variable2: 'city',
-    question1: "What's the largest city in Scotland?",
-    answer1: 'glasgow',
-    answer2: 'edinburgh',
-    ifReply: '"Correct!", {answer1}, "is the largest Scottish city"',
-    ifReplyPlus: '"Correct! " + {answer1} + " is the largest Scottish city"',
-    elseReply:
-      '"Not quite.", {answer2}, "isn\'t the largest. It\'s", {answer1}',
-    elseReplyPlus:
-      '"Not quite. " + {answer2} + " isn\'t the largest. It\'s " + {answer1}',
-  },
-  {
     topic: 'ask someone about UK sports teams',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'team',
-    question1: 'Which football team is from Liverpool?',
-    answer1: 'liverpool fc',
-    answer2: 'manchester united',
-    ifReply: '"Right!", {answer1}, "is from Liverpool"',
-    ifReplyPlus: '"Right! " + {answer1} + " is from Liverpool"',
+    question1: 'Which football team plays at Old Trafford?',
+    answer1: 'manchester united',
+    answer2: 'liverpool fc',
+    ifReply: '"Right!", {answer1}, "plays at Old Trafford"',
+    ifReplyPlus: '"Right! " + {answer1} + " plays at Old Trafford"',
     elseReply:
-      '"Actually,", {answer2}, "isn\'t from Liverpool.", {answer1}, "is"',
+      '"Actually,", {answer2}, "don\'t play at Old Trafford.", {answer1}, "do"',
     elseReplyPlus:
-      '"Actually, " + {answer2} + " isn\'t from Liverpool. " + {answer1} + " is"',
+      '"Actually, " + {answer2} + " don\'t play at Old Trafford. " + {answer1} + " do"',
   },
   {
     topic: 'ask someone about UK education',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'exam',
     question1: 'What exams do UK students take at 16?',
@@ -232,19 +181,8 @@ const questions = [
       '"Not quite. " + {answer2} + " are taken later. " + {answer1} + " are at 16"',
   },
   {
-    topic: 'ask someone about UK technology',
-    variable1: 'correct_answer',
-    variable2: 'inventor',
-    question1: 'Who invented the World Wide Web?',
-    answer1: 'tim berners-lee',
-    answer2: 'alan turing',
-    ifReply: '"Right!", {answer1}, "invented the World Wide Web"',
-    ifReplyPlus: '"Right! " + {answer1} + " invented the World Wide Web"',
-    elseReply: '"Actually, it wasn\'t", {answer2}, "it was", {answer1}',
-    elseReplyPlus: '"Actually, it wasn\'t " + {answer2} + " it was " + {answer1}',
-  },
-  {
     topic: 'ask someone about UK animals',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'animal',
     question1: "What's the UK's national animal?",
@@ -256,33 +194,8 @@ const questions = [
     elseReplyPlus: '"Not quite. It\'s not the " + {answer2} + " it\'s the " + {answer1}',
   },
   {
-    topic: 'ask someone about UK transport',
-    variable1: 'correct_answer',
-    variable2: 'network',
-    question1: "What's London's underground called?",
-    answer1: 'the tube',
-    answer2: 'the metro',
-    ifReply: '"Right! It\'s called", {answer1}',
-    ifReplyPlus: '"Right! It\'s called " + {answer1}',
-    elseReply: '"Actually, it\'s not", {answer2}, "it\'s", {answer1}',
-    elseReplyPlus: '"Actually, it\'s not " + {answer2} + " it\'s " + {answer1}',
-  },
-  {
-    topic: 'ask someone about UK inventions',
-    variable1: 'correct_answer',
-    variable2: 'invention',
-    question1: 'What did James Dyson invent?',
-    answer1: 'vacuum cleaner',
-    answer2: 'washing machine',
-    ifReply: '"Correct! Dyson invented the", {answer1}',
-    ifReplyPlus: '"Correct! Dyson invented the " + {answer1}',
-    elseReply:
-      '"Not quite. He didn\'t invent the", {answer2}, "but the", {answer1}',
-    elseReplyPlus:
-      '"Not quite. He didn\'t invent the " + {answer2} + " but the " + {answer1}',
-  },
-  {
     topic: 'ask someone about UK celebrations',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'celebration',
     question1: 'What do we celebrate on Guy Fawkes Night?',
@@ -295,6 +208,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK science',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'scientist',
     question1: 'Who discovered penicillin?',
@@ -309,6 +223,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK monarchy',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'residence',
     question1: 'Where does the monarch live?',
@@ -321,6 +236,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK traditions',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'tradition',
     question1: "What's traditionally eaten on Pancake Day?",
@@ -333,6 +249,7 @@ const questions = [
   },
   {
     topic: 'ask someone about UK film',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'character',
     question1: 'Who is the famous British spy in films?',
@@ -344,21 +261,8 @@ const questions = [
     elseReplyPlus: '"Actually, it\'s not " + {answer2} + " it\'s " + {answer1}',
   },
   {
-    topic: 'ask someone about UK geography',
-    variable1: 'correct_answer',
-    variable2: 'country',
-    question1: 'What country is not part of the UK?',
-    answer1: 'ireland',
-    answer2: 'wales',
-    ifReply: '"Correct!", {answer1}, "is not part of the UK"',
-    ifReplyPlus: '"Correct! " + {answer1} + " is not part of the UK"',
-    elseReply:
-      '"Not quite.", {answer2}, "is part of the UK.", {answer1}, "isn\'t"',
-    elseReplyPlus:
-      '"Not quite. " + {answer2} + " is part of the UK. " + {answer1} + " isn\'t"',
-  },
-  {
     topic: 'ask someone about ducks',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'duck_sound',
     question1: 'What sound does a duck make?',
@@ -371,6 +275,7 @@ const questions = [
   },
   {
     topic: 'ask someone about social media',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'app',
     question1: 'Which app is known for short videos and dances?',
@@ -385,6 +290,7 @@ const questions = [
   },
   {
     topic: 'ask someone about favourite foods',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'food',
     question1: "What's your favourite fast food?",
@@ -398,32 +304,8 @@ const questions = [
       '"Nice choice! I prefer " + {answer1} + " but " + {answer2} + " are good too"',
   },
   {
-    topic: 'ask someone about bicycle parts',
-    variable1: 'correct_answer',
-    variable2: 'bike_part',
-    question1: 'What part of a bicycle do you sit on?',
-    answer1: 'saddle',
-    answer2: 'handlebars',
-    ifReply: '"Correct! You sit on the", {answer1}',
-    ifReplyPlus: '"Correct! You sit on the " + {answer1}',
-    elseReply: '"Actually, you sit on the", {answer1}, "not the", {answer2}',
-    elseReplyPlus: '"Actually, you sit on the " + {answer1} + " not the " + {answer2}',
-  },
-  {
-    topic: 'ask someone about recent movies',
-    variable1: 'correct_answer',
-    variable2: 'movie',
-    question1:
-      "What's the name of the movie where Timothée Chalamet plays Willy Wonka?",
-    answer1: 'wonka',
-    answer2: 'charlie and the chocolate factory',
-    ifReply: '"Right!", {answer1}, "is the recent Willy Wonka movie"',
-    ifReplyPlus: '"Right! " + {answer1} + " is the recent Willy Wonka movie"',
-    elseReply: '"Not quite. It\'s", {answer1}, "not", {answer2}',
-    elseReplyPlus: '"Not quite. It\'s " + {answer1} + " not " + {answer2}',
-  },
-  {
     topic: 'ask someone about video games',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'game',
     question1: "What's the name of the game where you build in a blocky world?",
@@ -436,6 +318,7 @@ const questions = [
   },
   {
     topic: 'ask someone about music genres',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'genre',
     question1: "What's your favourite music genre?",
@@ -447,19 +330,8 @@ const questions = [
     elseReplyPlus: '"Nice! " + {answer2} + " is great, but I\'m more into " + {answer1}',
   },
   {
-    topic: 'ask someone about sports',
-    variable1: 'correct_answer',
-    variable2: 'sport',
-    question1: 'What sport does Emma Raducanu play?',
-    answer1: 'tennis',
-    answer2: 'football',
-    ifReply: '"Correct! Emma Raducanu plays", {answer1}',
-    ifReplyPlus: '"Correct! Emma Raducanu plays " + {answer1}',
-    elseReply: '"Actually, she plays", {answer1}, "not", {answer2}',
-    elseReplyPlus: '"Actually, she plays " + {answer1} + " not " + {answer2}',
-  },
-  {
     topic: 'ask someone about climate change',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'action',
     question1: "What's a good way to reduce your carbon footprint?",
@@ -474,6 +346,7 @@ const questions = [
   },
   {
     topic: 'ask someone about internet slang',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'acronym',
     question1: "What does 'TBH' stand for?",
@@ -485,34 +358,8 @@ const questions = [
     elseReplyPlus: '"Not quite. TBH stands for " + {answer1} + " not " + {answer2}',
   },
   {
-    topic: 'ask someone about superhero movies',
-    variable1: 'correct_answer',
-    variable2: 'hero',
-    question1: 'Who plays Spider-Man in the recent Marvel movies?',
-    answer1: 'tom holland',
-    answer2: 'andrew garfield',
-    ifReply: '"Right!", {answer1}, "plays Spider-Man in recent Marvel films"',
-    ifReplyPlus: '"Right! " + {answer1} + " plays Spider-Man in recent Marvel films"',
-    elseReply:
-      '"Actually, it\'s", {answer1}, "not", {answer2}, "in the recent movies"',
-    elseReplyPlus:
-      '"Actually, it\'s " + {answer1} + " not " + {answer2} + " in the recent movies"',
-  },
-  {
-    topic: 'ask someone about streaming services',
-    variable1: 'correct_answer',
-    variable2: 'service',
-    question1: "Which streaming service has 'Stranger Things'?",
-    answer1: 'netflix',
-    answer2: 'disney+',
-    ifReply: '"Right!", {answer1}, "has Stranger Things"',
-    ifReplyPlus: '"Right! " + {answer1} + " has Stranger Things"',
-    elseReply: '"Actually, it\'s on", {answer1}, "not", {answer2}',
-    elseReplyPlus: '"Actually, it\'s on " + {answer1} + " not " + {answer2}',
-  },
-
-  {
     topic: 'ask someone about technology',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'device',
     question1: 'What device do you use most for internet browsing?',
@@ -525,6 +372,7 @@ const questions = [
   },
   {
     topic: 'ask someone about school subjects',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'subject',
     question1: "What's your favourite school subject?",
@@ -536,19 +384,8 @@ const questions = [
     elseReplyPlus: '"Nice! " + {answer2} + " is great, but I prefer " + {answer1}',
   },
   {
-    topic: 'ask someone about UK landmarks',
-    variable1: 'correct_answer',
-    variable2: 'landmark',
-    question1: "What's the name of the large Ferris wheel in London?",
-    answer1: 'london eye',
-    answer2: 'big ben',
-    ifReply: '"Correct! It\'s called the", {answer1}',
-    ifReplyPlus: '"Correct! It\'s called the " + {answer1}',
-    elseReply: '"Actually, it\'s the", {answer1}, "not", {answer2}',
-    elseReplyPlus: '"Actually, it\'s the " + {answer1} + " not " + {answer2}',
-  },
-  {
     topic: 'ask someone about pets',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'pet',
     question1: "What's your favourite pet?",
@@ -563,6 +400,7 @@ const questions = [
   },
   {
     topic: 'ask someone about future careers',
+    pattern: 'string',
     variable1: 'correct_answer',
     variable2: 'career',
     question1: 'What career are you interested in?',
@@ -570,22 +408,309 @@ const questions = [
     answer2: 'teacher',
     ifReply: '"Interesting! Being a", {answer1}, "sounds great"',
     ifReplyPlus: '"Interesting! Being a " + {answer1} + " sounds great"',
-    elseReply: '"Nice choice!", {answer2}, "is great, and so is", {answer1}',
-    elseReplyPlus: '"Nice choice! " + {answer2} + " is great, and so is " + {answer1}',
+    elseReply: '"Nice choice! Being a", {answer2}, "is great, and so is", {answer1}',
+    elseReplyPlus: '"Nice choice! Being a " + {answer2} + " is great, and so is being a " + {answer1}',
+  },
+  // Integer comparison questions
+  {
+    topic: 'ask someone how old they are',
+    pattern: 'int',
+    variable1: 'age_limit',
+    variable2: 'age',
+    question1: 'How old are you?',
+    limitValue: '18',
+    answer1: '15',
+    answer2: '20',
+    operator: '<',
+    ifReply: '"You are young"',
+    ifReplyPlus: '"You are young"',
+    elseReply: '"You are old"',
+    elseReplyPlus: '"You are old"',
   },
   {
-    topic: 'ask someone about UK weather',
-    variable1: 'correct_answer',
-    variable2: 'weather',
-    question1: "What's typical UK weather?",
-    answer1: 'rainy',
-    answer2: 'sunny',
-    ifReply: '"Right!", {answer1}, "weather is quite typical in the UK"',
-    ifReplyPlus: '"Right! " + {answer1} + " weather is quite typical in the UK"',
-    elseReply:
-      '"Well,", {answer2}, "days happen, but", {answer1}, "is more typical"',
-    elseReplyPlus:
-      '"Well, " + {answer2} + " days happen, but " + {answer1} + " is more typical"',
+    topic: 'ask someone the temperature outside',
+    pattern: 'int',
+    variable1: 'temp_limit',
+    variable2: 'temperature',
+    question1: 'What is the temperature outside in Celsius?',
+    limitValue: '20',
+    answer1: '25',
+    answer2: '15',
+    operator: '>',
+    ifReply: '"It is warm today"',
+    ifReplyPlus: '"It is warm today"',
+    elseReply: '"It is cold today"',
+    elseReplyPlus: '"It is cold today"',
+  },
+  {
+    topic: 'ask someone their exam score',
+    pattern: 'int',
+    variable1: 'pass_mark',
+    variable2: 'score',
+    question1: 'What was your exam score out of 100?',
+    limitValue: '50',
+    answer1: '65',
+    answer2: '40',
+    operator: '>=',
+    ifReply: '"Well done! You passed"',
+    ifReplyPlus: '"Well done! You passed"',
+    elseReply: '"Sorry, you failed"',
+    elseReplyPlus: '"Sorry, you failed"',
+  },
+  {
+    topic: 'ask someone their height in cm',
+    pattern: 'int',
+    variable1: 'height_limit',
+    variable2: 'height',
+    question1: 'How tall are you in cm?',
+    limitValue: '140',
+    answer1: '120',
+    answer2: '150',
+    operator: '<',
+    ifReply: '"You are too short for this ride"',
+    ifReplyPlus: '"You are too short for this ride"',
+    elseReply: '"You can go on the ride"',
+    elseReplyPlus: '"You can go on the ride"',
+  },
+  {
+    topic: 'ask someone how fast they were driving',
+    pattern: 'int',
+    variable1: 'speed_limit',
+    variable2: 'speed',
+    question1: 'How fast were you driving in mph?',
+    limitValue: '30',
+    answer1: '45',
+    answer2: '25',
+    operator: '>',
+    ifReply: '"You were speeding!"',
+    ifReplyPlus: '"You were speeding!"',
+    elseReply: '"You were within the speed limit"',
+    elseReplyPlus: '"You were within the speed limit"',
+  },
+  {
+    topic: 'ask someone their bank balance',
+    pattern: 'int',
+    variable1: 'overdraft_limit',
+    variable2: 'balance',
+    question1: 'What is your bank balance in pounds?',
+    limitValue: '0',
+    answer1: '50',
+    answer2: '-10',
+    operator: '>=',
+    ifReply: '"You have money"',
+    ifReplyPlus: '"You have money"',
+    elseReply: '"You are overdrawn"',
+    elseReplyPlus: '"You are overdrawn"',
+  },
+  {
+    topic: 'ask someone the number of hours they studied',
+    pattern: 'int',
+    variable1: 'min_hours',
+    variable2: 'hours',
+    question1: 'How many hours did you study?',
+    limitValue: '5',
+    answer1: '3',
+    answer2: '6',
+    operator: '<',
+    ifReply: '"You need to study more"',
+    ifReplyPlus: '"You need to study more"',
+    elseReply: '"Good job studying!"',
+    elseReplyPlus: '"Good job studying!"',
+  },
+  {
+    topic: 'ask someone their screen time in hours',
+    pattern: 'int',
+    variable1: 'max_screen_time',
+    variable2: 'screen_time',
+    question1: 'How many hours of screen time today?',
+    limitValue: '3',
+    answer1: '2',
+    answer2: '5',
+    operator: '<=',
+    ifReply: '"That is a reasonable amount"',
+    ifReplyPlus: '"That is a reasonable amount"',
+    elseReply: '"That is too much screen time"',
+    elseReplyPlus: '"That is too much screen time"',
+  },
+  {
+    topic: 'ask someone how many steps they walked',
+    pattern: 'int',
+    variable1: 'step_goal',
+    variable2: 'steps',
+    question1: 'How many steps did you walk today?',
+    limitValue: '10000',
+    answer1: '8500',
+    answer2: '12000',
+    operator: '<',
+    ifReply: '"You did not reach your goal"',
+    ifReplyPlus: '"You did not reach your goal"',
+    elseReply: '"Great job! You reached your goal"',
+    elseReplyPlus: '"Great job! You reached your goal"',
+  },
+  {
+    topic: 'ask someone the price of an item',
+    pattern: 'int',
+    variable1: 'budget',
+    variable2: 'price',
+    question1: 'How much does the item cost in pounds?',
+    limitValue: '100',
+    answer1: '80',
+    answer2: '150',
+    operator: '<=',
+    ifReply: '"You can afford it"',
+    ifReplyPlus: '"You can afford it"',
+    elseReply: '"It is too expensive"',
+    elseReplyPlus: '"It is too expensive"',
+  },
+  {
+    topic: 'ask someone their gaming hours this week',
+    pattern: 'int',
+    variable1: 'max_gaming_hours',
+    variable2: 'hours_played',
+    question1: 'How many hours did you game this week?',
+    limitValue: '20',
+    answer1: '25',
+    answer2: '15',
+    operator: '>',
+    ifReply: '"That is too much gaming"',
+    ifReplyPlus: '"That is too much gaming"',
+    elseReply: '"That is a good amount"',
+    elseReplyPlus: '"That is a good amount"',
+  },
+  {
+    topic: 'ask someone their distance from home in km',
+    pattern: 'int',
+    variable1: 'safe_distance',
+    variable2: 'distance',
+    question1: 'How far are you from home in km?',
+    limitValue: '5',
+    answer1: '3',
+    answer2: '8',
+    operator: '<',
+    ifReply: '"You are close to home"',
+    ifReplyPlus: '"You are close to home"',
+    elseReply: '"You are far from home"',
+    elseReplyPlus: '"You are far from home"',
+  },
+  {
+    topic: 'ask someone their quiz score',
+    pattern: 'int',
+    variable1: 'minimum_score',
+    variable2: 'quiz_score',
+    question1: 'What score did you get on the quiz?',
+    limitValue: '70',
+    answer1: '75',
+    answer2: '60',
+    operator: '>=',
+    ifReply: '"Great score!"',
+    ifReplyPlus: '"Great score!"',
+    elseReply: '"You need more practice"',
+    elseReplyPlus: '"You need more practice"',
+  },
+  {
+    topic: 'ask someone the number of books they read',
+    pattern: 'int',
+    variable1: 'reading_goal',
+    variable2: 'books_read',
+    question1: 'How many books did you read this year?',
+    limitValue: '12',
+    answer1: '15',
+    answer2: '8',
+    operator: '>=',
+    ifReply: '"Excellent reading!"',
+    ifReplyPlus: '"Excellent reading!"',
+    elseReply: '"Keep reading more"',
+    elseReplyPlus: '"Keep reading more"',
+  },
+  {
+    topic: 'ask someone their water intake in litres',
+    pattern: 'int',
+    variable1: 'recommended_water',
+    variable2: 'water_intake',
+    question1: 'How many litres of water did you drink today?',
+    limitValue: '2',
+    answer1: '1',
+    answer2: '3',
+    operator: '<',
+    ifReply: '"You need to drink more water"',
+    ifReplyPlus: '"You need to drink more water"',
+    elseReply: '"Well done staying hydrated!"',
+    elseReplyPlus: '"Well done staying hydrated!"',
+  },
+  {
+    topic: 'ask someone their sleep hours',
+    pattern: 'int',
+    variable1: 'min_sleep',
+    variable2: 'hours_slept',
+    question1: 'How many hours did you sleep last night?',
+    limitValue: '7',
+    answer1: '9',
+    answer2: '5',
+    operator: '>=',
+    ifReply: '"Great! You got enough sleep"',
+    ifReplyPlus: '"Great! You got enough sleep"',
+    elseReply: '"You need more sleep"',
+    elseReplyPlus: '"You need more sleep"',
+  },
+  {
+    topic: 'ask someone their phone battery percentage',
+    pattern: 'int',
+    variable1: 'low_battery',
+    variable2: 'battery',
+    question1: 'What is your phone battery percentage?',
+    limitValue: '20',
+    answer1: '15',
+    answer2: '50',
+    operator: '<=',
+    ifReply: '"Your battery is low!"',
+    ifReplyPlus: '"Your battery is low!"',
+    elseReply: '"Your battery is fine"',
+    elseReplyPlus: '"Your battery is fine"',
+  },
+  {
+    topic: 'ask someone the number of homework assignments done',
+    pattern: 'int',
+    variable1: 'total_assignments',
+    variable2: 'completed',
+    question1: 'How many homework assignments have you completed?',
+    limitValue: '10',
+    answer1: '12',
+    answer2: '7',
+    operator: '>=',
+    ifReply: '"You are ahead!"',
+    ifReplyPlus: '"You are ahead!"',
+    elseReply: '"You are behind"',
+    elseReplyPlus: '"You are behind"',
+  },
+  {
+    topic: 'ask someone their typing speed in words per minute',
+    pattern: 'int',
+    variable1: 'average_speed',
+    variable2: 'typing_speed',
+    question1: 'What is your typing speed in words per minute?',
+    limitValue: '40',
+    answer1: '55',
+    answer2: '30',
+    operator: '>',
+    ifReply: '"You are a fast typer!"',
+    ifReplyPlus: '"You are a fast typer!"',
+    elseReply: '"Keep practising typing"',
+    elseReplyPlus: '"Keep practising typing"',
+  },
+  {
+    topic: 'ask someone the number of friends at their party',
+    pattern: 'int',
+    variable1: 'party_capacity',
+    variable2: 'guests',
+    question1: 'How many friends are coming to your party?',
+    limitValue: '15',
+    answer1: '12',
+    answer2: '20',
+    operator: '<=',
+    ifReply: '"Perfect number of guests"',
+    ifReplyPlus: '"Perfect number of guests"',
+    elseReply: '"That is too many people!"',
+    elseReplyPlus: '"That is too many people!"',
   },
 ];
 
@@ -634,6 +759,8 @@ class SelectionPage extends ProgrammingPage {
 
   setCaptions(question) {
     try {
+      const pattern = question.pattern || 'string'; // Default to string for backward compatibility
+      
       if (this.selectionQuestionEle) {
         this.selectionQuestionEle.innerText = question.question1;
       }
@@ -661,16 +788,38 @@ class SelectionPage extends ProgrammingPage {
   setCode(question) {
     try {
       const INDENT = '    '; // 4 spaces
+      const pattern = question.pattern || 'string'; // Default to string for backward compatibility
       
       if (this.codeCorrectAnswerEle) {
-        this.codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
+        if (pattern === 'int') {
+          // For int pattern: age_limit = 18 (use limitValue)
+          this.codeCorrectAnswerEle.innerText = `${question.variable1} = ${question.limitValue}`;
+        } else {
+          // For string pattern: correct_answer = "london"
+          this.codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
+        }
       }
+      
       if (this.codeQuestionEle) {
-        this.codeQuestionEle.innerText = `${question.variable2} = input("${question.question1} ")`;
+        if (pattern === 'int') {
+          // For int pattern: age = int(input("How old are you? "))
+          this.codeQuestionEle.innerText = `${question.variable2} = int(input("${question.question1} "))`;
+        } else {
+          // For string pattern: best_show = input("What is the best TV show? ")
+          this.codeQuestionEle.innerText = `${question.variable2} = input("${question.question1} ")`;
+        }
       }
+      
       if (this.codeIfCheckEle) {
-        this.codeIfCheckEle.innerText = `if ${question.variable2} == ${question.variable1}:`;
+        if (pattern === 'int') {
+          // For int pattern: if age < age_limit:
+          this.codeIfCheckEle.innerText = `if ${question.variable2} ${question.operator} ${question.variable1}:`;
+        } else {
+          // For string pattern: if best_show == correct_answer:
+          this.codeIfCheckEle.innerText = `if ${question.variable2} == ${question.variable1}:`;
+        }
       }
+      
       if (this.codeIfReplyEle) {
         // Choose the appropriate response based on concatenation mode
         const ifReplyText = this.usePlusMode ? 
