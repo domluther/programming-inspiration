@@ -387,10 +387,12 @@ class SelectionPage extends ProgrammingPage {
   setCode(question) {
     try {
       const INDENT = '    '; // 4 spaces
-      
+
+        // Variables in uppercase to show they are constants
+      question.variable1 = question.variable1.toUpperCase()
       if (this.codeCorrectAnswerEle) {
           // AGE_LIMIT = 18 (use limitValue)
-          this.codeCorrectAnswerEle.innerText = `${question.variable1.toUpperCase()} = ${question.limitValue}`;
+          this.codeCorrectAnswerEle.innerText = `${question.variable1} = ${question.limitValue}`;
       }
       
       if (this.codeQuestionEle) {
@@ -400,7 +402,7 @@ class SelectionPage extends ProgrammingPage {
       
       if (this.codeIfCheckEle) {
           // if age < AGE_LIMIT:
-          this.codeIfCheckEle.innerText = `if ${question.variable2} ${question.operator} ${question.variable1.toUpperCase()}:`;
+          this.codeIfCheckEle.innerText = `if ${question.variable2} ${question.operator} ${question.variable1}:`;
       }
       
       if (this.codeIfReplyEle) {

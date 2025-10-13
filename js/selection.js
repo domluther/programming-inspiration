@@ -485,9 +485,11 @@ class SelectionPage extends ProgrammingPage {
   setCode(question) {
     try {
       const INDENT = '    '; // 4 spaces
-      
+
+      // Variables in uppercase to show they are constants
+      question.variable1 = question.variable1.toUpperCase()
       if (this.codeCorrectAnswerEle) {
-          //  correct_answer = "london"
+          //  CORRECT_ANSWER = "london"
           this.codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
       }
       

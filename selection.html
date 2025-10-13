@@ -207,27 +207,28 @@
               <p>Let's use everything we've learned to make a fun program:</p>
               <div class="code-example">
                 <code>
-                  <div>correct_ans = "spongebob squarepants"</div>
+                  <div>CORRECT_ANS = "spongebob squarepants"</div>
                   <div>best_show = input("What is the best TV show? ")</div>
-                  <div>if best_show == correct_ans:</div>
+                  <div>if best_show == CORRECT_ANS:</div>
                   <div><span class="background-comma">
-                    <span class="tab"></span>print("Absolutely!", correct_ans,
+                    <span class="tab"></span>print("Absolutely!", CORRECT_ANS,
                     "is glorious")</span></div>
                   <div><span class="background-plus">
-                    <span class="tab"></span>print("Absolutely! " + correct_ans +
+                    <span class="tab"></span>print("Absolutely! " + CORRECT_ANS +
                     " is glorious")</span></div>
                   <div>else:</div>
                   <div><span class="background-comma">
                     <span class="tab"></span>print(best_show, "?!?! No way - it
-                    is", correct_ans)</span></div>
+                    is", CORRECT_ANS)</span></div>
                   <div><span class="background-plus">
                     <span class="tab"></span>print(best_show + "? No way - it
-                    is " + correct_ans)</span></div>
+                    is " + CORRECT_ANS)</span></div>
                 </code>
               </div>
               <p>
                 This program:
                 <ol>
+                  <li>Uses a constant to store the correct answer,</li>
                   <li>Asks the user to input a favourite TV show,</li>
                   <li>Checks the value input,</li>
                   <li>If it is "spongebob squarepants", it outputs a message agreeing with you,</li>
