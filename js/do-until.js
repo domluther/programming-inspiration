@@ -191,6 +191,18 @@ class DoUntilPage extends ProgrammingPage {
     }
   }
 
+  setupEventListeners() {
+    // Call parent's setupEventListeners first
+    super.setupEventListeners();
+    
+    // Override copy button to use OCR mode
+    if (this.copyBtn) {
+      // Remove the default listener and add OCR-specific one
+      this.copyBtn.removeEventListener('click', this.utils.copyCode);
+      this.copyBtn.addEventListener('click', () => copyCode('ocr'));
+    }
+  }
+
   setTopic(question) {
     if (this.topicEle && question.topic) {
       this.topicEle.innerText = `${question.topic}.`;
