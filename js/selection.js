@@ -458,8 +458,6 @@ class SelectionPage extends ProgrammingPage {
 
   setCaptions(question) {
     try {
-      const pattern = question.pattern || 'string'; // Default to string for backward compatibility
-      
       if (this.selectionQuestionEle) {
         this.selectionQuestionEle.innerText = question.question1;
       }
@@ -487,36 +485,20 @@ class SelectionPage extends ProgrammingPage {
   setCode(question) {
     try {
       const INDENT = '    '; // 4 spaces
-      const pattern = question.pattern || 'string'; // Default to string for backward compatibility
       
       if (this.codeCorrectAnswerEle) {
-        if (pattern === 'int') {
-          // For int pattern: age_limit = 18 (use limitValue)
-          this.codeCorrectAnswerEle.innerText = `${question.variable1} = ${question.limitValue}`;
-        } else {
-          // For string pattern: correct_answer = "london"
+          //  correct_answer = "london"
           this.codeCorrectAnswerEle.innerText = `${question.variable1} = "${question.answer1}"`;
-        }
       }
       
       if (this.codeQuestionEle) {
-        if (pattern === 'int') {
-          // For int pattern: age = int(input("How old are you? "))
-          this.codeQuestionEle.innerText = `${question.variable2} = int(input("${question.question1} "))`;
-        } else {
-          // For string pattern: best_show = input("What is the best TV show? ")
+          //  best_show = input("What is the best TV show? ")
           this.codeQuestionEle.innerText = `${question.variable2} = input("${question.question1} ")`;
-        }
       }
       
       if (this.codeIfCheckEle) {
-        if (pattern === 'int') {
-          // For int pattern: if age < age_limit:
-          this.codeIfCheckEle.innerText = `if ${question.variable2} ${question.operator} ${question.variable1}:`;
-        } else {
-          // For string pattern: if best_show == correct_answer:
+          // if best_show == correct_answer:
           this.codeIfCheckEle.innerText = `if ${question.variable2} == ${question.variable1}:`;
-        }
       }
       
       if (this.codeIfReplyEle) {

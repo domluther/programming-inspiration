@@ -175,10 +175,10 @@
               </p>
               <div class="code-example">
                 <code>
-                  <div>age_limit = 18</div>
+                  <div>AGE_LIMIT = 18</div>
                   <div>age = int(input("How old are you? "))</div>
                   <div>&nbsp;</div>
-                  <div>if age &lt; age_limit:</div>
+                  <div>if age &lt; AGE_LIMIT:</div>
                   <div><span class="tab"></span>print("You are too young")</div>
                   <div>else:</div>
                   <div><span class="tab"></span>print("You are old enough")</div>
@@ -188,9 +188,9 @@
                 Let's break down what happens:
               </p>
               <ol>
-                <li><code>age_limit = 18</code> - We set the limit. Using a variable makes the code easier to understand.</li>
+                <li><code>AGE_LIMIT = 18</code> - We set the limit. Using a constant makes the code easier to understand.</li>
                 <li><code>age = int(input(...))</code> - We get user input AND cast it to an integer</li>
-                <li><code>if age &lt; age_limit:</code> - We compare the two numbers</li>
+                <li><code>if age &lt; AGE_LIMIT:</code> - We compare the two numbers</li>
                 <li>The program decides which message to print based on the comparison</li>
               </ol>
               <p>
@@ -207,11 +207,11 @@
               <p>Here's a full program that checks if someone can watch a 15-rated film:</p>
               <div class="code-example">
                 <code>
-                  <div>age_limit = 18</div>
+                  <div>AGE_LIMIT = 18</div>
                   <div>age = int(input("How old are you? "))</div>
                   <div>&nbsp;</div>
-                  <div>if age &lt; age_limit:</div>
-                  <div><span class="tab"></span><em># The condition is True when age is less than age_limit</em></div>
+                  <div>if age &lt; AGE_LIMIT:</div>
+                  <div><span class="tab"></span><em># The condition is True when age is less than AGE_LIMIT</em></div>
                   <div><span class="tab"></span><em># e.g.: if age is 15, then 15 &lt; 18 is True</em></div>
                   <div><span class="tab"></span>print("You are young")</div>
                   <div>else:</div>
