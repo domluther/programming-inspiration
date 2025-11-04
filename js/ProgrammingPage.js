@@ -28,6 +28,9 @@ export class ProgrammingPage {
     // Initialize concatenation toggle
     this.initializeConcatenationToggle();
     
+    // Initialize theme
+    this.initializeTheme();
+    
     // Set up tabs on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
       if (this.utils.setupTabs) {
@@ -47,6 +50,7 @@ export class ProgrammingPage {
     this.forceSpongeBtn = document.querySelector('#forceSpongebob');
     this.copyBtn = document.querySelector('#copyMe');
     this.keyboardBtn = document.querySelector('#keyboardShortcuts');
+    this.themeToggleBtn = document.querySelector('#themeToggle');
 
     // Navigation buttons
     this.prevBtn = document.querySelector('#prevQuestion');
@@ -114,6 +118,11 @@ export class ProgrammingPage {
           this.hideKeyboardShortcuts();
         }
       });
+    }
+
+    // Theme toggle event listener
+    if (this.themeToggleBtn) {
+      this.themeToggleBtn.addEventListener('click', () => this.toggleTheme());
     }
 
     // Inspire links event listeners
@@ -460,6 +469,42 @@ export class ProgrammingPage {
   hideKeyboardShortcuts() {
     if (this.shortcutsModal) {
       this.shortcutsModal.close();
+    }
+  }
+
+  /**
+   * Initialize theme based on saved preference
+   */
+  initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      this.updateThemeIcon();
+    }
+  }
+
+  /**
+   * Toggle between light and dark mode
+   */
+  toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    
+    // Save preference to localStorage
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    
+    // Update button icon
+    this.updateThemeIcon();
+  }
+
+  /**
+   * Update theme toggle button icon
+   */
+  updateThemeIcon() {
+    if (this.themeToggleBtn) {
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      this.themeToggleBtn.textContent = isDarkMode ? '☀️' : '🌙';
     }
   }
 

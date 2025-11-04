@@ -932,6 +932,214 @@ ol li, ul li {
   right: 4rem;
 }
 
+/* Position theme toggle button to the right of keyboard button */
+#themeToggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 7rem;
+}
+
+/* Small buttons for fixed position controls */
+.small-btn {
+  position: fixed;
+  bottom: 1rem;
+}
+
+#forceSpongebob {
+  right: 1rem;
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+body.dark-mode main {
+  background-color: #2d2d2d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .background {
+  background-color: #2d2d2d;
+  border-color: #444;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .background h1,
+body.dark-mode .background h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .tab-content {
+  background-color: #1e2a3a;
+  border-color: #3a4a5a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .tab-content .highlight {
+  color: #e0e0e0;
+  background-color: #4a4a2a;
+  border-bottom-color: #ff8c00;
+}
+
+body.dark-mode .tab-content .spoiler {
+  background-color: #3a4a5a;
+  color: #3a4a5a;
+}
+
+body.dark-mode .tab-content .spoiler:hover {
+  background-color: #2a3a4a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .tab-button {
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .tab-button:hover {
+  background-color: #4a4a4a;
+}
+
+body.dark-mode .tab-button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+body.dark-mode code {
+  background-color: #2a3a4a;
+  color: #87ceeb;
+}
+
+body.dark-mode .code-example {
+  background-color: #1e2a3a;
+  border-left-color: #3498db;
+}
+
+body.dark-mode .code {
+  background-color: #2a2a2a;
+  border-color: #444;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+}
+
+body.dark-mode .summary-table th {
+  background-color: #ff8c00;
+  color: #000;
+}
+
+body.dark-mode .summary-table th,
+body.dark-mode .summary-table td {
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+body.dark-mode .summary-table tr:nth-child(even) {
+  background-color: #2d2d2d;
+}
+
+body.dark-mode .summary-table tr:nth-child(odd) {
+  background-color: #3a3a3a;
+}
+
+body.dark-mode .summary-table tr:hover {
+  background-color: #1e2a3a;
+}
+
+body.dark-mode .summary-table code {
+  background-color: #2a3a4a;
+  color: #87ceeb;
+  border-color: #3a4a5a;
+}
+
+body.dark-mode .concatenation-toggle {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+body.dark-mode .toggle-text {
+  color: #e0e0e0;
+}
+
+body.dark-mode .toggle-modes {
+  color: #aaa;
+}
+
+body.dark-mode .shortcuts-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .modal-content {
+  background-color: #2d2d2d;
+}
+
+body.dark-mode .shortcut-section h3 {
+  color: #e0e0e0;
+  border-bottom-color: #ff8c00;
+}
+
+body.dark-mode .shortcut-item {
+  background-color: #3a3a3a;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+body.dark-mode .shortcut-item kbd {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .shortcut-item span {
+  color: #e0e0e0;
+}
+
+body.dark-mode .toast {
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== OCR ERL SPECIFIC STYLES ===== */
+.ocr-link {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #f0f8ff;
+  border-left: 4px solid #4CAF50;
+  font-size: 0.95em;
+  border-radius: 0.25rem;
+}
+
+.ocr-link a {
+  color: #4CAF50;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.ocr-link a:hover {
+  color: #45a049;
+}
+
+body.dark-mode .ocr-link {
+  background-color: #1e2a3a;
+  border-left-color: #4CAF50;
+  color: #e0e0e0;
+}
+
+body.dark-mode .ocr-link a {
+  color: #5cbf5c;
+}
+
+body.dark-mode .ocr-link a:hover {
+  color: #6fd96f;
+}
+
+/* Spacing utility for code examples */
+.code-example div.spaced {
+  margin-top: 10px;
+}
+
 /* Hidden class placed at end to ensure it overrides other display properties through cascade order */
 .hidden {
   display: none;
