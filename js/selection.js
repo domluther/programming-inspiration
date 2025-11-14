@@ -411,6 +411,19 @@ const questions = [
     elseReply: '"Nice choice! Being a", {answer2}, "is great, and so is", {answer1}',
     elseReplyPlus: '"Nice choice! Being a " + {answer2} + " is great, and so is being a " + {answer1}',
   },
+    {
+    topic: 'ask someone about the best gun in fortnite',
+    pattern: 'string',
+    variable1: 'correct_answer',
+    variable2: 'gun',
+    question1: 'What is the best gun in fortnite?',
+    answer1: 'legendary shotgun',
+    answer2: 'epic AR',
+    ifReply: '"Correct, a", {answer1}, "is the best"',
+    ifReplyPlus: '"Correct, a " + {answer1} + " is the best"',
+    elseReply: '"You will not get any kills with a ", {answer2}, " you need a ", {answer1}',
+    elseReplyPlus: '"You will not get any kills with a " + {answer2} + " you need a " + {answer1}',
+  },
   ];
 
 
