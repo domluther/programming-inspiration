@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 9 Python Basics</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f8;
+        color: #202124;
+        line-height: 1.5;
+    }
+
+    header {
+        background: #263238;
+        color: white;
+        padding: 22px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0 0 5px;
+        font-size: 30px;
+    }
+
+    header p {
+        margin: 0;
+        color: #cfd8dc;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    /* ---------------- PROGRESS ---------------- */
+
+    .progress-panel {
+        background: white;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .student-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+
+    .student-row label {
+        font-weight: bold;
+    }
+
+    #studentName {
+        padding: 9px 12px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        font-size: 16px;
+        width: 250px;
+    }
+
+    .overall {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 14px;
+        background: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 14px;
+    }
+
+    #progressFill {
+        height: 100%;
+        width: 0%;
+        background: #43a047;
+        transition: width 0.3s;
+    }
+
+    .exercise-map {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .progress-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 5px;
+        background: #cfd8dc;
+        color: #455a64;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .progress-dot.complete {
+        background: #43a047;
+        color: white;
+    }
+
+    .progress-dot.current {
+        outline: 3px solid #1976d2;
+    }
+
+    .progress-dot:hover {
+        transform: scale(1.08);
+    }
+
+    .teacher-buttons {
+        margin-top: 15px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    button {
+        border: none;
+        border-radius: 6px;
+        padding: 10px 16px;
+        font-size: 15px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .primary {
+        background: #1976d2;
+        color: white;
+    }
+
+    .secondary {
+        background: #eceff1;
+        color: #263238;
+    }
+
+    .danger {
+        background: #d32f2f;
+        color: white;
+    }
+
+    button:hover {
+        filter: brightness(0.95);
+    }
+
+    /* ---------------- INTRO ---------------- */
+
+    .intro {
+        background: #e3f2fd;
+        border-left: 5px solid #1976d2;
+        padding: 18px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+    }
+
+    .intro h2 {
+        margin-top: 0;
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    .section {
+        margin-top: 35px;
+    }
+
+    .section-title {
+        background: #37474f;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px 8px 0 0;
+        margin: 0;
+    }
+
+    .exercise {
+        background: white;
+        margin-bottom: 15px;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 2px 7px rgba(0,0,0,0.07);
+        border-left: 5px solid #cfd8dc;
+    }
+
+    .exercise.completed {
+        border-left-color: #43a047;
+    }
+
+    .exercise h3 {
+        margin-top: 0;
+        color: #263238;
+    }
+
+    .instructions {
+        margin-bottom: 12px;
+    }
+
+    pre {
+        background: #263238;
+        color: #eceff1;
+        padding: 15px;
+        border-radius: 7px;
+        overflow-x: auto;
+        font-family: "Courier New", monospace;
+        font-size: 15px;
+    }
+
+    code {
+        font-family: "Courier New", monospace;
+    }
+
+    .answer-area {
+        margin-top: 15px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 7px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        padding: 9px 11px;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        font-size: 16px;
+        max-width: 350px;
+    }
+
+    .answer-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .feedback {
+        margin-top: 12px;
+        padding: 10px;
+        border-radius: 6px;
+        display: none;
+        font-weight: bold;
+    }
+
+    .feedback.correct {
+        display: block;
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .feedback.incorrect {
+        display: block;
+        background: #ffebee;
+        color: #c62828;
+    }
+
+    .hint {
+        margin-top: 8px;
+        color: #555;
+        font-size: 14px;
+    }
+
+    .two-inputs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .two-inputs div {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .code-answer {
+        width: 100%;
+        max-width: 600px;
+        font-family: "Courier New", monospace;
+    }
+
+    /* ---------------- FINISH ---------------- */
+
+    .finish {
+        margin: 40px 0;
+        background: #e8f5e9;
+        border: 2px solid #43a047;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    #teacherReport {
+        display: none;
+        background: #fff8e1;
+        border: 2px solid #ffb300;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 15px;
+    }
+
+    .report-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .report-box {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .report-number {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1976d2;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 24px;
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        .progress-panel {
+            position: relative;
+        }
+
+        .progress-dot {
+            width: 25px;
+            height: 25px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🐍 Year 9 Python Basics</h1>
+    <p>Variables • print() • input() • Maths</p>
+</header>
+
+<div class="container">
+
+    <!-- PROGRESS -->
+    <div class="progress-panel">
+
+        <div class="student-row">
+            <label for="studentName">Student name:</label>
+            <input
+                type="text"
+                id="studentName"
+                placeholder="Enter your name"
+                onchange="saveName()"
+            >
+        </div>
+
+        <div class="overall">
+            <span id="progressText">0 / 40 completed</span>
+            <span id="percentage">0%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div id="progressFill"></div>
+        </div>
+
+        <div class="exercise-map" id="exerciseMap"></div>
+
+        <div class="teacher-buttons">
+            <button class="secondary" onclick="toggleReport()">
+                👩‍🏫 Show Progress
+            </button>
+
+            <button class="danger" onclick="resetProgress()">
+                Reset Progress
+            </button>
+        </div>
+
+        <div id="teacherReport">
+            <h3>Teacher Progress Report</h3>
+
+            <p>
+                <strong>Student:</strong>
+                <span id="reportName">Not entered</span>
+            </p>
+
+            <div class="report-grid">
+                <div class="report-box">
+                    <div class="report-number" id="reportCompleted">0</div>
+                    Completed
+                </div>
+
+                <div class="report-box">
+                    <div class="report-number" id="reportRemaining">40</div>
+                    Remaining
+                </div>
+
+                <div class="report-box">
+                    <div class="report-number" id="reportPercent">0%</div>
+                    Progress
+                </div>
+            </div>
+
+            <p id="reportMessage"></p>
+        </div>
+
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro">
+
+        <h2>How to use this worksheet</h2>
+
+        <ol>
+            <li>Open <strong>Thonny</strong> on your computer.</li>
+            <li>Read each exercise on this webpage.</li>
+            <li>Copy the Python code into Thonny.</li>
+            <li>Correct or complete the code if necessary.</li>
+            <li>Run the code in Thonny.</li>
+            <li>Work out the answer.</li>
+            <li>Enter your answer on this webpage.</li>
+            <li>Click <strong>Check Answer</strong>.</li>
+            <li>If you are correct, the exercise turns green and your progress increases.</li>
+            <li>If you are incorrect, try again!</li>
+        </ol>
+
+        <p>
+            ⭐ <strong>Remember:</strong> You do not run Python on this webpage.
+            Use Thonny to run your Python. This webpage only checks your answers.
+        </p>
+
+    </div>
+
+
+    <!-- ==================== VARIABLES ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 1 — Variables and print()</h2>
+
+        <!-- 1 -->
+        <div class="exercise" id="exercise1">
+            <h3>Exercise 1 — Create a variable</h3>
+
+            <div class="instructions">
+                Copy this code into Thonny:
+            </div>
+
+<pre>name = "Alex"</pre>
+
+            <p>What is the name of the variable?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer1">
+                <button class="primary" onclick="checkText(1, 'name')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+        </div>
+
+
+        <!-- 2 -->
+        <div class="exercise" id="exercise2">
+            <h3>Exercise 2 — What is stored?</h3>
+
+<pre>age = 13</pre>
+
+            <p>What value is stored in <code>age</code>?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer2">
+                <button class="primary" onclick="checkNumber(2, 13)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+        </div>
+
+
+        <!-- 3 -->
+        <div class="exercise" id="exercise3">
+            <h3>Exercise 3 — Choose a variable name</h3>
+
+            <p>
+                Which of these is a valid variable name for storing a favourite colour?
+            </p>
+
+            <div class="answer-area">
+                <select id="answer3">
+                    <option value="">Choose...</option>
+                    <option value="colour">colour</option>
+                    <option value="favourite colour">favourite colour</option>
+                    <option value="print">print</option>
+                </select>
+
+                <button class="primary" onclick="checkSelect(3, 'colour')">
+                    Check Answer
+                </button>
+
+                <div class="feedback" id="feedback3"></div>
+            </div>
+        </div>
+
+
+        <!-- 4 -->
+        <div class="exercise" id="exercise4">
+            <h3>Exercise 4 — Print a variable</h3>
+
+<pre>name = "Alex"
+________(name)</pre>
+
+            <p>What should replace the gap?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer4">
+                <button class="primary" onclick="checkText(4, 'print')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+        </div>
+
+
+        <!-- 5 -->
+        <div class="exercise" id="exercise5">
+            <h3>Exercise 5 — Printing an age</h3>
+
+<pre>age = 13
+print(____)</pre>
+
+            <p>What should go in the gap?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer5">
+                <button class="primary" onclick="checkText(5, 'age')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+        </div>
+
+
+        <!-- 6 -->
+        <div class="exercise" id="exercise6">
+            <h3>Exercise 6 — Your own variable</h3>
+
+<pre>colour = "__________"</pre>
+
+            <p>
+                Put your favourite colour in the variable.
+                Then enter the colour you used below.
+            </p>
+
+            <div class="answer-area">
+                <input type="text" id="answer6">
+                <button class="primary" onclick="checkAnyText(6)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+        </div>
+
+
+        <!-- 7 -->
+        <div class="exercise" id="exercise7">
+            <h3>Exercise 7 — Two variables</h3>
+
+<pre>name = "Alex"
+age = 13
+
+print(name)
+print(age)</pre>
+
+            <p>What will the first line printed be?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer7">
+                <button class="primary" onclick="checkText(7, 'Alex')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback7"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==================== INPUT ==================== -->
+
+<!-- INPUT EXPLANATION -->
+
+<div class="intro">
+
+    <h2>💬 What is an input statement?</h2>
+
+    <p>
+        So far, our programs have used information that we have
+        written directly into the code. But what if we want the
+        <strong>person using the program</strong> to enter some information?
+    </p>
+
+    <p>
+        We can use Python's <code>input()</code> command to ask the
+        user a question and allow them to type an answer.
+    </p>
+
+    <h3>How does it work?</h3>
+
+    <p>Here is a simple example:</p>
+
+<pre>name = input("What is your name? ")</pre>
+
+    <p>There are three important parts:</p>
+
+    <ol>
+        <li>
+            <code>name</code> is the <strong>variable</strong> where
+            we store the answer.
+        </li>
+        <li>
+            <code>input()</code> tells Python to ask the user for
+            some information.
+        </li>
+        <li>
+            <code>"What is your name? "</code> is the question that
+            the user will see.
+        </li>
+    </ol>
+
+    <p>
+        If the user types <strong>Alex</strong>, Python stores
+        <strong>Alex</strong> inside the variable called
+        <code>name</code>.
+    </p>
+
+<pre>name = input("What is your name? ")
+print(name)</pre>
+
+    <p>
+        The program would then display:
+    </p>
+
+<pre>What is your name? Alex
+Alex</pre>
+
+    <div class="hint">
+        ⭐ <strong>Remember:</strong> The variable stores the answer
+        that the user types.
+    </div>
+
+    <h3>Think of it like this:</h3>
+
+<pre>variable = input("question")</pre>
+
+    <p>
+        The user sees the question, types an answer, and Python
+        stores that answer in the variable.
+    </p>
+
+</div>
+
+
+    <div class="section">
+        <h2 class="section-title">Part 2 — input()</h2>
+
+        <!-- 8 -->
+        <div class="exercise" id="exercise8">
+            <h3>Exercise 8 — input()</h3>
+
+<pre>name = ________("What is your name? ")</pre>
+
+            <p>What command should replace the gap?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer8">
+                <button class="primary" onclick="checkText(8, 'input')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback8"></div>
+            </div>
+        </div>
+
+
+        <!-- 9 -->
+        <div class="exercise" id="exercise9">
+            <h3>Exercise 9 — Store the input</h3>
+
+<pre>________ = input("What is your name? ")
+print(name)</pre>
+
+            <p>What variable should go in the first gap?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer9">
+                <button class="primary" onclick="checkText(9, 'name')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback9"></div>
+            </div>
+        </div>
+
+
+        <!-- 10 -->
+        <div class="exercise" id="exercise10">
+            <h3>Exercise 10 — Favourite colour</h3>
+
+<pre>colour = input("What is your favourite colour? ")
+print(colour)</pre>
+
+            <p>
+                What is the name of the variable storing the answer?
+            </p>
+
+            <div class="answer-area">
+                <input type="text" id="answer10">
+                <button class="primary" onclick="checkText(10, 'colour')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback10"></div>
+            </div>
+        </div>
+
+
+        <!-- 11 -->
+        <div class="exercise" id="exercise11">
+            <h3>Exercise 11 — Favourite food</h3>
+
+<pre>food = input("What is your favourite food? ")
+print(food)</pre>
+
+            <p>What will the program print if you enter <strong>pizza</strong>?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer11">
+                <button class="primary" onclick="checkText(11, 'pizza')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback11"></div>
+            </div>
+        </div>
+
+
+        <!-- 12 -->
+        <div class="exercise" id="exercise12">
+            <h3>Exercise 12 — Name and age</h3>
+
+<pre>name = input("What is your name? ")
+age = input("How old are you? ")
+
+print(name)
+print(age)</pre>
+
+            <p>Which variable stores the user's age?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer12">
+                <button class="primary" onclick="checkText(12, 'age')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback12"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+<!-- MULTIPLICATION AND DIVISION EXPLANATION -->
+
+<div class="intro">
+
+    <h2>➗ Python Maths Symbols</h2>
+
+    <p>
+        Python can perform maths just like a calculator.
+        However, some of the symbols are different from the ones
+        you normally use in maths.
+    </p>
+
+    <h3>Four important maths symbols</h3>
+
+    <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+        <tr style="background:#eceff1;">
+            <th style="padding:10px; border:1px solid #ccc;">Maths</th>
+            <th style="padding:10px; border:1px solid #ccc;">Python</th>
+            <th style="padding:10px; border:1px solid #ccc;">Example</th>
+        </tr>
+
+        <tr>
+            <td style="padding:10px; border:1px solid #ccc;">Addition</td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>+</code></td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>5 + 3</code></td>
+        </tr>
+
+        <tr>
+            <td style="padding:10px; border:1px solid #ccc;">Subtraction</td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>-</code></td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>5 - 3</code></td>
+        </tr>
+
+        <tr>
+            <td style="padding:10px; border:1px solid #ccc;">
+                Multiplication
+            </td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>*</code></td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>5 * 3</code></td>
+        </tr>
+
+        <tr>
+            <td style="padding:10px; border:1px solid #ccc;">
+                Division
+            </td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>/</code></td>
+            <td style="padding:10px; border:1px solid #ccc;"><code>6 / 3</code></td>
+        </tr>
+    </table>
+
+    <h3>Multiplication</h3>
+
+    <p>
+        In normal maths, you might write:
+    </p>
+
+<pre>5 × 3</pre>
+
+    <p>
+        Python does not use the <code>×</code> symbol.
+        Instead, Python uses the <strong>asterisk</strong>:
+    </p>
+
+<pre>5 * 3</pre>
+
+    <p>
+        So:
+    </p>
+
+<pre>answer = 5 * 3
+print(answer)</pre>
+
+    <p>
+        would print:
+    </p>
+
+<pre>15</pre>
+
+    <h3>Division</h3>
+
+    <p>
+        In normal maths, you might write:
+    </p>
+
+<pre>12 ÷ 3</pre>
+
+    <p>
+        Python uses a forward slash <code>/</code> instead:
+    </p>
+
+<pre>12 / 3</pre>
+
+    <p>
+        For example:
+    </p>
+
+<pre>answer = 12 / 3
+print(answer)</pre>
+
+    <p>
+        would print:
+    </p>
+
+<pre>4.0</pre>
+
+    <div class="hint">
+        ⭐ <strong>Remember:</strong>
+        <code>*</code> means multiply and
+        <code>/</code> means divide.
+    </div>
+
+</div>
+
+
+    <!-- ==================== ADDITION ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 3 — Addition</h2>
+
+        <!-- 13 -->
+        <div class="exercise" id="exercise13">
+            <h3>Exercise 13 — Addition</h3>
+
+<pre>answer = 5 + 3
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer13">
+                <button class="primary" onclick="checkNumber(13, 8)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback13"></div>
+            </div>
+        </div>
+
+
+        <!-- 14 -->
+        <div class="exercise" id="exercise14">
+            <h3>Exercise 14 — Addition</h3>
+
+<pre>answer = 10 + 7
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer14">
+                <button class="primary" onclick="checkNumber(14, 17)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback14"></div>
+            </div>
+        </div>
+
+
+        <!-- 15 -->
+        <div class="exercise" id="exercise15">
+            <h3>Exercise 15 — Addition</h3>
+
+<pre>answer = 25 + 15
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer15">
+                <button class="primary" onclick="checkNumber(15, 40)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback15"></div>
+            </div>
+        </div>
+
+
+        <!-- 16 -->
+        <div class="exercise" id="exercise16">
+            <h3>Exercise 16 — Find the operator</h3>
+
+<pre>answer = 12 ___ 8
+print(answer)</pre>
+
+            <p>Which symbol will make this an addition?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer16">
+                <button class="primary" onclick="checkText(16, '+')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback16"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==================== SUBTRACTION ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 4 — Subtraction</h2>
+
+        <!-- 17 -->
+        <div class="exercise" id="exercise17">
+            <h3>Exercise 17 — Subtraction</h3>
+
+<pre>answer = 10 - 4
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer17">
+                <button class="primary" onclick="checkNumber(17, 6)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback17"></div>
+            </div>
+        </div>
+
+
+        <!-- 18 -->
+        <div class="exercise" id="exercise18">
+            <h3>Exercise 18 — Subtraction</h3>
+
+<pre>answer = 20 - 7
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer18">
+                <button class="primary" onclick="checkNumber(18, 13)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback18"></div>
+            </div>
+        </div>
+
+
+        <!-- 19 -->
+        <div class="exercise" id="exercise19">
+            <h3>Exercise 19 — Subtraction</h3>
+
+<pre>answer = 50 - 23
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer19">
+                <button class="primary" onclick="checkNumber(19, 27)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback19"></div>
+            </div>
+        </div>
+
+
+        <!-- 20 -->
+        <div class="exercise" id="exercise20">
+            <h3>Exercise 20 — Find the operator</h3>
+
+<pre>answer = 30 ___ 12
+print(answer)</pre>
+
+            <p>Which symbol should replace the gap, if we want to get the answer 18?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer20">
+                <button class="primary" onclick="checkText(20, '-')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback20"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==================== MULTIPLICATION ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 5 — Multiplication</h2>
+
+        <!-- 21 -->
+        <div class="exercise" id="exercise21">
+            <h3>Exercise 21 — Multiplication</h3>
+
+<pre>answer = 6 * 4
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer21">
+                <button class="primary" onclick="checkNumber(21, 24)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback21"></div>
+            </div>
+        </div>
+
+
+        <!-- 22 -->
+        <div class="exercise" id="exercise22">
+            <h3>Exercise 22 — Multiplication</h3>
+
+<pre>answer = 7 * 5
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer22">
+                <button class="primary" onclick="checkNumber(22, 35)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback22"></div>
+            </div>
+        </div>
+
+
+        <!-- 23 -->
+        <div class="exercise" id="exercise23">
+            <h3>Exercise 23 — Multiplication</h3>
+
+<pre>answer = 12 * 3
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer23">
+                <button class="primary" onclick="checkNumber(23, 36)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback23"></div>
+            </div>
+        </div>
+
+
+        <!-- 24 -->
+        <div class="exercise" id="exercise24">
+            <h3>Exercise 24 — Find the operator</h3>
+
+<pre>answer = 9 ___ 6
+print(answer)</pre>
+
+            <p>Which symbol means multiplication in Python?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer24">
+                <button class="primary" onclick="checkText(24, '*')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback24"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==================== DIVISION ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 6 — Division</h2>
+
+        <!-- 25 -->
+        <div class="exercise" id="exercise25">
+            <h3>Exercise 25 — Division</h3>
+
+<pre>answer = 20 / 4
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer25">
+                <button class="primary" onclick="checkNumber(25, 5)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback25"></div>
+            </div>
+        </div>
+
+
+        <!-- 26 -->
+        <div class="exercise" id="exercise26">
+            <h3>Exercise 26 — Division</h3>
+
+<pre>answer = 30 / 5
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer26">
+                <button class="primary" onclick="checkNumber(26, 6)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback26"></div>
+            </div>
+        </div>
+
+
+        <!-- 27 -->
+        <div class="exercise" id="exercise27">
+            <h3>Exercise 27 — Division</h3>
+
+<pre>answer = 100 / 10
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer27">
+                <button class="primary" onclick="checkNumber(27, 10)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback27"></div>
+            </div>
+        </div>
+
+
+        <!-- 28 -->
+        <div class="exercise" id="exercise28">
+            <h3>Exercise 28 — Find the operator</h3>
+
+<pre>answer = 40 ___ 8
+print(answer)</pre>
+
+            <p>Which symbol means division in Python?</p>
+
+            <div class="answer-area">
+                <input type="text" id="answer28">
+                <button class="primary" onclick="checkText(28, '/')">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback28"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==================== VARIABLES + MATHS ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 7 — Variables and Maths</h2>
+
+        <!-- 29 -->
+        <div class="exercise" id="exercise29">
+            <h3>Exercise 29 — Addition with variables</h3>
+
+<pre>number1 = 8
+number2 = 7
+
+answer = number1 + number2
+
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer29">
+                <button class="primary" onclick="checkNumber(29, 15)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback29"></div>
+            </div>
+        </div>
+
+
+        <!-- 30 -->
+        <div class="exercise" id="exercise30">
+            <h3>Exercise 30 — Subtraction with variables</h3>
+
+<pre>number1 = 20
+number2 = 6
+
+answer = number1 - number2
+
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer30">
+                <button class="primary" onclick="checkNumber(30, 14)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback30"></div>
+            </div>
+        </div>
+
+
+        <!-- 31 -->
+        <div class="exercise" id="exercise31">
+            <h3>Exercise 31 — Multiplication with variables</h3>
+
+<pre>number1 = 9
+number2 = 4
+
+answer = number1 * number2
+
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer31">
+                <button class="primary" onclick="checkNumber(31, 36)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback31"></div>
+            </div>
+        </div>
+
+
+        <!-- 32 -->
+        <div class="exercise" id="exercise32">
+            <h3>Exercise 32 — Division with variables</h3>
+
+<pre>number1 = 36
+number2 = 6
+
+answer = number1 / number2
+
+print(answer)</pre>
+
+            <p>What will Python print?</p>
+
+            <div class="answer-area">
+                <input type="number" id="answer32">
+                <button class="primary" onclick="checkNumber(32, 6)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback32"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ==================== INT + INPUT ==================== -->
+
+<!-- INT EXPLANATION -->
+
+<div class="intro">
+
+    <h2>🔢 Why do we need <code>int()</code>?</h2>
+
+    <p>
+        There is something important you need to know about
+        <code>input()</code>.
+    </p>
+
+    <p>
+        When Python gets information using <code>input()</code>,
+        it normally treats the answer as <strong>text</strong>,
+        even if the user types a number.
+    </p>
+
+    <h3>For example...</h3>
+
+<pre>age = input("How old are you? ")</pre>
+
+    <p>
+        If the user types:
+    </p>
+
+<pre>13</pre>
+
+    <p>
+        Python has stored <strong>"13"</strong> as text rather than
+        the number <strong>13</strong>.
+    </p>
+
+    <p>
+        This can cause a problem when we want to do maths.
+    </p>
+
+    <h3>We can use <code>int()</code> to fix this.</h3>
+
+    <p>
+        <code>int()</code> tells Python:
+    </p>
+
+    <p style="font-size:18px; font-weight:bold;">
+        "Treat this as a whole number."
+    </p>
+
+    <p>For example:</p>
+
+<pre>age = int(input("How old are you? "))</pre>
+
+    <p>
+        Now, if the user types <strong>13</strong>, Python stores it
+        as the number <strong>13</strong>.
+    </p>
+
+    <h3>Why does this matter?</h3>
+
+    <p>
+        We can now use the value in a calculation.
+    </p>
+
+<pre>age = int(input("How old are you? "))
+
+next_year = age + 1
+
+print(next_year)</pre>
+
+    <p>
+        If the user enters <strong>13</strong>, Python calculates:
+    </p>
+
+<pre>13 + 1</pre>
+
+    <p>and prints:</p>
+
+<pre>14</pre>
+
+    <div class="hint">
+        ⭐ <strong>Remember:</strong>
+        <code>input()</code> gets information from the user.
+        <code>int()</code> converts that information into a whole number
+        so that we can do maths with it.
+    </div>
+
+    <h3>The pattern to remember</h3>
+
+<pre>variable = int(input("Question: "))</pre>
+
+    <p>
+        You will use this pattern a lot when making programs that
+        ask users to enter numbers.
+    </p>
+
+</div>
+
+
+    <div class="section">
+        <h2 class="section-title">Part 8 — input() and numbers</h2>
+
+        <!-- 33 -->
+        <div class="exercise" id="exercise33">
+            <h3>Exercise 33 — int(input())</h3>
+
+<pre>age = int(input("How old are you? "))
+print(age)</pre>
+
+            <p>
+                Why do we use <code>int()</code> here?
+            </p>
+
+            <div class="answer-area">
+
+                <select id="answer33">
+                    <option value="">Choose...</option>
+                    <option value="number">Because we want the answer to be treated as a number</option>
+                    <option value="text">Because we want the answer to be treated as text</option>
+                    <option value="print">Because int() prints the answer</option>
+                </select>
+
+                <button class="primary" onclick="checkSelect(33, 'number')">
+                    Check Answer
+                </button>
+
+                <div class="feedback" id="feedback33"></div>
+            </div>
+        </div>
+
+
+        <!-- 34 -->
+        <div class="exercise" id="exercise34">
+            <h3>Exercise 34 — Add two inputs</h3>
+
+<pre>number1 = int(input("Enter a number: "))
+number2 = int(input("Enter another number: "))
+
+answer = number1 + number2
+
+print(answer)</pre>
+
+            <p>
+                If the user enters <strong>8</strong> and then <strong>7</strong>,
+                what will the program print?
+            </p>
+
+            <div class="answer-area">
+                <input type="number" id="answer34">
+                <button class="primary" onclick="checkNumber(34, 15)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback34"></div>
+            </div>
+        </div>
+
+
+        <!-- 35 -->
+        <div class="exercise" id="exercise35">
+            <h3>Exercise 35 — Subtract two inputs</h3>
+
+<pre>number1 = int(input("Enter a number: "))
+number2 = int(input("Enter another number: "))
+
+answer = number1 - number2
+
+print(answer)</pre>
+
+            <p>
+                If the user enters <strong>20</strong> and then <strong>6</strong>,
+                what will the program print?
+            </p>
+
+            <div class="answer-area">
+                <input type="number" id="answer35">
+                <button class="primary" onclick="checkNumber(35, 14)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback35"></div>
+            </div>
+        </div>
+
+
+        <!-- 36 -->
+        <div class="exercise" id="exercise36">
+            <h3>Exercise 36 — Multiply two inputs</h3>
+
+<pre>number1 = int(input("Enter a number: "))
+number2 = int(input("Enter another number: "))
+
+answer = number1 * number2
+
+print(answer)</pre>
+
+            <p>
+                If the user enters <strong>6</strong> and then <strong>4</strong>,
+                what will the program print?
+            </p>
+
+            <div class="answer-area">
+                <input type="number" id="answer36">
+                <button class="primary" onclick="checkNumber(36, 24)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback36"></div>
+            </div>
+        </div>
+
+
+        <!-- 37 -->
+        <div class="exercise" id="exercise37">
+            <h3>Exercise 37 — Divide two inputs</h3>
+
+<pre>number1 = int(input("Enter a number: "))
+number2 = int(input("Enter another number: "))
+
+answer = number1 / number2
+
+print(answer)</pre>
+
+            <p>
+                If the user enters <strong>30</strong> and then <strong>5</strong>,
+                what will the program print?
+            </p>
+
+            <div class="answer-area">
+                <input type="number" id="answer37">
+                <button class="primary" onclick="checkNumber(37, 6)">
+                    Check Answer
+                </button>
+                <div class="feedback" id="feedback37"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- ==================== DEBUGGING ==================== -->
+
+    <div class="section">
+        <h2 class="section-title">Part 9 — Spot the Mistake</h2>
+
+        <!-- 38 -->
+        <div class="exercise" id="exercise38">
+            <h3>Exercise 38 — Missing something</h3>
+
+<pre>name = "Sam
+print(name)</pre>
+
+            <p>
+                What is missing from the first line?
+            </p>
+
+            <div class="answer-area">
+                <select id="answer38">
+                    <option value="">Choose...</option>
+                    <option value="quote">A speech mark</option>
+                    <option value="bracket">A bracket</option>
+                    <option value="plus">A plus sign</option>
+                </select>
+
+                <button class="primary" onclick="checkSelect(38, 'quote')">
+                    Check Answer
+                </button>
+
+                <div class="feedback" id="feedback38"></div>
+            </div>
+        </div>
+
+
+        <!-- 39 -->
+        <div class="exercise" id="exercise39">
+            <h3>Exercise 39 — Missing something</h3>
+
+<pre>age = 14
+print(age</pre>
+
+            <p>
+                What is missing from the second line?
+            </p>
+
+            <div class="answer-area">
+                <select id="answer39">
+                    <option value="">Choose...</option>
+                    <option value="bracket">A closing bracket )</option>
+                    <option value="quote">A quotation mark</option>
+                    <option value="star">A multiplication sign</option>
+                </select>
+
+                <button class="primary" onclick="checkSelect(39, 'bracket')">
+                    Check Answer
+                </button>
+
+                <div class="feedback" id="feedback39"></div>
+            </div>
+        </div>
+
+
+        <!-- 40 -->
+        <div class="exercise" id="exercise40">
+            <h3>Exercise 40 — Incorrect variable name</h3>
+
+<pre>number1 = 10
+number2 = 5
+
+answer = number1 + number
+print(answer)</pre>
+
+            <p>
+                What should replace <code>number</code> on line 4?
+            </p>
+
+            <div class="answer-area">
+                <input type="text" id="answer40">
+
+                <button class="primary" onclick="checkText(40, 'number2')">
+                    Check Answer
+                </button>
+
+                <div class="feedback" id="feedback40"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<!-- ADVANCED CHALLENGES -->
+
+<div class="intro">
+
+    <h2>🚀 Advanced Challenges</h2>
+
+    <p>
+        These challenges are for students who have completed the main
+        activities and want to push themselves further.
+    </p>
+
+    <p>
+        You do not need to submit your answers on this website.
+        Write and test your programs in Thonny.
+    </p>
+
+    <div class="hint">
+        ⭐ <strong>Challenge yourself:</strong> Try to solve each problem
+        without looking at someone else's code. If you get stuck, break
+        the problem into smaller steps.
+    </div>
+
+</div>
+
+
+<!-- CHALLENGE 1 -->
+
+<div class="exercise">
+
+    <h3>Challenge 1 — Personal Introduction</h3>
+
+    <p>
+        Write a program that asks the user for:
+    </p>
+
+    <ul>
+        <li>their name</li>
+        <li>their age</li>
+        <li>their favourite colour</li>
+    </ul>
+
+    <p>
+        Store each answer in a variable and then print a sentence
+        introducing the user.
+    </p>
+
+    <p><strong>For example:</strong></p>
+
+<pre>What is your name? Alex
+How old are you? 13
+What is your favourite colour? Blue
+
+Hello Alex! You are 13 years old and your favourite colour is Blue.</pre>
+
+    <p>
+        <strong>Extra challenge:</strong> Can you make the output
+        appear on two or three lines instead of one?
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 2 -->
+
+<div class="exercise">
+
+    <h3>Challenge 2 — Age in the Future</h3>
+
+    <p>
+        Ask the user for their current age.
+    </p>
+
+    <p>
+        Calculate how old they will be in:
+    </p>
+
+    <ul>
+        <li>5 years</li>
+        <li>10 years</li>
+        <li>20 years</li>
+    </ul>
+
+    <p>
+        Remember that the answer from <code>input()</code> will need
+        to be converted into an integer before you can do the maths.
+    </p>
+
+    <p><strong>Example:</strong></p>
+
+<pre>How old are you? 13
+
+In 5 years you will be 18.
+In 10 years you will be 23.
+In 20 years you will be 33.</pre>
+
+</div>
+
+
+<!-- CHALLENGE 3 -->
+
+<div class="exercise">
+
+    <h3>Challenge 3 — Rectangle Calculator</h3>
+
+    <p>
+        Write a program that asks the user for the:
+    </p>
+
+    <ul>
+        <li>length of a rectangle</li>
+        <li>width of a rectangle</li>
+    </ul>
+
+    <p>
+        Calculate and print the <strong>area</strong> of the rectangle.
+    </p>
+
+    <p>
+        The formula is:
+    </p>
+
+<pre>area = length × width</pre>
+
+    <p>
+        Remember that Python uses <code>*</code> instead of
+        <code>×</code>.
+    </p>
+
+    <p><strong>Extra challenge:</strong> Also calculate the perimeter.</p>
+
+<pre>perimeter = (length + width) * 2</pre>
+
+</div>
+
+
+<!-- CHALLENGE 4 -->
+
+<div class="exercise">
+
+    <h3>Challenge 4 — Shopping Calculator</h3>
+
+    <p>
+        Write a program that asks the user for the price of three
+        items.
+    </p>
+
+    <p>
+        Calculate the total cost and display it.
+    </p>
+
+    <p><strong>Example:</strong></p>
+
+<pre>Enter the price of item 1: 2
+Enter the price of item 2: 3
+Enter the price of item 3: 5
+
+Total cost: £10</pre>
+
+    <p>
+        <strong>Extra challenge:</strong> Ask the user how much money
+        they have and calculate how much money they have left after
+        buying the three items.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 5 -->
+
+<div class="exercise">
+
+    <h3>Challenge 5 — Seconds Converter</h3>
+
+    <p>
+        Ask the user to enter a number of seconds.
+    </p>
+
+    <p>
+        Convert the number into minutes and seconds.
+    </p>
+
+    <p><strong>For example:</strong></p>
+
+<pre>Enter the number of seconds: 125
+
+125 seconds is 2 minutes and 5 seconds.</pre>
+
+    <p>
+        <strong>Hint:</strong> You will need to think carefully about
+        division. You may want to investigate Python's
+        <code>//</code> and <code>%</code> operators.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 6 -->
+
+<div class="exercise">
+
+    <h3>Challenge 6 — Temperature Converter</h3>
+
+    <p>
+        Ask the user to enter a temperature in degrees Celsius.
+    </p>
+
+    <p>
+        Convert it into Fahrenheit using this formula:
+    </p>
+
+<pre>fahrenheit = (celsius * 9 / 5) + 32</pre>
+
+    <p>
+        Display the answer.
+    </p>
+
+    <p><strong>Example:</strong></p>
+
+<pre>Enter temperature in Celsius: 20
+
+20°C is 68°F.</pre>
+
+    <p>
+        <strong>Extra challenge:</strong> Create another version that
+        converts Fahrenheit into Celsius.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 7 -->
+
+<div class="exercise">
+
+    <h3>Challenge 7 — Average Score</h3>
+
+    <p>
+        Ask the user to enter three test scores.
+    </p>
+
+    <p>
+        Calculate the average score.
+    </p>
+
+    <p><strong>Example:</strong></p>
+
+<pre>Enter score 1: 72
+Enter score 2: 81
+Enter score 3: 77
+
+Your average score is 76.66666666666667</pre>
+
+    <p>
+        <strong>Extra challenge:</strong> Research how to round the
+        answer so that it displays only two decimal places.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 8 -->
+
+<div class="exercise">
+
+    <h3>Challenge 8 — Travel Time</h3>
+
+    <p>
+        Ask the user how far they are travelling in miles and their
+        average speed in miles per hour.
+    </p>
+
+    <p>
+        Calculate approximately how many hours the journey will take.
+    </p>
+
+    <p>
+        Use:
+    </p>
+
+<pre>time = distance / speed</pre>
+
+    <p><strong>Example:</strong></p>
+
+<pre>Distance: 120
+Average speed: 60
+
+Journey time: 2 hours</pre>
+
+    <p>
+        <strong>Extra challenge:</strong> Can you make the program
+        display the answer in hours and minutes?
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 9 -->
+
+<div class="exercise">
+
+    <h3>Challenge 9 — Pocket Money</h3>
+
+    <p>
+        Imagine you receive a fixed amount of pocket money every week.
+    </p>
+
+    <p>
+        Ask the user:
+    </p>
+
+    <ul>
+        <li>how much pocket money they receive each week</li>
+        <li>how much they spend each week</li>
+    </ul>
+
+    <p>
+        Calculate how much they save each week.
+    </p>
+
+    <p>
+        Then calculate how much they will have saved after
+        <strong>1 month</strong> and after <strong>1 year</strong>.
+    </p>
+
+    <p>
+        For this challenge, assume there are 4 weeks in a month and
+        52 weeks in a year.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 10 -->
+
+<div class="exercise">
+
+    <h3>Challenge 10 — The Mystery Number</h3>
+
+    <p>
+        Create a program that starts with a secret number stored in a
+        variable.
+    </p>
+
+<pre>secret = 42</pre>
+
+    <p>
+        Ask the user to enter a number.
+    </p>
+
+    <p>
+        Then calculate and display:
+    </p>
+
+    <ul>
+        <li>the secret number plus their number</li>
+        <li>the secret number minus their number</li>
+        <li>the secret number multiplied by their number</li>
+        <li>the secret number divided by their number</li>
+    </ul>
+
+    <p>
+        <strong>Extra challenge:</strong> Change the program so that
+        the user enters the secret number instead, and the program
+        performs the calculations using two numbers entered by the user.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 11 -->
+
+<div class="exercise">
+
+    <h3>Challenge 11 — Build a Simple Calculator</h3>
+
+    <p>
+        Create a program that asks the user for two numbers.
+    </p>
+
+    <p>
+        Your program should then display the results of:
+    </p>
+
+<pre>Addition
+Subtraction
+Multiplication
+Division</pre>
+
+    <p>
+        For example:
+    </p>
+
+<pre>Enter the first number: 20
+Enter the second number: 5
+
+Addition: 25
+Subtraction: 15
+Multiplication: 100
+Division: 4</pre>
+
+    <p>
+        <strong>Extra challenge:</strong> Make the output look like
+        a real calculator by adding headings and spacing.
+    </p>
+
+</div>
+
+
+<!-- CHALLENGE 12 -->
+
+<div class="exercise">
+
+    <h3>🏆 Challenge 12 — Create Your Own Program</h3>
+
+    <p>
+        Now design your own Python program using everything you have
+        learned so far.
+    </p>
+
+    <p>
+        Your program must:
+    </p>
+
+    <ul>
+        <li>use at least 3 variables</li>
+        <li>use at least 2 <code>input()</code> statements</li>
+        <li>use <code>int()</code> for numbers</li>
+        <li>perform at least 2 calculations</li>
+        <li>use <code>print()</code> to display the results</li>
+    </ul>
+
+    <p>
+        You could create:
+    </p>
+
+    <ul>
+        <li>a restaurant bill calculator</li>
+        <li>a cinema ticket calculator</li>
+        <li>a sports statistics calculator</li>
+        <li>a gaming score calculator</li>
+        <li>a birthday/age calculator</li>
+        <li>a currency or shopping calculator</li>
+        <li>something completely different!</li>
+    </ul>
+
+    <div class="hint">
+        🧠 <strong>Think like a programmer:</strong> Before writing
+        your code, decide what information you need, what variables
+        you will use, what calculations you need to perform, and what
+        you want the program to display.
+    </div>
+
+</div>
+
+
+    <!-- FINISH -->
+
+    <div class="finish">
+        <h2>🎉 Well done!</h2>
+
+        <p>
+            Keep practising until you can confidently explain what
+            variables, <code>print()</code>, <code>input()</code> and the
+            four maths operators do.
+        </p>
+
+        <p>
+            Your current progress:
+            <strong id="finalProgress">0 / 40</strong>
+        </p>
+
+        <button class="primary" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            Back to Progress
+        </button>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+<script>
+
+/* ============================================================
+   YEAR 9 PYTHON WORKSHEET
+   Progress and marking system
+   ============================================================ */
+
+const TOTAL_EXERCISES = 40;
+
+/*
+    completedExercises is stored as an array.
+
+    Example:
+    [1, 2, 3, 7]
+
+    means exercises 1, 2, 3 and 7 have been completed.
+*/
+
+let completedExercises =
+    JSON.parse(localStorage.getItem("pythonWorksheetProgress")) || [];
+
+
+/* ------------------------------------------------------------
+   CREATE PROGRESS MAP
+   ------------------------------------------------------------ */
+
+function createProgressMap() {
+
+    const map = document.getElementById("exerciseMap");
+
+    map.innerHTML = "";
+
+    for (let i = 1; i <= TOTAL_EXERCISES; i++) {
+
+        const dot = document.createElement("div");
+
+        dot.className = "progress-dot";
+        dot.textContent = i;
+        dot.id = "dot" + i;
+
+        dot.title = "Go to Exercise " + i;
+
+        dot.onclick = function() {
+
+            document.getElementById("exercise" + i)
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+        };
+
+        map.appendChild(dot);
+    }
+
+    updateProgressMap();
+}
+
+
+/* ------------------------------------------------------------
+   UPDATE PROGRESS
+   ------------------------------------------------------------ */
+
+function updateProgressMap() {
+
+    const completed = completedExercises.length;
+
+    const percentage =
+        Math.round((completed / TOTAL_EXERCISES) * 100);
+
+    document.getElementById("progressText").textContent =
+        completed + " / " + TOTAL_EXERCISES + " completed";
+
+    document.getElementById("percentage").textContent =
+        percentage + "%";
+
+    document.getElementById("progressFill").style.width =
+        percentage + "%";
+
+    document.getElementById("finalProgress").textContent =
+        completed + " / " + TOTAL_EXERCISES;
+
+    for (let i = 1; i <= TOTAL_EXERCISES; i++) {
+
+        const dot = document.getElementById("dot" + i);
+        const exercise = document.getElementById("exercise" + i);
+
+        if (completedExercises.includes(i)) {
+
+            dot.classList.add("complete");
+            exercise.classList.add("completed");
+
+        } else {
+
+            dot.classList.remove("complete");
+            exercise.classList.remove("completed");
+        }
+    }
+
+    updateTeacherReport();
+}
+
+
+/* ------------------------------------------------------------
+   MARK AN EXERCISE COMPLETE
+   ------------------------------------------------------------ */
+
+function markComplete(number) {
+
+    if (!completedExercises.includes(number)) {
+
+        completedExercises.push(number);
+
+        completedExercises.sort((a,b) => a-b);
+
+        localStorage.setItem(
+            "pythonWorksheetProgress",
+            JSON.stringify(completedExercises)
+        );
+    }
+
+    updateProgressMap();
+}
+
+
+/* ------------------------------------------------------------
+   FEEDBACK
+   ------------------------------------------------------------ */
+
+function showFeedback(number, correct, message) {
+
+    const feedback =
+        document.getElementById("feedback" + number);
+
+    feedback.className =
+        "feedback " + (correct ? "correct" : "incorrect");
+
+    feedback.textContent =
+        correct ? "✓ Correct! " + message : "✗ Not quite. " + message;
+
+    if (correct) {
+        markComplete(number);
+    }
+}
+
+
+/* ------------------------------------------------------------
+   TEXT ANSWERS
+   ------------------------------------------------------------ */
+
+function checkText(number, correctAnswer) {
+
+    const input =
+        document.getElementById("answer" + number);
+
+    const studentAnswer =
+        input.value.trim().toLowerCase();
+
+    const correct =
+        studentAnswer === correctAnswer.toLowerCase();
+
+    if (correct) {
+
+        showFeedback(
+            number,
+            true,
+            "You've got it!"
+        );
+
+    } else {
+
+        showFeedback(
+            number,
+            false,
+            "Check your spelling and try again."
+        );
+    }
+}
+
+
+/* ------------------------------------------------------------
+   NUMBER ANSWERS
+   ------------------------------------------------------------ */
+
+function checkNumber(number, correctAnswer) {
+
+    const input =
+        document.getElementById("answer" + number);
+
+    const studentAnswer =
+        Number(input.value);
+
+    const correct =
+        studentAnswer === Number(correctAnswer);
+
+    if (correct) {
+
+        showFeedback(
+            number,
+            true,
+            "That's the correct answer."
+        );
+
+    } else {
+
+        showFeedback(
+            number,
+            false,
+            "Try the calculation again."
+        );
+    }
+}
+
+
+/* ------------------------------------------------------------
+   SELECT ANSWERS
+   ------------------------------------------------------------ */
+
+function checkSelect(number, correctAnswer) {
+
+    const input =
+        document.getElementById("answer" + number);
+
+    const studentAnswer =
+        input.value;
+
+    const correct =
+        studentAnswer === correctAnswer;
+
+    if (correct) {
+
+        showFeedback(
+            number,
+            true,
+            "Well done!"
+        );
+
+    } else {
+
+        showFeedback(
+            number,
+            false,
+            "Read the question carefully and try again."
+        );
+    }
+}
+
+
+/* ------------------------------------------------------------
+   ANY TEXT ANSWER
+   ------------------------------------------------------------
+
+   Used where students can choose their own answer,
+   such as Exercise 6.
+
+   Any non-empty answer is accepted.
+*/
+
+function checkAnyText(number) {
+
+    const input =
+        document.getElementById("answer" + number);
+
+    const studentAnswer =
+        input.value.trim();
+
+    if (studentAnswer.length > 0) {
+
+        showFeedback(
+            number,
+            true,
+            "Good choice!"
+        );
+
+    } else {
+
+        showFeedback(
+            number,
+            false,
+            "Enter an answer first."
+        );
+    }
+}
+
+
+/* ------------------------------------------------------------
+   STUDENT NAME
+   ------------------------------------------------------------ */
+
+function saveName() {
+
+    const name =
+        document.getElementById("studentName").value;
+
+    localStorage.setItem(
+        "pythonWorksheetStudentName",
+        name
+    );
+
+    updateTeacherReport();
+}
+
+
+/* ------------------------------------------------------------
+   TEACHER REPORT
+   ------------------------------------------------------------ */
+
+function updateTeacherReport() {
+
+    const name =
+        localStorage.getItem("pythonWorksheetStudentName")
+        || "Not entered";
+
+    const completed =
+        completedExercises.length;
+
+    const remaining =
+        TOTAL_EXERCISES - completed;
+
+    const percentage =
+        Math.round((completed / TOTAL_EXERCISES) * 100);
+
+    document.getElementById("reportName").textContent =
+        name;
+
+    document.getElementById("reportCompleted").textContent =
+        completed;
+
+    document.getElementById("reportRemaining").textContent =
+        remaining;
+
+    document.getElementById("reportPercent").textContent =
+        percentage + "%";
+
+
+    let message = "";
+
+    if (percentage === 100) {
+
+        message =
+            "🎉 All exercises completed!";
+
+    } else if (percentage >= 75) {
+
+        message =
+            "Excellent progress — nearly finished!";
+
+    } else if (percentage >= 50) {
+
+        message =
+            "Good progress — keep going!";
+
+    } else if (percentage >= 25) {
+
+        message =
+            "You're making a start. Keep practising.";
+
+    } else {
+
+        message =
+            "Get started with Exercise 1.";
+    }
+
+    document.getElementById("reportMessage").textContent =
+        message;
+}
+
+
+/* ------------------------------------------------------------
+   SHOW / HIDE TEACHER REPORT
+   ------------------------------------------------------------ */
+
+function toggleReport() {
+
+    const report =
+        document.getElementById("teacherReport");
+
+    if (report.style.display === "block") {
+
+        report.style.display = "none";
+
+    } else {
+
+        report.style.display = "block";
+
+        updateTeacherReport();
+    }
+}
+
+
+/* ------------------------------------------------------------
+   RESET
+   ------------------------------------------------------------ */
+
+function resetProgress() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to reset all progress? " +
+            "This cannot be undone."
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    localStorage.removeItem(
+        "pythonWorksheetProgress"
+    );
+
+    localStorage.removeItem(
+        "pythonWorksheetStudentName"
+    );
+
+    completedExercises = [];
+
+    document.getElementById("studentName").value = "";
+
+    for (let i = 1; i <= TOTAL_EXERCISES; i++) {
+
+        const feedback =
+            document.getElementById("feedback" + i);
+
+        if (feedback) {
+
+            feedback.className = "feedback";
+            feedback.textContent = "";
+        }
+
+        const input =
+            document.getElementById("answer" + i);
+
+        if (input) {
+
+            if (input.tagName === "SELECT") {
+                input.selectedIndex = 0;
+            } else {
+                input.value = "";
+            }
+        }
+    }
+
+    updateProgressMap();
+}
+
+
+/* ------------------------------------------------------------
+   LOAD SAVED NAME
+   ------------------------------------------------------------ */
+
+function loadSavedName() {
+
+    const name =
+        localStorage.getItem(
+            "pythonWorksheetStudentName"
+        );
+
+    if (name) {
+
+        document.getElementById("studentName").value =
+            name;
+    }
+}
+
+
+/* ------------------------------------------------------------
+   START
+   ------------------------------------------------------------ */
+
+createProgressMap();
+loadSavedName();
+updateProgressMap();
+
+</script>
+
+</body>
+</html>
