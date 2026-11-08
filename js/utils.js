@@ -6,11 +6,17 @@ export function showBackground() {
   document.querySelector('.background').classList.toggle('hidden');
 }
 
-export function copyCode(mode='python') {
+function getCode(mode) {
   const commentCharacter = mode === 'ocr' ? '//' : '#';
-  const codeText = document
+  return document
     .querySelector('.code')
-    .innerText.replace('📋\n', `${commentCharacter} explain me`).replaceAll('\n\n', `\n${commentCharacter} explain me\n`);
+    .innerText
+    .replace(/📋\n\n?([ \t]*)/, (_, indent) => `${indent}${commentCharacter} explain me\n${indent}`)
+    .replace(/\n\n([ \t]*)/g, (_, indent) => `\n${indent}${commentCharacter} explain me\n${indent}`);
+}
+
+export function copyCode(mode='python') {
+  const codeText = getCode(mode);
   navigator.clipboard.writeText(codeText);
   
   // Show toast message based on mode
@@ -18,6 +24,13 @@ export function copyCode(mode='python') {
     ? 'Code copied.\nPaste into examreferencelanguage.co.uk to run it, then add comments to explain.'
     : 'Code copied.\nPaste into Thonny and run it, then add comments to explain.';
   showToast(toastMessage);
+}
+
+export function openCodeInERL() {
+  const params = new URLSearchParams({
+    code: JSON.stringify([{ name: 'code', content: getCode('ocr') }])
+  });
+  window.open(`https://www.examreferencelanguage.co.uk/index.php?${params}`, '_blank', 'noopener,noreferrer');
 }
 
 export function showToast(message) {

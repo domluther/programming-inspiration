@@ -2,6 +2,7 @@ import {
   showHelp,
   showBackground,
   copyCode,
+  openCodeInERL,
   setupTabs,
   replaceText,
   generateQuestionNumber,
@@ -162,6 +163,7 @@ class DoUntilPage extends ProgrammingPage {
         showHelp,
         showBackground,
         copyCode,
+        openCodeInERL,
         setupTabs,
         replaceText,
         generateQuestionNumber
@@ -183,12 +185,6 @@ class DoUntilPage extends ProgrammingPage {
     this.codePrintEle = document.getElementById('codePrint');
     this.codeUntilEle = document.getElementById('codeUntil');
     this.codeFinalEle = document.getElementById('codeFinal');
-
-    // Override copy button to use OCR mode
-    const copyButton = document.getElementById('copyMe');
-    if (copyButton) {
-      copyButton.onclick = () => copyCode('ocr');
-    }
   }
 
   setupEventListeners() {

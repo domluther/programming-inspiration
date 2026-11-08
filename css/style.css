@@ -1102,37 +1102,13 @@ body.dark-mode .toast {
 }
 
 /* ===== OCR ERL SPECIFIC STYLES ===== */
-.ocr-link {
-  margin-top: 15px;
-  padding: 12px;
-  background-color: #f0f8ff;
-  border-left: 4px solid #4CAF50;
-  font-size: 0.95em;
-  border-radius: 0.25rem;
+.erl-action {
+  margin-top: 0.5rem;
+  text-align: right;
 }
 
-.ocr-link a {
-  color: #4CAF50;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.ocr-link a:hover {
-  color: #45a049;
-}
-
-body.dark-mode .ocr-link {
-  background-color: #1e2a3a;
-  border-left-color: #4CAF50;
-  color: #e0e0e0;
-}
-
-body.dark-mode .ocr-link a {
-  color: #5cbf5c;
-}
-
-body.dark-mode .ocr-link a:hover {
-  color: #6fd96f;
+.code.hidden + .erl-action {
+  display: none;
 }
 
 /* Spacing utility for code examples */
@@ -1144,7 +1120,5 @@ body.dark-mode .ocr-link a:hover {
 .hidden {
   display: none;
 }
-
-
 
 

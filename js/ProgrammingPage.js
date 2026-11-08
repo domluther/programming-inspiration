@@ -93,6 +93,11 @@ export class ProgrammingPage {
     if (this.copyBtn && this.utils.copyCode) {
       this.copyBtn.addEventListener('click', this.utils.copyCode);
     }
+
+    const openErlBtn = document.querySelector('#openErl');
+    if (openErlBtn && this.utils.openCodeInERL) {
+      openErlBtn.addEventListener('click', this.utils.openCodeInERL);
+    }
     
     if (this.backgroundBtn && this.utils.showBackground) {
       this.backgroundBtn.addEventListener('click', this.utils.showBackground);

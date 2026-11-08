@@ -2,6 +2,7 @@ import {
   showHelp,
   showBackground,
   copyCode,
+  openCodeInERL,
   setupTabs,
   replaceText,
   generateQuestionNumber,
@@ -191,6 +192,7 @@ class SwitchCasePage extends ProgrammingPage {
         showHelp,
         showBackground,
         copyCode,
+        openCodeInERL,
         setupTabs,
         replaceText,
         generateQuestionNumber
@@ -212,6 +214,7 @@ class SwitchCasePage extends ProgrammingPage {
     this.codeCorrectAnswerEle = document.querySelector('#codeCorrectAnswer');
     this.codeQuestionEle = document.querySelector('#codeQuestion');
     this.codeSwitch1Ele = document.querySelector('#codeSwitch1');
+    this.codeCase1Ele = document.querySelector('#codeCase1');
     this.codeSwitchReply1Ele = document.querySelector('#codeSwitchReply1');
     this.codeSwitch2Ele = document.querySelector('#codeSwitch2');
     this.codeSwitchReply2Ele = document.querySelector('#codeSwitchReply2');
@@ -302,9 +305,13 @@ class SwitchCasePage extends ProgrammingPage {
         this.codeQuestionEle.innerText = `${question.variable} = input("${question.question1} ")`;
       }
       
-      // Switch statement header with first case
+      // Switch statement header
       if (this.codeSwitch1Ele) {
-        this.codeSwitch1Ele.innerText = `switch ${question.variable}:\n${INDENT}case "${question.case1}":`;
+        this.codeSwitch1Ele.innerText = `switch ${question.variable}:`;
+      }
+
+      if (this.codeCase1Ele) {
+        this.codeCase1Ele.innerText = `${INDENT}case "${question.case1}":`;
       }
       
       // First case reply
